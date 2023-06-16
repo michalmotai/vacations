@@ -1,6 +1,9 @@
 import Joi from 'joi';
-import Role from './Role';
 
+enum Role{
+  admin = 'admin',
+  user = 'user',
+}
 class User {
   public userId: number;
   public firstName: string;
