@@ -1,0 +1,15 @@
+.VacationItem {
+  &__vacation {
+    margin: 20px;
+    padding: 20px;
+    width: 200px;
+    height: auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: aliceblue;
+
+    h3 {
+      font-size: 20px;
+    }
+  }
+}

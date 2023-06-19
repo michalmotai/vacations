@@ -1,17 +1,12 @@
 .Home {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height:100%;
-  &__counter{
-
+  height: 100%;
+  &__counter {
     text-align: center;
-    p{
+    p {
       font-size: 40px;
     }
-    button{
-      padding:20px;
+    button {
+      padding: 20px;
     }
   }
-
 }

@@ -1,10 +1,18 @@
-*{
-    box-sizing: border-box;
-    padding:0;
-    margin:0;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-html,body,#root{
-    color:black;
+html,
+body,
+#root {
+  color: black;
 }
 
+button {
+  width: 70px;
+  height: 30px;
+  padding: 5px;
+  margin: 5px;
+}
