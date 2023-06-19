@@ -20,6 +20,7 @@ router
   .post(async (request: Request, response: Response, next: NextFunction) => {
     try {
       const vacation = new Vacation(request.body);
+      console.log('controllerLog:', vacation);
       const addedVacation = await vacationLogic.addVacation(vacation);
       response.status(201).json(addedVacation);
     } catch (error) {
@@ -32,17 +33,17 @@ router
   .route('/vacations/:id([0-9]+)')
   .get(async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const id = +request.params.id;
-      const vacation = await vacationLogic.getVacation(id);
-      response.json(vacation);
+      const vacationId = +request.params.id;
+      const vacation = await vacationLogic.getVacation(vacationId);
+      response.json(vacation).send('vacation was added successfully');
     } catch (error) {
       next(error);
     }
   })
   .delete(async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const id = +request.params.id;
-      await vacationLogic.deleteVacation(id);
+      const vacationId = +request.params.id;
+      await vacationLogic.deleteVacation(vacationId);
       response.status(204).send('The selected vacation was deleted');
     } catch (error) {
       next(error);

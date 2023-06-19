@@ -23,7 +23,7 @@ export const getAllVacations = async (
 export const getVacation = async (vacationId: number): Promise<Vacation> => {
   try {
     const sql = `SELECT * FROM vacations_table
-        WHERE vacationId = vacationId;`;
+        WHERE vacationId = ${vacationId};`;
     return await dal.execute<Vacation>(sql);
   } catch (error) {
     throw error;
@@ -34,7 +34,7 @@ export const getVacation = async (vacationId: number): Promise<Vacation> => {
 export const deleteVacation = async (id: number): Promise<void> => {
   try {
     const sql = `DELETE FROM vacations_table
-    WHERE VacationId = id;`;
+    WHERE VacationId = ${id};`;
     const info = await dal.execute<OkPacket>(sql);
 
     if (info.affectedRows === 0) {
@@ -47,6 +47,8 @@ export const deleteVacation = async (id: number): Promise<void> => {
 
 //add new vacation
 export const addVacation = async (vacation: Vacation): Promise<Vacation> => {
+  console.log('Received data:', vacation);
+
   //validation
   const error = vacation.validate();
   if (error) throw new ValidationError(error);
@@ -54,8 +56,11 @@ export const addVacation = async (vacation: Vacation): Promise<Vacation> => {
   const { destination, description, startDate, endDate, price, photoName } =
     vacation;
 
-  const sql = `INSERT INTO vacations_table VALUES(
-        DEFAULT, '${destination}','${description}', '${startDate}','${endDate}', ${price},'${photoName}');`;
+  const formatedstartDate = new Date(startDate).toISOString().split('T')[0];
+  const formatedendDate = new Date(endDate).toISOString().split('T')[0];
+
+  const sql = `INSERT INTO vacations_table (vacationId, destination, description, startDate, endDate, price, photoName)
+  VALUES (DEFAULT, '${destination}','${description}', '${formatedstartDate}','${formatedendDate}', ${price},'${photoName}');`;
 
   const info = await dal.execute<OkPacket>(sql);
   vacation.vacationId = info.insertId;
