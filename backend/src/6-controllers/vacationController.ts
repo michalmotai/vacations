@@ -11,7 +11,7 @@ router
     try {
       //***delete || 1  */
       const pageNumber = +(request.query.pageNumber || 1);
-      const vacations = await vacationLogic.getAllVacations(pageNumber);
+      const vacations = await vacationLogic.getAllVacations();
       response.json(vacations);
     } catch (err: any) {
       next(err);
@@ -19,6 +19,8 @@ router
   })
   .post(async (request: Request, response: Response, next: NextFunction) => {
     try {
+      request.body.photo = request.files?.photo;
+
       const vacation = new Vacation(request.body);
       console.log('controllerLog:', vacation);
       const addedVacation = await vacationLogic.addVacation(vacation);
@@ -52,6 +54,7 @@ router
   .put(async (request: Request, response: Response, next: NextFunction) => {
     try {
       const id = +request.params.id;
+      request.body.photo = request.files?.photo;
       const vacation = new Vacation(request.body);
       vacation.vacationId = id;
       const updatedVacation = await vacationLogic.updateVacation(vacation);
@@ -63,6 +66,7 @@ router
   .patch(async (request: Request, response: Response, next: NextFunction) => {
     try {
       const id = +request.params.id;
+      request.body.photo = request.files?.photo;
       const vacation = new Vacation(request.body);
       vacation.vacationId = id;
       const updatedVacation = await vacationLogic.updateVacation(vacation);

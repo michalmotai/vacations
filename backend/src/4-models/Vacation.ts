@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { UploadedFile } from 'express-fileupload';
 
 class Vacation {
   public vacationId: number;
@@ -7,7 +8,8 @@ class Vacation {
   public startDate: Date;
   public endDate: Date;
   public price: number;
-  public photoName: string;
+  public photo?: UploadedFile;
+  public photoName?: string;
 
   public constructor(vacation: Vacation) {
     this.vacationId = vacation.vacationId;
@@ -16,6 +18,7 @@ class Vacation {
     this.startDate = vacation.startDate;
     this.endDate = vacation.endDate;
     this.price = vacation.price;
+    this.photo = vacation.photo;
     this.photoName = vacation.photoName;
   }
 
@@ -26,6 +29,7 @@ class Vacation {
     startDate: Joi.date().iso().required(),
     endDate: Joi.date().iso().required(),
     price: Joi.number().positive().required(),
+    photo: Joi.object().optional(),
     photoName: Joi.string().optional(),
   });
 

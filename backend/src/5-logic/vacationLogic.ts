@@ -2,14 +2,20 @@ import { OkPacket } from 'mysql';
 import dal from '../2-utils/dal';
 import { ResourceNotFoundError, ValidationError } from '../4-models/Error';
 import Vacation from '../4-models/Vacation';
+import { v4 as uuid } from 'uuid';
+import { saveImageToImagesFolder } from '../2-utils/vacation-utils';
+import fs from 'fs';
+
+const imageFolder = `./src/1-assets/images`;
 
 //get all vacations, order by start date, limit to 10 per page
-export const getAllVacations = async (
-  pageNumber: number
-): Promise<Vacation[]> => {
+export const getAllVacations = async (): // pageNumber: number
+Promise<Vacation[]> => {
   try {
     const pageSize = 10; //number of queries per page
-    const offset = (pageNumber - 1) * pageSize;
+
+    //pageNumber - 1 -fix later
+    const offset = 0 * pageSize;
     const sql = `SELECT * FROM vacations_table
     ORDER BY startDate
     LIMIT 10 OFFSET ${offset} `;
@@ -53,14 +59,29 @@ export const addVacation = async (vacation: Vacation): Promise<Vacation> => {
   const error = vacation.validate();
   if (error) throw new ValidationError(error);
 
-  const { destination, description, startDate, endDate, price, photoName } =
-    vacation;
+  const {
+    destination,
+    description,
+    startDate,
+    endDate,
+    price,
+    photo,
+    photoName,
+  } = vacation;
 
-  const formatedstartDate = new Date(startDate).toISOString().split('T')[0];
-  const formatedendDate = new Date(endDate).toISOString().split('T')[0];
+  //reformat dates
+  const formatedStartDate = new Date(startDate).toISOString().split('T')[0];
+  const formatedEndDate = new Date(endDate).toISOString().split('T')[0];
+
+  if (vacation.photo) {
+    await saveImageToImagesFolder(vacation);
+
+    //delete the binary file from the vacation object
+    delete vacation.photo;
+  }
 
   const sql = `INSERT INTO vacations_table (vacationId, destination, description, startDate, endDate, price, photoName)
-  VALUES (DEFAULT, '${destination}','${description}', '${formatedstartDate}','${formatedendDate}', ${price},'${photoName}');`;
+  VALUES (DEFAULT, '${destination}','${description}', '${formatedStartDate}','${formatedEndDate}', ${price},'${vacation.photoName}');`;
 
   const info = await dal.execute<OkPacket>(sql);
   vacation.vacationId = info.insertId;
@@ -73,6 +94,36 @@ export const updateVacation = async (vacation: Vacation): Promise<Vacation> => {
   const error = vacation.validate();
   if (error) throw new ValidationError(error);
 
+  //get all vacations
+  const vacations = await getAllVacations();
+
+  //find index of vacation
+  const index = vacations.findIndex(
+    (v) => v.vacationId === vacation.vacationId
+  );
+
+  //check if there is a photo in the object
+  if (vacation.photo) {
+    //current photo name
+    const currentPhoto = vacations[index].photoName;
+
+    //check if there is a previous photo
+    if (fs.existsSync(`${imageFolder}/${currentPhoto}`)) {
+      console.log('found image');
+      //if exists delete it
+      fs.unlinkSync(`${imageFolder}/${currentPhoto}`);
+      console.log('deleted image');
+    }
+    throw Error('cant find this image');
+
+    //save the new photo
+    await saveImageToImagesFolder(vacation);
+    delete vacation.photo;
+  }
+
+  //update vacation
+  vacations[index] = vacation;
+
   const {
     vacationId,
     destination,
@@ -82,13 +133,18 @@ export const updateVacation = async (vacation: Vacation): Promise<Vacation> => {
     price,
     photoName,
   } = vacation;
+
+  //reformat dates
+  const formatedStartDate = new Date(startDate).toISOString().split('T')[0];
+  const formatedEndDate = new Date(endDate).toISOString().split('T')[0];
+
   const sql = `UPDATE vacations_table SET
      destination = '${destination}',
      description = '${description}',
-     startDate =' ${startDate}',
-     endDate = '${endDate}',
+     startDate =' ${formatedStartDate}',
+     endDate = '${formatedEndDate}',
      price = ${price},
-     photoName = '${photoName}'
+     photoName = '${vacation.photoName}'
      WHERE vacationId = ${vacationId}
     `;
 
