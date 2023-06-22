@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import * as vacationLogic from '../5-logic/vacationLogic';
 import Vacation from '../4-models/Vacation';
+import path from 'path';
 
 const router = express.Router();
 
@@ -71,6 +72,27 @@ router
       vacation.vacationId = id;
       const updatedVacation = await vacationLogic.updateVacation(vacation);
       response.json(updatedVacation);
+    } catch (error) {
+      next(error);
+    }
+  });
+
+// http://localhost:3005/api/vacations/images/:photoName
+router
+  .route('/vacations/images/:photoName')
+  .get(async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const photoName = request.params.photoName;
+      console.log(photoName);
+      const imagesAbseloutePath = path.join(
+        __dirname,
+        '..',
+        '1-assets',
+        'images',
+        photoName
+      );
+      console.log(imagesAbseloutePath);
+      response.sendFile(imagesAbseloutePath);
     } catch (error) {
       next(error);
     }

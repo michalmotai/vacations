@@ -15,10 +15,10 @@ Promise<Vacation[]> => {
     const pageSize = 10; //number of queries per page
 
     //pageNumber - 1 -fix later
-    const offset = 0 * pageSize;
+    // const offset = 0 * pageSize;
     const sql = `SELECT * FROM vacations_table
-    ORDER BY startDate
-    LIMIT 10 OFFSET ${offset} `;
+    ORDER BY startDate`;
+    // LIMIT 10 OFFSET ${offset}
     return await dal.execute<Vacation[]>(sql);
   } catch (error) {
     throw error;
@@ -88,73 +88,74 @@ export const addVacation = async (vacation: Vacation): Promise<Vacation> => {
   return vacation;
 };
 
-//update vacation
+// Update vacation
 export const updateVacation = async (vacation: Vacation): Promise<Vacation> => {
-  //validation
+  // Validation
   const error = vacation.validate();
   if (error) throw new ValidationError(error);
 
-  //get all vacations
+  // Get all vacations
   const vacations = await getAllVacations();
 
-  //find index of vacation
+  // Find index of vacation
   const index = vacations.findIndex(
     (v) => v.vacationId === vacation.vacationId
   );
+  console.log(vacations[index]);
 
-  //check if there is a photo in the object
+  // Check if there is a photo in the object
   if (vacation.photo) {
-    //current photo name
+    // Current photo name
     const currentPhoto = vacations[index].photoName;
+    console.log(currentPhoto);
 
-    //check if there is a previous photo
+    // Check if there is a previous photo
     if (fs.existsSync(`${imageFolder}/${currentPhoto}`)) {
       console.log('found image');
-      //if exists delete it
+      // If exists, delete it
       fs.unlinkSync(`${imageFolder}/${currentPhoto}`);
       console.log('deleted image');
     }
-    throw Error('cant find this image');
 
-    //save the new photo
+    // Save the new photo
     await saveImageToImagesFolder(vacation);
     delete vacation.photo;
+
+    // Update vacation
+    vacations[index] = vacation;
+
+    const {
+      vacationId,
+      destination,
+      description,
+      startDate,
+      endDate,
+      price,
+      photoName,
+    } = vacation;
+
+    // Reformat dates
+    const formatedStartDate = new Date(startDate).toISOString().split('T')[0];
+    const formatedEndDate = new Date(endDate).toISOString().split('T')[0];
+
+    const sql = `UPDATE vacations_table SET
+      destination = '${destination}',
+      description = '${description}',
+      startDate = '${formatedStartDate}',
+      endDate = '${formatedEndDate}',
+      price = ${price},
+      photoName = '${vacation.photoName}'
+      WHERE vacationId = ${vacationId}`;
+
+    // Execute
+    const info = await dal.execute<OkPacket>(sql);
+
+    // If not exist
+    if (info.affectedRows === 0) {
+      throw new ResourceNotFoundError(vacationId);
+    }
   }
 
-  //update vacation
-  vacations[index] = vacation;
-
-  const {
-    vacationId,
-    destination,
-    description,
-    startDate,
-    endDate,
-    price,
-    photoName,
-  } = vacation;
-
-  //reformat dates
-  const formatedStartDate = new Date(startDate).toISOString().split('T')[0];
-  const formatedEndDate = new Date(endDate).toISOString().split('T')[0];
-
-  const sql = `UPDATE vacations_table SET
-     destination = '${destination}',
-     description = '${description}',
-     startDate =' ${formatedStartDate}',
-     endDate = '${formatedEndDate}',
-     price = ${price},
-     photoName = '${vacation.photoName}'
-     WHERE vacationId = ${vacationId}
-    `;
-
-  //execute
-  const info = await dal.execute<OkPacket>(sql);
-
-  //if not exist
-  if (info.affectedRows === 0) {
-    throw new ResourceNotFoundError(vacationId);
-  }
   return vacation;
 };
 

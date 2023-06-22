@@ -420,3 +420,114 @@
 ----------------------------
 21/06/2023, 21:17:02 	 Cannot read properties of undefined (reading 'photoName')
 ----------------------------
+22/06/2023, 9:42:54 	 Cannot read properties of undefined (reading 'photoName')
+----------------------------
+22/06/2023, 10:02:44 	 Cannot read properties of undefined (reading 'photoName')
+----------------------------
+22/06/2023, 10:03:22 	 Cannot read properties of undefined (reading 'photoName')
+----------------------------
+22/06/2023, 10:07:19 	 Cannot read properties of undefined (reading 'photoName')
+----------------------------
+22/06/2023, 10:09:37 	 Cannot read properties of undefined (reading 'photoName')
+----------------------------
+22/06/2023, 10:33:41 	 Cannot read properties of undefined (reading 'photoName')
+----------------------------
+22/06/2023, 10:34:12 	 Route /favicon.ico not exist
+----------------------------
+22/06/2023, 10:34:44 	 cant find this image
+----------------------------
+22/06/2023, 10:40:58 	 Cannot read properties of undefined (reading 'photoName')
+----------------------------
+22/06/2023, 10:41:20 	 Cannot read properties of undefined (reading 'photoName')
+----------------------------
+22/06/2023, 10:42:14 	 Cannot read properties of undefined (reading 'photoName')
+----------------------------
+22/06/2023, 10:42:31 	 Cannot read properties of undefined (reading 'photoName')
+----------------------------
+22/06/2023, 10:54:52 	 Cannot set headers after they are sent to the client
+----------------------------
+22/06/2023, 10:55:12 	 Cannot set headers after they are sent to the client
+----------------------------
+22/06/2023, 10:56:48 	 Cannot read properties of undefined (reading 'photoName')
+----------------------------
+22/06/2023, 11:00:06 	 cant find this image
+----------------------------
+22/06/2023, 11:00:20 	 Cannot set headers after they are sent to the client
+----------------------------
+22/06/2023, 11:00:25 	 Cannot set headers after they are sent to the client
+----------------------------
+22/06/2023, 11:00:29 	 Cannot set headers after they are sent to the client
+----------------------------
+22/06/2023, 11:00:35 	 Cannot set headers after they are sent to the client
+----------------------------
+22/06/2023, 11:00:39 	 Cannot set headers after they are sent to the client
+----------------------------
+22/06/2023, 11:00:46 	 Cannot set headers after they are sent to the client
+----------------------------
+22/06/2023, 11:00:49 	 Cannot set headers after they are sent to the client
+----------------------------
+22/06/2023, 11:02:18 	 Cannot set headers after they are sent to the client
+----------------------------
+22/06/2023, 11:02:46 	 Cannot set headers after they are sent to the client
+----------------------------
+22/06/2023, 11:03:09 	 Cannot read properties of undefined (reading 'photoName')
+----------------------------
+22/06/2023, 11:06:33 	 cant find this image
+----------------------------
+22/06/2023, 11:10:09 	 cant find this image
+----------------------------
+22/06/2023, 11:10:17 	 Cannot set headers after they are sent to the client
+----------------------------
+22/06/2023, 11:10:23 	 Cannot set headers after they are sent to the client
+----------------------------
+22/06/2023, 11:11:31 	 cant find this image
+----------------------------
+22/06/2023, 12:19:05 	 Route /api/vacations/images/48ce59e9-9adc-4544-8cd0-6535b64491f1.jpg not exist
+----------------------------
+22/06/2023, 12:20:08 	 Route /api/vacations/images/48ce59e9-9adc-4544-8cd0-6535b64491f1.jpg not exist
+----------------------------
+22/06/2023, 12:21:21 	 Route /vacations/images/48ce59e9-9adc-4544-8cd0-6535b64491f1.jpg not exist
+----------------------------
+22/06/2023, 12:21:39 	 Route /vacations/images/48ce59e9-9adc-4544-8cd0-6535b64491f1.jpg not exist
+----------------------------
+22/06/2023, 12:21:53 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\48ce59e9-9adc-4544-8cd0-6535b64491f1.jpg'
+----------------------------
+22/06/2023, 12:22:51 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\48ce59e9-9adc-4544-8cd0-6535b64491f1.jpg'
+----------------------------
+22/06/2023, 12:23:47 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\48ce59e9-9adc-4544-8cd0-6535b64491f1.jpg'
+----------------------------
+22/06/2023, 12:24:17 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\48ce59e9-9adc-4544-8cd0-6535b64491f1.jpg'
+----------------------------
+22/06/2023, 12:25:13 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\48ce59e9-9adc-4544-8cd0-6535b64491f1.jpg'
+----------------------------
+22/06/2023, 12:27:18 	 Route /api/images/b40666a8-fa1e-4227-8823-89bec51aed9e.jpg not exist
+----------------------------
+22/06/2023, 12:27:57 	 Route /api/images/39c1ddfe-27dd-473f-ab76-bd579b07e969.jpg not exist
+----------------------------
+22/06/2023, 12:38:48 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\39c1ddfe-27dd-473f-ab76-bd579b07e969.jpg
+'
+----------------------------
+22/06/2023, 12:39:08 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\3185c6f7-a80f-4aac-81e6-498d639d2625.jpg
+'
+----------------------------
+22/06/2023, 12:40:35 	 "destination" is required
+----------------------------
+22/06/2023, 12:42:59 	 "destination" is required
+----------------------------
+22/06/2023, 12:43:08 	 Cannot read properties of undefined (reading 'photoName')
+----------------------------
+22/06/2023, 12:46:08 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\3185c6f7-a80f-4aac-81e6-498d639d2625.jpg
+'
+----------------------------
+22/06/2023, 12:47:09 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\4d4155ae-5967-4867-8011-c8c5ca13c2ab
+'
+----------------------------
+22/06/2023, 12:48:21 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\'4d4155ae-5967-4867-8011-c8c5ca13c2ab.png'
+'
+----------------------------
+22/06/2023, 12:52:09 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\4d4155ae-5967-4867-8011-c8c5ca13c2ab.png
+'
+----------------------------
+22/06/2023, 13:05:54 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\4d4155ae-5967-4867-8011-c8c5ca13c2ab.png
+'
+----------------------------
