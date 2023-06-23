@@ -9,9 +9,11 @@ export const generateToken = (user: User) => {
   const container = { user };
 
   //create expiration time
-  const expiration = { expiration: '3h' };
+  const options = { expiresIn: '3h' };
 
   //generate token
   const secretToken = process.env.JWT_SECRET_KEY;
-  //   jwt.sign(container, secretToken);
+  //
+
+  return jwt.sign(container, `${secretToken}`, options);
 };

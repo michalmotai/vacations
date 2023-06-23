@@ -1,12 +1,12 @@
 import Joi from 'joi';
 
-class Credientials {
+class Credentials {
   public email: string;
   public password: string;
 
-  public constructor(credientials: Credientials) {
-    this.email = credientials.email;
-    this.password = credientials.password;
+  public constructor(Credentials: Credentials) {
+    this.email = Credentials.email;
+    this.password = Credentials.password;
   }
 
   private static validationSchema = Joi.object({
@@ -15,9 +15,9 @@ class Credientials {
   });
 
   public validate(): string | undefined {
-    const result = Credientials.validationSchema.validate(this);
+    const result = Credentials.validationSchema.validate(this);
     return result.error?.message;
   }
 }
 
-export default Credientials;
+export default Credentials;

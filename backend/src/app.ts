@@ -2,16 +2,20 @@ import express from 'express';
 import cors from 'cors';
 import catchAll from './3-middleware/catch-all';
 import routeNotFound from './3-middleware/route-not-found';
-import controller from './6-controllers/vacationController';
+import vacationController from './6-controllers/vacationController';
 import CONFIG from './config';
 import expressFileUpload from 'express-fileupload';
+import logRequest from './2-utils/logRequests';
+import AuthController from './6-controllers/authController';
 
 const server = express();
 
+server.use(logRequest);
 server.use(cors());
 server.use(express.json());
 server.use(expressFileUpload());
-server.use('/api', controller);
+server.use('/api', vacationController);
+server.use('/api', AuthController);
 server.use('*', routeNotFound);
 server.use(catchAll);
 

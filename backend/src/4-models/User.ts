@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-enum Role{
+export enum Role {
   admin = 'admin',
   user = 'user',
 }

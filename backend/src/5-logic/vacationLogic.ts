@@ -40,7 +40,7 @@ export const getVacation = async (vacationId: number): Promise<Vacation> => {
 export const deleteVacation = async (id: number): Promise<void> => {
   try {
     const sql = `DELETE FROM vacations_table
-    WHERE VacationId = ${id};`;
+    WHERE vacationId = ${id};`;
     const info = await dal.execute<OkPacket>(sql);
 
     if (info.affectedRows === 0) {

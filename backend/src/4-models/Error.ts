@@ -20,6 +20,12 @@ export class ValidationError extends Error {
     }
 }
 
+export class UnauthorizedErrorError extends Error {
+    public constructor(message: string) {
+        super(message, 401);
+    }
+}
+
 export class UnauthorizedError extends Error {
     public constructor(message: string) {
         super(message, 401);
