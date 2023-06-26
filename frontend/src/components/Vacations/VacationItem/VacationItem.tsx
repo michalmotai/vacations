@@ -4,15 +4,21 @@ import Vacation from '../../../models/Vacation';
 import { format } from 'date-fns';
 import { NavLink, useParams } from 'react-router-dom';
 import Button from '../../ui-components/Button/Button';
-import VacationDetails from '../VacationDetails/VacationDetails';
 
 interface VacationItemProps {
   vacation: Vacation;
 }
 
 const VacationItem: FC<VacationItemProps> = ({ vacation }) => {
-  const { vacationId, destination, description, startDate, endDate, price } =
-    vacation;
+  const {
+    vacationId,
+    destination,
+    description,
+    startDate,
+    endDate,
+    price,
+    photoName,
+  } = vacation;
 
   const formattedStartDate = format(new Date(startDate), 'MM/dd/yyyy');
   const formattedEndDate = format(new Date(endDate), 'MM/dd/yyyy');
@@ -32,16 +38,15 @@ const VacationItem: FC<VacationItemProps> = ({ vacation }) => {
           <span>To:</span>
           <span> {formattedEndDate}</span>
         </p>
+        <div>
+          <img src={photoName} alt="" />
+        </div>
         {/* <p>{description}</p> */}
         <p>price: {price}</p>
         <Button key={vacationId} text="LIKE" icon={<>&#x2764;</>} />
         <br />
         <NavLink to={`/vacations/${vacationId}`}>
-          <Button text={'Details'} />
-        </NavLink>
-        <br />
-        <NavLink to={`/vacations/edit/${vacationId}`}>
-          <Button text="Edit Item" />
+          <Button key={vacationId} text="Details" />
         </NavLink>
         <br />
       </div>

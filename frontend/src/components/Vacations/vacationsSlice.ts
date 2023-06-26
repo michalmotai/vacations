@@ -49,7 +49,7 @@ export const vacationsSlice = createSlice({
       }
     },
 
-    onDeleteVaction: (state, { payload: id }: PayloadAction<number>) => {
+    onDeleteVacation: (state, { payload: id }: PayloadAction<number>) => {
       const indexToDelete = state.vacations.findIndex(
         (v) => v.vacationId === id
       );
@@ -65,7 +65,7 @@ export const {
   setVacations,
   setVacation,
   onAddVacation,
-  onDeleteVaction,
+  onDeleteVacation,
   onUpdateVacation,
 } = vacationsSlice.actions;
 export default vacationsSlice.reducer;

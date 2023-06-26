@@ -4,42 +4,33 @@ import { useForm } from 'react-hook-form';
 import Vacation from '../../../models/Vacation';
 import FormInputGroupWithError from '../../FormInputGroupWithError/FormInputGroupWithError';
 import validation from './validation';
-import { addVacation } from '../../../fetch';
+import { addVacation as addVacationAsync } from '../../../fetch';
 import { onAddVacation } from '../vacationsSlice';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../../hooks';
 
 interface AddVacationProps {}
 
 const AddVacation: FC<AddVacationProps> = () => {
   const { register, handleSubmit, formState } = useForm<Vacation>();
+  const dispatch = useAppDispatch();
 
   const submitAddVacationHandler = async (vacation: Vacation) => {
     vacation.vacationId = +vacation.vacationId;
     await addVacationAsync(vacation);
+    dispatch(onAddVacation(vacation));
   };
 
   const addVacationAsync = useCallback(async (vacation: Vacation) => {
     try {
       console.log(vacation);
-      await addVacation(vacation);
+      await addVacationAsync(vacation);
       // navigate('/');
       onAddVacation(vacation);
     } catch (error) {
       console.log(error);
     }
   }, []);
-
-  // const submitAddVacationHandler = useCallback(async (vacation: Vacation) => {
-  //   try {
-  //     console.log(vacation);
-  //     await addVacation(vacation).then((addedVacation) => {
-  //       onAddVacation(addedVacation); //set the state
-  //       console.log('addedVacation:', addedVacation);
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, []);
 
   return (
     <div className={styles.AddVacation}>

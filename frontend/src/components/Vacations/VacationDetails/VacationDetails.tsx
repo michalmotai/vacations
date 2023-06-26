@@ -1,83 +1,147 @@
 import React, { FC, useEffect, useState } from 'react';
+import { format, isValid } from 'date-fns';
+import { NavLink, useParams, useNavigate } from 'react-router-dom';
+import { deleteVacation, getVacationsById } from '../../../fetch';
+import { onDeleteVacation, setVacation } from '../vacationsSlice';
+import Button from '../../ui-components/Button/Button';
 import styles from './VacationDetails.module.scss';
 import Vacation from '../../../models/Vacation';
-import { format, isValid } from 'date-fns';
-import Button from '../../ui-components/Button/Button';
-import { NavLink, useParams } from 'react-router-dom';
-import { deleteVacation, getVacationsById } from '../../../fetch';
-import { onDeleteVaction } from '../vacationsSlice';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { BASE_API_URL } from '../../../config';
+import EditVacation from '../EditVacation/EditVacation';
 
 interface VacationDetailsProps {}
 
 const VacationDetails: FC<VacationDetailsProps> = () => {
-  const [selectedVacation, setselectedVacation] = useState<
-    Vacation | undefined
-  >();
+  const dispatch = useAppDispatch();
+  const params = useParams<{ vacationId: string }>();
+  const navigate = useNavigate();
+  const { vacationId } = params;
+  const { vacation, vacations } = useAppSelector(
+    (state) => state.vacationsState
+  );
 
-  const { vacationId } = useParams();
+  const [showEditVacation, setShowEditVacation] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const modalToggleHandler = () => {
+    setShowEditVacation((prevState: any) => !prevState);
+  };
 
   useEffect(() => {
-    if (vacationId) {
-      getVacationsById(+vacationId).then((vacation) => {
-        setselectedVacation(vacation);
-      });
-    }
-  }, []);
+    const id = Number(vacationId);
 
-  useEffect(() => {
-    try {
-      if (vacationId) {
-        deleteVacation(+vacationId).then(() => {
-          onDeleteVaction(+vacationId);
+    //check it there is a vacation with this id
+    const existingVacation = vacations.find((v) => v.vacationId === id);
+
+    if (existingVacation) {
+      dispatch(setVacation(existingVacation));
+      setIsLoading(false);
+    } else {
+      setIsLoading(true);
+
+      //if there is no vacation it is fetched from server
+      getVacationsById(id)
+        .then((fetchedVacation) => {
+          dispatch(setVacation(fetchedVacation));
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
-      }
-    } catch (error) {
-      console.log(error);
     }
-  }, []);
+  }, [vacationId, vacations, dispatch]);
 
-  if (!selectedVacation) {
-    return <div>Loading...</div>; // Add loading state if necessary
-  }
+  const renderButtonUponLogin = () => {
+    // if admin
 
-  const { destination, description, startDate, endDate, price, photoName } =
-    selectedVacation;
+    return (
+      <>
+        <span>|</span>
+        <button>
+          <NavLink onClick={modalToggleHandler} to="#">
+            Edit
+          </NavLink>
+        </button>
+        <button>
+          {' '}
+          <NavLink onClick={deleteVacationHandler} to="#" navigate>
+            Delete
+          </NavLink>
+        </button>
 
-  const formattedStartDate = isValid(new Date(startDate))
-    ? format(new Date(startDate), 'MM/dd/yyyy')
-    : '';
-  const formattedEndDate = isValid(new Date(endDate))
-    ? format(new Date(endDate), 'MM/dd/yyyy')
-    : '';
+        {/* //if user */}
+        <Button key={vacationId} text="LIKE" icon={<>&#x2764;</>} />
+      </>
+    );
+  };
+
+  const deleteVacationHandler = () => {
+    if (vacationId)
+      deleteVacation(+vacationId)
+        .then((success) => {
+          if (success) {
+            dispatch(onDeleteVacation(Number(vacationId)));
+            // Move the alert before the navigation, it will halt execution until the user closes it
+            if (
+              window.confirm('Are you sure you want to delete this vacation?')
+            ) {
+              navigate('/');
+            }
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  };
+
+  const renderVacation = () => {
+    if (vacation) {
+      const imgSrc = `${BASE_API_URL}/vacations/images/${vacation.photoName}`;
+      const formattedStartDate = isValid(new Date(vacation.startDate))
+        ? format(new Date(vacation.startDate), 'MM/dd/yyyy')
+        : '';
+      const formattedEndDate = isValid(new Date(vacation.endDate))
+        ? format(new Date(vacation.endDate), 'MM/dd/yyyy')
+        : '';
+
+      return (
+        <div className={styles.VacationDetails}>
+          <div>
+            <img src={imgSrc} alt="" />
+          </div>
+          <h3>{vacation.destination}</h3>
+          <p>{vacationId}</p>
+          <p>
+            <span>From: {formattedStartDate}</span>
+          </p>
+          <p>
+            <span>To: {formattedEndDate}</span>
+          </p>
+          <p>{vacation.description}</p>
+          <p>price: {vacation.price}</p>
+        </div>
+      );
+    } else if (!isLoading) {
+      return <div>Vacation not found.</div>;
+    } else {
+      return null;
+    }
+  };
 
   return (
     <div className={styles.VacationDetails}>
-      <div>
-        <img src={photoName} alt="" />
-      </div>
-      <h3>{destination}</h3>
-      <p>{vacationId}</p>
-      <p>
-        <span>From: {formattedStartDate}</span>
-      </p>
-      <p>
-        <span>To: {formattedEndDate}</span>
-      </p>
-      <p>{description}</p>
-      <p>price: {price}</p>
-      <Button key={vacationId} text="LIKE" icon={<>&#x2764;</>} />
-      <br />
-      <NavLink to={`/vacations/edit/${vacationId}`}>
-        <Button text="Edit Item" />
-      </NavLink>
-      <button
-        onClick={() => {
-          deleteVacation(+vacationId!);
-        }}>
-        Delete{' '}
-      </button>
-      <Button text={'Like'}></Button>
-      <br />
+      <header>
+        <h2>Vacation Details</h2>
+      </header>
+      <div className={styles.VacationDetails__body}>{renderVacation()}</div>
+      <div> {renderButtonUponLogin()}</div>
+      {showEditVacation && vacation && (
+        <EditVacation onClose={modalToggleHandler} vacation={vacation} />
+      )}
     </div>
   );
 };
