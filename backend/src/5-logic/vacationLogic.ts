@@ -183,8 +183,9 @@ export const getActiveVactions = async (
     const currentDate = new Date().toISOString().split('T')[0];
     const sql = `SELECT *
     FROM vacations_table
-    WHERE startDate >= '${currentDate}'
-      AND endDate <= '${currentDate}';`;
+    WHERE startDate <= '${currentDate}'
+      AND endDate >= '${currentDate}';`;
+
     return await dal.execute<Vacation[]>(sql);
   } catch (error) {
     throw error;

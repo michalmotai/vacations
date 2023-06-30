@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import styles from './AddVacation.module.scss';
 import { useForm } from 'react-hook-form';
 import Vacation from '../../../models/Vacation';
@@ -8,12 +8,15 @@ import { addVacation as addVacationAsync } from '../../../fetch';
 import { onAddVacation } from '../vacationsSlice';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../hooks';
+import Alert from '../../ui-components/Alert/Alert';
 
 interface AddVacationProps {}
 
 const AddVacation: FC<AddVacationProps> = () => {
   const { register, handleSubmit, formState } = useForm<Vacation>();
   const dispatch = useAppDispatch();
+  const [error, setError] = useState<any>(null);
+  const [showError, setShowError] = useState(false);
 
   const submitAddVacationHandler = async (vacation: Vacation) => {
     vacation.vacationId = +vacation.vacationId;
@@ -28,12 +31,20 @@ const AddVacation: FC<AddVacationProps> = () => {
       // navigate('/');
       onAddVacation(vacation);
     } catch (error) {
+      setShowError(true);
+      setError(error);
       console.log(error);
     }
   }, []);
 
   return (
     <div className={styles.AddVacation}>
+      {error && showError && (
+        <Alert
+          error={'There was a problem with adding the vacation'}
+          onClose={() => setShowError(false)}
+        />
+      )}
       <h2>Add a new vacation</h2>
 
       <br />
