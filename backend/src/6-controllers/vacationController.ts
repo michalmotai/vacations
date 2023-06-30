@@ -20,7 +20,7 @@ router
     }
   })
   .post(
-    verifyLogin,
+    // verifyLogin,
     async (request: Request, response: Response, next: NextFunction) => {
       try {
         request.body.photo = request.files?.photo;
@@ -48,7 +48,7 @@ router
     }
   })
   .delete(
-    verifyLogin,
+    // verifyLogin,
     async (request: Request, response: Response, next: NextFunction) => {
       try {
         const vacationId = +request.params.id;

@@ -11,7 +11,7 @@ class Credentials {
 
   private static validationSchema = Joi.object({
     email: Joi.string().email().required().min(7).max(45),
-    password: Joi.string().required().min(8).max(45),
+    password: Joi.string().required().min(6).max(45),
   });
 
   public validate(): string | undefined {
