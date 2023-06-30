@@ -1,6 +1,5 @@
 import Vacation from '../models/Vacation';
 import axios from '../axios';
-import { BASE_API_URL } from '../config';
 
 export const getVacations = async (): Promise<Vacation[]> => {
   const response = await axios.get<Vacation[]>('/vacations');
@@ -26,7 +25,7 @@ export const getVacationsbyDestination = async (
 export const addVacation = async (vacation: Vacation): Promise<Vacation> => {
   // AJAX request - sending a new vacation to the server / receiving  back the added vacation
 
-  // const response = await axios.post(`${BASE_API_URL}/vacations/`,vacation); // sending object with binary (without files);
+  // const response = await axios.post(`/vacations/`,vacation); // sending object with binary (without files);
 
   const formData = new FormData(); // can contain string and / or files
   formData.append('destination', vacation.destination);
@@ -39,7 +38,7 @@ export const addVacation = async (vacation: Vacation): Promise<Vacation> => {
   // console.log(vacation);
 
   const response = await axios.post<Vacation>(
-    `${BASE_API_URL}/vacations`,
+    `/vacations`,
     formData
   );
 
@@ -55,7 +54,7 @@ export const addVacation = async (vacation: Vacation): Promise<Vacation> => {
 export const updateVacation = async (vacation: Vacation): Promise<Vacation> => {
   // AJAX request - sending a new vacation to the server / receiving  back the added vacation
 
-  // const response = await axios.post(`${BASE_API_URL}/vacations/`,vacation); // sending object with binary (without files);
+  // const response = await axios.post(`/vacations/`,vacation); // sending object with binary (without files);
 
   const formData = new FormData(); // can contain string and / or files
   formData.append('destination', vacation.destination);
@@ -66,7 +65,7 @@ export const updateVacation = async (vacation: Vacation): Promise<Vacation> => {
   formData.append('photoName', vacation.photoName[0]); //image = FileList image[0] = File  / Blob
 
   const response = await axios.post<Vacation>(
-    `${BASE_API_URL}/vacations`,
+    `/vacations`,
     formData
   );
 

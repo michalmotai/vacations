@@ -5,9 +5,7 @@ import { deleteVacation, getVacationsById } from '../../../fetch';
 import { onDeleteVacation, setVacation } from '../vacationsSlice';
 import Button from '../../ui-components/Button/Button';
 import styles from './VacationDetails.module.scss';
-import Vacation from '../../../models/Vacation';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { BASE_API_URL } from '../../../config';
 import EditVacation from '../EditVacation/EditVacation';
 
 interface VacationDetailsProps {}
@@ -68,7 +66,7 @@ const VacationDetails: FC<VacationDetailsProps> = () => {
         </button>
         <button>
           {' '}
-          <NavLink onClick={deleteVacationHandler} to="#" navigate>
+          <NavLink onClick={deleteVacationHandler} to="/vacations">
             Delete
           </NavLink>
         </button>
@@ -100,7 +98,7 @@ const VacationDetails: FC<VacationDetailsProps> = () => {
 
   const renderVacation = () => {
     if (vacation) {
-      const imgSrc = `${BASE_API_URL}/vacations/images/${vacation.photoName}`;
+      const imgSrc = `/vacations/images/${vacation.photoName}`;
       const formattedStartDate = isValid(new Date(vacation.startDate))
         ? format(new Date(vacation.startDate), 'MM/dd/yyyy')
         : '';
