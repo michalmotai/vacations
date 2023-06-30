@@ -13,6 +13,7 @@ import { onUpdateVacation } from '../vacationsSlice';
 import { useParams } from 'react-router-dom';
 import Button from '../../ui-components/Button/Button';
 import Modal from '../../ui-components/Modal/Modal';
+import { format } from 'date-fns';
 
 interface EditVacationProps {
   vacation: Vacation;
@@ -39,9 +40,17 @@ const EditVacation: FC<EditVacationProps> = ({ vacation, onClose }) => {
     setValue('vacationId', vacation.vacationId);
     setValue('destination', vacation.destination);
     setValue('description', vacation.description);
-    setValue('startDate', vacation.startDate);
-    setValue('endDate', vacation.endDate);
-    setValue('price', vacation.price);
+
+    // Format the dates before setting their values
+    const formattedStartDate = format(
+      new Date(vacation.startDate),
+      'dd/MM/yyyy'
+    );
+    const formattedEndDate = format(new Date(vacation.endDate), 'dd/MM/yyyy');
+
+    setValue('startDate', format(new Date(vacation.startDate), 'dd/MM/yyyy'));
+    setValue('endDate', format(new Date(vacation.endDate), 'dd/MM/yyyy'));
+        setValue('price', vacation.price);
     setValue('photoName', vacation.photoName);
   }, []);
 
@@ -73,14 +82,14 @@ const EditVacation: FC<EditVacationProps> = ({ vacation, onClose }) => {
           <FormInputGroupWithError error={formState.errors.startDate?.message}>
             <label>startDate</label>
             <input
-              type="date"
+              type="string"
               {...register('startDate', validation.startDate)}
             />
           </FormInputGroupWithError>
 
           <FormInputGroupWithError error={formState.errors.endDate?.message}>
             <label>endDate</label>
-            <input type="date" {...register('endDate', validation.endDate)} />
+            <input type="string" {...register('endDate', validation.endDate)} />
           </FormInputGroupWithError>
 
           <FormInputGroupWithError error={formState.errors.price?.message}>

@@ -7,5 +7,4 @@ interface Vacation {
   price: number;
   photoName: string;
 }
-
 export default Vacation;

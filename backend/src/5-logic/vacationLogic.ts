@@ -70,8 +70,8 @@ export const addVacation = async (vacation: Vacation): Promise<Vacation> => {
   } = vacation;
 
   //reformat dates
-  const formatedStartDate = new Date(startDate).toISOString().split('T')[0];
-  const formatedEndDate = new Date(endDate).toISOString().split('T')[0];
+  // const formatedStartDate = new Date(startDate).toISOString().split('T')[0];
+  // const formatedEndDate = new Date(endDate).toISOString().split('T')[0];
 
   if (vacation.photo) {
     await saveImageToImagesFolder(vacation);
@@ -81,7 +81,7 @@ export const addVacation = async (vacation: Vacation): Promise<Vacation> => {
   }
 
   const sql = `INSERT INTO vacations_table (vacationId, destination, description, startDate, endDate, price, photoName)
-  VALUES (DEFAULT, '${destination}','${description}', '${formatedStartDate}','${formatedEndDate}', ${price},'${vacation.photoName}');`;
+  VALUES (DEFAULT, '${destination}','${description}', '${startDate}','${endDate}', ${price},'${vacation.photoName}');`;
 
   const info = await dal.execute<OkPacket>(sql);
   vacation.vacationId = info.insertId;
@@ -135,14 +135,14 @@ export const updateVacation = async (vacation: Vacation): Promise<Vacation> => {
     } = vacation;
 
     // Reformat dates
-    const formatedStartDate = new Date(startDate).toISOString().split('T')[0];
-    const formatedEndDate = new Date(endDate).toISOString().split('T')[0];
+    // const formatedStartDate = new Date(startDate).toISOString().split('T')[0];
+    // const formatedEndDate = new Date(endDate).toISOString().split('T')[0];
 
     const sql = `UPDATE vacations_table SET
       destination = '${destination}',
       description = '${description}',
-      startDate = '${formatedStartDate}',
-      endDate = '${formatedEndDate}',
+      startDate = '${startDate}',
+      endDate = '${endDate}',
       price = ${price},
       photoName = '${vacation.photoName}'
       WHERE vacationId = ${vacationId}`;
@@ -180,7 +180,7 @@ export const getActiveVactions = async (
   endDate: Date
 ): Promise<Vacation[]> => {
   try {
-    const currentDate = new Date().toISOString().split('T')[0];
+    const currentDate = new Date();
     const sql = `SELECT *
     FROM vacations_table
     WHERE startDate <= '${currentDate}'

@@ -38,8 +38,6 @@ const Vacations: FC<VacationsProps> = () => {
         endDate,
         price,
       } = vacation;
-      const formattedStartDate = format(new Date(startDate), 'MM/dd/yyyy');
-      const formattedEndDate = format(new Date(endDate), 'MM/dd/yyyy');
 
       return <VacationItem key={vacationId} vacation={vacation} />;
     });

@@ -44,11 +44,11 @@ export const register = async (user: User): Promise<string> => {
   const hashedPassword = await hashPassword(password);
 
   //reformat dates
-  const formatedBirthday = new Date(birthday).toISOString().split('T')[0];
+  // const formatedBirthday = new Date(birthday).toISOString().split('T')[0];
   user.role = Role.user;
 
   const sql = `INSERT INTO users (userId, firstName, lastName, email, password, birthday, role)
-  VALUES (DEFAULT,'${firstName}', '${lastName}', '${email}', '${hashedPassword}', '${formatedBirthday}','${user.role}')`;
+  VALUES (DEFAULT,'${firstName}', '${lastName}', '${email}', '${hashedPassword}', '${birthday}','${user.role}')`;
 
   const info = await dal.execute<OkPacket>(sql);
   user.userId = info.insertId;
@@ -66,7 +66,6 @@ export const login = async (credentials: Credentials): Promise<string> => {
 
   // get user by email
   const user = await getUserByEmail(credentials.email);
-
 
   // if user does not exist or password does not match - checking hashed password
   if (!user || !(await bcrypt.compare(credentials.password, user.password))) {

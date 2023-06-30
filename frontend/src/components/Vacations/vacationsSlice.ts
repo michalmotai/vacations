@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import Vacation from '../../models/Vacation';
+import { format } from 'date-fns';
 
 interface VacationState {
   vacations: Vacation[];
@@ -31,6 +32,7 @@ export const vacationsSlice = createSlice({
     setVacation: (state, action: PayloadAction<Vacation>) => {
       const { payload } = action; // payload ===vacation
       state.vacation = payload;
+  
     },
     onAddVacation: (state, { payload: vacation }: PayloadAction<Vacation>) => {
       state.vacations.push(vacation);

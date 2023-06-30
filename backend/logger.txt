@@ -1429,3 +1429,27 @@
 ----------------------------
 30/06/2023, 9:09:20 	 Incorrect email or password
 ----------------------------
+30/06/2023, 15:21:04 	 Incorrect date value: '2021-02-30' for column 'endDate' at row 1
+----------------------------
+30/06/2023, 15:21:27 	 Incorrect date value: '2021-02-30T00:00:00' for column 'endDate' at row 1
+----------------------------
+30/06/2023, 15:21:46 	 Incorrect date value: '2024-02-30' for column 'endDate' at row 1
+----------------------------
+30/06/2023, 15:22:04 	 Incorrect date value: '2024-02-30T00:00:00' for column 'endDate' at row 1
+----------------------------
+30/06/2023, 15:22:27 	 "startDate" must be in ISO 8601 date format
+----------------------------
+30/06/2023, 15:23:58 	 Incorrect date value: '2024-02-30T00:00:00' for column 'endDate' at row 1
+----------------------------
+30/06/2023, 15:24:10 	 Incorrect date value: '2024-02-30' for column 'endDate' at row 1
+----------------------------
+30/06/2023, 20:14:59 	 Cannot set headers after they are sent to the client
+----------------------------
+30/06/2023, 20:15:10 	 Cannot set headers after they are sent to the client
+----------------------------
+30/06/2023, 20:21:17 	 Cannot set headers after they are sent to the client
+----------------------------
+30/06/2023, 22:52:58 	 Cannot set headers after they are sent to the client
+----------------------------
+30/06/2023, 23:02:53 	 Cannot set headers after they are sent to the client
+----------------------------
