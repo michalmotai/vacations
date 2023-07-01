@@ -48,9 +48,9 @@ const EditVacation: FC<EditVacationProps> = ({ vacation, onClose }) => {
     );
     const formattedEndDate = format(new Date(vacation.endDate), 'dd/MM/yyyy');
 
-    setValue('startDate', format(new Date(vacation.startDate), 'dd/MM/yyyy'));
-    setValue('endDate', format(new Date(vacation.endDate), 'dd/MM/yyyy'));
-        setValue('price', vacation.price);
+    setValue('startDate', vacation.startDate);
+    setValue('endDate', vacation.endDate);
+    setValue('price', vacation.price);
     setValue('photoName', vacation.photoName);
   }, []);
 
