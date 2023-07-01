@@ -1453,3 +1453,27 @@
 ----------------------------
 30/06/2023, 23:02:53 	 Cannot set headers after they are sent to the client
 ----------------------------
+01/07/2023, 15:21:08 	 Route /api/vacations/1/likes/27 not exist
+----------------------------
+01/07/2023, 15:21:42 	 Route /api/vacations/1/likes/13 not exist
+----------------------------
+01/07/2023, 15:23:20 	 Route /api/vacations/1/likes not exist
+----------------------------
+01/07/2023, 15:24:32 	 Route /api/vacations/1/likes not exist
+----------------------------
+01/07/2023, 15:24:32 	 Route /favicon.ico not exist
+----------------------------
+01/07/2023, 15:26:40 	 Route /api/vacations/1/likes not exist
+----------------------------
+01/07/2023, 15:27:21 	 Route /api/vacations/1/likes not exist
+----------------------------
+01/07/2023, 15:32:39 	 Route /api/vacations/1/likes not exist
+----------------------------
+01/07/2023, 15:32:43 	 Route /api/vacations/1/likes not exist
+----------------------------
+01/07/2023, 15:33:40 	 Route /api/vacations/1/likes not exist
+----------------------------
+01/07/2023, 17:26:36 	 Route /api/vacations/likes/1 not exist
+----------------------------
+01/07/2023, 17:35:47 	 Unknown column 'NaN' in 'field list'
+----------------------------

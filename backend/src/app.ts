@@ -7,6 +7,7 @@ import CONFIG from './config';
 import expressFileUpload from 'express-fileupload';
 import logRequest from './2-utils/logRequests';
 import AuthController from './6-controllers/authController';
+import likesController from './6-controllers/likesController';
 
 const server = express();
 
@@ -16,7 +17,10 @@ server.use(express.json());
 server.use(expressFileUpload());
 server.use('/api', vacationController);
 server.use('/api', AuthController);
+server.use('/api', likesController);
+
 server.use('*', routeNotFound);
+
 server.use(catchAll);
 
 server.listen(CONFIG.PORT, () => {
