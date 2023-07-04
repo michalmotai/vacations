@@ -18,16 +18,14 @@ router.get(
   }
 );
 
-router
-  .route('/vacations/:userId/likes/:vacationId')
-
-  .get(async (request: Request, response: Response, next: NextFunction) => {
+router.get(
+  '/vacations/:vacationId/likes/:userId',
+  async (request: Request, response: Response, next: NextFunction) => {
     try {
       const userId = +request.params.userId;
       const vacationId = +request.params.vacationId;
 
       if (isNaN(userId) || isNaN(vacationId)) {
-        // Send a 400 Bad Request response or throw an error
         response.status(400).send('userId and vacationId must be numbers');
         return;
       }
@@ -36,55 +34,61 @@ router
         userId,
         vacationId
       );
-      if (!userLikedVacation) {
-        response
-          .status(404)
-          .send(`Vacation with ID ${vacationId} does not exist`);
+
+      if (userLikedVacation === undefined) {
+        // The combination of user and vacation is not found
+        response.status(200).send(false);
         return;
       }
 
-      response.status(200).json({ userLikedVacation });
+      response.status(200).send(userLikedVacation);
     } catch (error) {
       next(error);
     }
-  })
+  }
+);
 
-  .post(async (request: Request, response: Response, next: NextFunction) => {
+router.post(
+  '/vacations/:userId/likes/:vacationId',
+  async (request: Request, response: Response, next: NextFunction) => {
     try {
       const userId = +request.params.userId;
       const vacationId = +request.params.vacationId;
 
       if (isNaN(userId) || isNaN(vacationId)) {
-        // Send a 400 Bad Request response or throw an error
         response.status(400).send('userId and vacationId must be numbers');
         return;
       }
 
-      const vacationLikes = await likesLogic.addVacatopmLikeByUserId(
-        userId,
-        vacationId
-      );
-      response.status(201).send(`user ${userId} liked vacation:${vacationId} `);
+      await likesLogic.addVacatopmLikeByUserId(userId, vacationId);
+      response.status(201).send(`user ${userId} liked vacation: ${vacationId}`);
     } catch (err) {
       next(err);
     }
-  })
-  .delete(async (request: Request, response: Response, next: NextFunction) => {
+  }
+);
+
+router.delete(
+  '/vacations/:userId/likes/:vacationId',
+  async (request: Request, response: Response, next: NextFunction) => {
     try {
       const userId = +request.params.userId;
       const vacationId = +request.params.vacationId;
 
-      const vacationLikes = await likesLogic.deleteVacationLikeByUserId(
-        userId,
-        vacationId
-      );
+      if (isNaN(userId) || isNaN(vacationId)) {
+        response.status(400).send('userId and vacationId must be numbers');
+        return;
+      }
+
+      await likesLogic.deleteVacationLikeByUserId(userId, vacationId);
       response
-        .status(201)
-        .send(`user ${userId}disliked vacation: ${vacationId} `);
+        .status(200)
+        .send(`user ${userId} unliked vacation: ${vacationId}`);
     } catch (err) {
       next(err);
     }
-  });
+  }
+);
 
 // http://localhost:3005/api/vacations/likes
 router.get(

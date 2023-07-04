@@ -6,5 +6,6 @@ interface Vacation {
   endDate: Date;
   price: number;
   photoName: string;
+  likesCount: number;
 }
 export default Vacation;

@@ -8,6 +8,7 @@ export const setInitialAuthState = (): AuthState => {
   // Take the token from the session storage (if exists)
   const token = sessionStorage.getItem(AUTH_LOGIN_STORAGE_KEY);
   let user = null;
+  let likesCount = 0;
 
   if (token) {
     // setAuthHeaders
@@ -19,6 +20,7 @@ export const setInitialAuthState = (): AuthState => {
   return {
     user,
     token,
+    likedVacations: [],
   };
 };
 

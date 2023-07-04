@@ -18,13 +18,7 @@ const AddVacation: FC<AddVacationProps> = () => {
   const [error, setError] = useState<any>(null);
   const [showError, setShowError] = useState(false);
 
-  const submitAddVacationHandler = async (vacation: Vacation) => {
-    vacation.vacationId = +vacation.vacationId;
-    await addVacationAsync(vacation);
-    dispatch(onAddVacation(vacation));
-  };
-
-  const addVacationAsync = useCallback(async (vacation: Vacation) => {
+  const submitAddVacationHandler = useCallback(async (vacation: Vacation) => {
     try {
       console.log(vacation);
       await addVacationAsync(vacation);

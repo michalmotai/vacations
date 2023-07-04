@@ -1477,3 +1477,37 @@
 ----------------------------
 01/07/2023, 17:35:47 	 Unknown column 'NaN' in 'field list'
 ----------------------------
+01/07/2023, 23:45:15 	 Unknown column 'NaN' in 'where clause'
+----------------------------
+02/07/2023, 0:18:13 	 Route /vacations/2/likes not exist
+----------------------------
+02/07/2023, 18:11:22 	 Cannot set headers after they are sent to the client
+----------------------------
+03/07/2023, 8:47:19 	 Route /api///vacations/4/likes/2 not exist
+----------------------------
+03/07/2023, 9:05:27 	 Cannot add or update a child row: a foreign key constraint fails (`vacations`.`likes`, CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE RESTRICT ON UPDATE CASCADE)
+----------------------------
+03/07/2023, 9:26:00 	 Cannot add or update a child row: a foreign key constraint fails (`vacations`.`likes`, CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE RESTRICT ON UPDATE CASCADE)
+----------------------------
+03/07/2023, 9:26:30 	 Cannot add or update a child row: a foreign key constraint fails (`vacations`.`likes`, CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE RESTRICT ON UPDATE CASCADE)
+----------------------------
+03/07/2023, 9:26:32 	 Cannot add or update a child row: a foreign key constraint fails (`vacations`.`likes`, CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE RESTRICT ON UPDATE CASCADE)
+----------------------------
+03/07/2023, 9:26:33 	 Cannot add or update a child row: a foreign key constraint fails (`vacations`.`likes`, CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE RESTRICT ON UPDATE CASCADE)
+----------------------------
+04/07/2023, 7:40:58 	 Cannot set headers after they are sent to the client
+----------------------------
+04/07/2023, 7:41:03 	 Cannot set headers after they are sent to the client
+----------------------------
+04/07/2023, 7:41:13 	 Cannot set headers after they are sent to the client
+----------------------------
+04/07/2023, 7:41:17 	 Cannot set headers after they are sent to the client
+----------------------------
+04/07/2023, 7:41:53 	 Cannot set headers after they are sent to the client
+----------------------------
+04/07/2023, 16:08:33 	 Cannot set headers after they are sent to the client
+----------------------------
+04/07/2023, 22:04:39 	 Cannot delete or update a parent row: a foreign key constraint fails (`vacations`.`likes`, CONSTRAINT `vacationId` FOREIGN KEY (`vacationId`) REFERENCES `vacations_table` (`vacationId`) ON DELETE RESTRICT ON UPDATE CASCADE)
+----------------------------
+04/07/2023, 23:38:07 	 Incorrect date value: '2022-02-02T00:00:00.000Z' for column 'startDate' at row 1
+----------------------------

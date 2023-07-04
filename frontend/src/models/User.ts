@@ -1,3 +1,5 @@
+import Vacation from './Vacation';
+
 interface User {
   userId: number;
   firstName: string;
@@ -6,6 +8,7 @@ interface User {
   password: string;
   birthDate: Date;
   role: string;
+  likedVacations: Vacation[];
 }
 
 export default User;

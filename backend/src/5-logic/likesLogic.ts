@@ -31,6 +31,8 @@ export const checkIfUserLikedVacation = async (
   }
 };
 
+
+
 //post like to vacation by userId
 export const addVacatopmLikeByUserId = async (
   userId: number,
