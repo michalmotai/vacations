@@ -8,9 +8,12 @@ import expressFileUpload from 'express-fileupload';
 import logRequest from './2-utils/logRequests';
 import AuthController from './6-controllers/authController';
 import likesController from './6-controllers/likesController';
+import helmet from 'helmet';
 
 const server = express();
 
+
+server.use(helmet);
 server.use(logRequest);
 server.use(cors());
 server.use(express.json());

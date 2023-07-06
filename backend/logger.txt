@@ -1511,3 +1511,106 @@
 ----------------------------
 04/07/2023, 23:38:07 	 Incorrect date value: '2022-02-02T00:00:00.000Z' for column 'startDate' at row 1
 ----------------------------
+05/07/2023, 20:27:48 	 Cannot delete or update a parent row: a foreign key constraint fails (`vacations`.`likes`, CONSTRAINT `vacationId` FOREIGN KEY (`vacationId`) REFERENCES `vacations_table` (`vacationId`) ON DELETE RESTRICT ON UPDATE CASCADE)
+----------------------------
+05/07/2023, 22:54:15 	 Route /favicon.ico not exist
+----------------------------
+05/07/2023, 22:56:28 	 Route /api/vacations not exist
+----------------------------
+05/07/2023, 22:58:54 	 unauthorized
+----------------------------
+05/07/2023, 22:59:11 	 unautherized
+----------------------------
+05/07/2023, 23:00:01 	 "destination" is required
+----------------------------
+05/07/2023, 23:44:41 	 Incorrect date value: '2024-01-01T00:00:00.000Z' for column 'startDate' at row 1
+----------------------------
+05/07/2023, 23:50:26 	 Incorrect date value: '2024-01-01T00:00:00.000Z' for column 'startDate' at row 1
+----------------------------
+06/07/2023, 0:02:24 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:16:06 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:16:19 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:17:26 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:23:48 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:24:36 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:24:51 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:29:14 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:29:51 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:29:52 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:30:04 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:30:19 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:30:22 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:30:24 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:30:37 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:31:36 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:31:39 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:48:34 	 Route /vacations/images/b40666a8-fa1e-4227-8823-89bec51aed9e.jpg not exist
+----------------------------
+06/07/2023, 0:48:56 	 Route /vacations/images/b40666a8-fa1e-4227-8823-89bec51aed9e.jpg not exist
+----------------------------
+06/07/2023, 0:50:18 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\ad17cf87-7780-4de0-8d56-3026f4d14d3f.jpg'
+----------------------------
+06/07/2023, 0:51:04 	 Route /api///vacations/images/83dee53a-d56d-40ac-b5dc-e9ade510aa63.jpg not exist
+----------------------------
+06/07/2023, 0:52:20 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\83dee53a-d56d-40ac-b5dc-e9ade510aa63.jpg'
+----------------------------
+06/07/2023, 0:52:29 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\3185c6f7-a80f-4aac-81e6-498d639d2625.jpg
+'
+----------------------------
+06/07/2023, 0:54:23 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:54:36 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:54:42 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:55:07 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:55:31 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:55:35 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:56:28 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 0:58:29 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 1:00:33 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 1:01:52 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 1:04:37 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 1:04:40 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 1:04:46 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 1:04:58 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 1:05:49 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 1:05:51 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 1:05:58 	 Cannot set headers after they are sent to the client
+----------------------------
+06/07/2023, 1:09:18 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\c63ce113-ad40-4ca3-b88b-28b449b9fa6a.png"'
+----------------------------
+06/07/2023, 1:09:35 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\c63ce113-ad40-4ca3-b88b-28b449b9fa6a.png"'
+----------------------------
+06/07/2023, 1:16:09 	 Cannot set headers after they are sent to the client
+----------------------------

@@ -26,6 +26,8 @@ router
         request.body.photo = request.files?.photo;
 
         const vacation = new Vacation(request.body);
+        console.log(request.body);
+
         console.log('controllerLog:', vacation);
         const addedVacation = await vacationLogic.addVacation(vacation);
         response.status(201).json(addedVacation);
@@ -60,7 +62,7 @@ router
     }
   )
   .put(
-    verifyLogin,
+    // verifyLogin,
     async (request: Request, response: Response, next: NextFunction) => {
       try {
         const id = +request.params.id;
@@ -75,12 +77,13 @@ router
     }
   )
   .patch(
-    verifyLogin,
+    // verifyLogin,
     async (request: Request, response: Response, next: NextFunction) => {
       try {
         const id = +request.params.id;
         request.body.photo = request.files?.photo;
         const vacation = new Vacation(request.body);
+        console.log(request.body);
         vacation.vacationId = id;
         const updatedVacation = await vacationLogic.updateVacation(vacation);
         response.json(updatedVacation);
