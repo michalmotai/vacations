@@ -108,7 +108,8 @@ const VacationDetails: FC<VacationDetailsProps> = () => {
 
       return (
         <div className={styles.VacationDetails}>
-          <div>
+          <div className={styles.VacationDetails__photo}>
+
             <img src={imgSrc} alt="" />
           </div>
           <h3>{vacation.destination}</h3>

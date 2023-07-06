@@ -13,6 +13,7 @@ import {
 } from '../../fetch/likes';
 import { setLikedVacations } from '../../auth/authSlice';
 import AdminArea from '../AdminArea/AdminArea';
+import Checkbox from '../ui-components/Checkbox/Checkbox';
 
 interface VacationsProps {}
 
@@ -20,6 +21,9 @@ const Vacations: FC<VacationsProps> = () => {
   const dispatch = useAppDispatch();
   const { vacations } = useAppSelector((state) => state.vacationsState);
   const { user, likedVacations } = useAppSelector((state) => state.authState);
+  const [isChecked, setIsChecked] = useState();
+
+  const checkIfChecked = () => {};
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +31,13 @@ const Vacations: FC<VacationsProps> = () => {
         // Get vacations from the server
         const fetchedVacations = await getVacations();
         dispatch(setVacations(fetchedVacations));
+
+        //initialize the likesCount to zero
+        dispatch(
+          setVacations(
+            fetchedVacations.map((vacation) => ({ ...vacation, likesCount: 0 }))
+          )
+        );
 
         // Get likes for each vacation
         const likesPerVacation = await getLikesPerVacation();
@@ -85,12 +96,16 @@ const Vacations: FC<VacationsProps> = () => {
   return (
     <>
       <div className={styles.Vacations}>{renderVacations()}</div>;
-      <label htmlFor="filterLikedVacations">My liked vacations</label>
+      <Checkbox
+        labelText={'filter liked vacations'}
+        checked={false}
+        onChange={function (): void {}}></Checkbox>
+      {/* <label htmlFor="filterLikedVacations">My liked vacations</label>
       <input type="checkbox" name="filterLikedVacations" id="filter1" />
       <label htmlFor="filterActiveVacations">Active vacations</label>
       <input type="checkbox" name="filterActiveVacations" id="filter2" />
       <label htmlFor="filetFutureVacations">filet Future Vacations</label>
-      <input type="checkbox" name="filetFutureVacations" id="filter3" />
+      <input type="checkbox" name="filetFutureVacations" id="filter3" /> */}
       <NavLink to="/vacations/add_vacation">
         <Button text={'Add new vacation'}></Button>
       </NavLink>

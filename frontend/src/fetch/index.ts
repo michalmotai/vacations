@@ -65,8 +65,9 @@ export const updateVacation = async (vacation: Vacation): Promise<Vacation> => {
     formData.append('destination', vacation.destination);
     formData.append('description', vacation.description);
     formData.append('price', vacation.price.toString());
-    formData.append('startDate', vacation.startDate.toISOString());
-    formData.append('endDate', vacation.endDate.toISOString());
+
+    formData.append('startDate', new Date(vacation.startDate).toISOString());
+    formData.append('endDate', new Date(vacation.endDate).toISOString());
     formData.append('photoName', vacation.photoName[0]);
 
     const response = await axios.post<Vacation>(`/vacations`, formData);

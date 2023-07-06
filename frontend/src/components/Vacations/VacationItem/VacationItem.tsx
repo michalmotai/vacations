@@ -101,12 +101,15 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, likedVacations }) => {
 
   const formattedStartDate = format(new Date(startDate), 'MM/dd/yyyy');
   const formattedEndDate = format(new Date(endDate), 'MM/dd/yyyy');
+  const imgSrc = `/vacations/images/${vacation.photoName}`;
+  console.log(imgSrc);
 
   return (
     <div className={styles.VacationItem} key={vacationId}>
       <div className={styles.VacationItem__vacation}>
         <h3>{destination}</h3>
         <p>{vacationId}</p>
+        <img src={imgSrc} />
         <p>
           <span>From:</span>
           <span> {formattedStartDate}</span>

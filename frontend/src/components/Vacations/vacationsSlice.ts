@@ -68,6 +68,7 @@ export const vacationsSlice = createSlice({
       console.log(vacationId, likesCount);
 
       const vacation = state.vacations.find((v) => v.vacationId === vacationId);
+
       if (vacation) {
         vacation.likesCount = likesCount || 0;
       }

@@ -16,3 +16,9 @@ button {
   border: 1px, solid black;
   border-radius: 10px;
 }
+
+img {
+  min-width: 150px;
+  height: auto;
+  border: 1px solid black;
+}
