@@ -22,12 +22,15 @@ const Vacations: FC<VacationsProps> = () => {
   const { vacations } = useAppSelector((state) => state.vacationsState);
   const { user, likedVacations } = useAppSelector((state) => state.authState);
   const [isChecked, setIsChecked] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   const checkIfChecked = () => {};
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true);
+
         // Get vacations from the server
         const fetchedVacations = await getVacations();
         dispatch(setVacations(fetchedVacations));
@@ -65,6 +68,8 @@ const Vacations: FC<VacationsProps> = () => {
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -81,6 +86,7 @@ const Vacations: FC<VacationsProps> = () => {
         endDate,
         price,
         likesCount,
+        photoName,
       } = vacation;
 
       return (
@@ -95,22 +101,27 @@ const Vacations: FC<VacationsProps> = () => {
 
   return (
     <>
-      <div className={styles.Vacations}>{renderVacations()}</div>;
-      <Checkbox
-        labelText={'filter liked vacations'}
-        checked={false}
-        onChange={function (): void {}}></Checkbox>
-      {/* <label htmlFor="filterLikedVacations">My liked vacations</label>
-      <input type="checkbox" name="filterLikedVacations" id="filter1" />
-      <label htmlFor="filterActiveVacations">Active vacations</label>
-      <input type="checkbox" name="filterActiveVacations" id="filter2" />
-      <label htmlFor="filetFutureVacations">filet Future Vacations</label>
-      <input type="checkbox" name="filetFutureVacations" id="filter3" /> */}
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <div className={styles.Vacations}>{renderVacations()}</div>
+      )}
       <NavLink to="/vacations/add_vacation">
-        <Button text={'Add new vacation'}></Button>
+        <Button text={'Add new vacation'} />
       </NavLink>
     </>
   );
+
+  // <Checkbox
+  //   labelText={'filter liked vacations'}
+  //   checked={false}
+  //   onChange={function (): void {}}></Checkbox>
+  // {/* <label htmlFor="filterLikedVacations">My liked vacations</label>
+  // <input type="checkbox" name="filterLikedVacations" id="filter1" />
+  // <label htmlFor="filterActiveVacations">Active vacations</label>
+  // <input type="checkbox" name="filterActiveVacations" id="filter2" />
+  // <label htmlFor="filetFutureVacations">filet Future Vacations</label>
+  // <input type="checkbox" name="filetFutureVacations" id="filter3" /> */}
 };
 
 export default Vacations;

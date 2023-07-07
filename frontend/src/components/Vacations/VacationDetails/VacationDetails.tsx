@@ -22,6 +22,7 @@ const VacationDetails: FC<VacationDetailsProps> = () => {
   const [showEditVacation, setShowEditVacation] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
+  
 
   const modalToggleHandler = () => {
     setShowEditVacation((prevState: any) => !prevState);

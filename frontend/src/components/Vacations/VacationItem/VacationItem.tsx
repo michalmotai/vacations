@@ -17,6 +17,7 @@ import {
   getVacationLikedByUserIdAsync,
   isLikedAsync,
 } from '../../../fetch/likes';
+import { BASE_API_URL } from '../../../config';
 
 interface VacationItemProps {
   vacation: Vacation;
@@ -36,6 +37,7 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, likedVacations }) => {
   } = vacation;
 
   const dispatch = useAppDispatch();
+  const [isLoading, setIsLoading] = useState(true);
 
   const [isLiked, setIsLiked] = useState<boolean>();
   const userId = useAppSelector((state) => state.authState.user?.userId);
@@ -101,15 +103,15 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, likedVacations }) => {
 
   const formattedStartDate = format(new Date(startDate), 'MM/dd/yyyy');
   const formattedEndDate = format(new Date(endDate), 'MM/dd/yyyy');
-  const imgSrc = `/vacations/images/${vacation.photoName}`;
-  console.log(imgSrc);
+  const imgSrc = `${BASE_API_URL}/vacations/images/${vacation.photoName}`;
+  console.log(vacationId, imgSrc);
 
   return (
     <div className={styles.VacationItem} key={vacationId}>
       <div className={styles.VacationItem__vacation}>
         <h3>{destination}</h3>
         <p>{vacationId}</p>
-        <img src={imgSrc} />
+        <img src={imgSrc} alt="" />
         <p>
           <span>From:</span>
           <span> {formattedStartDate}</span>
@@ -118,9 +120,7 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, likedVacations }) => {
           <span>To:</span>
           <span> {formattedEndDate}</span>
         </p>
-        <div>
-          <img src={photoName} alt="" />
-        </div>
+
         {/* <p>{description}</p> */}
         <p>price: {price}</p>
         <p>likes: {likesCount}</p>

@@ -1,1 +1,14 @@
-.AdminArea {}
+.AdminArea {
+  table {
+    margin-top: 20px;
+    border: 1px solid;
+    border-collapse: collapse;
+    
+
+    th,
+    td {
+      border: 1px solid;
+      width: 25%;
+    }
+  }
+}

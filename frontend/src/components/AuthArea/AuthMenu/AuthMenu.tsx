@@ -20,7 +20,12 @@ const AuthMenu: FC<AuthMenuProps> = () => {
           <span>
             Hello {user.firstName}
             {user.lastName}
-            <NavLink onClick = {logoutHandler} to="#">Logout</NavLink>
+            {user.role === 'admin' && (
+              <NavLink to="/admin">Admin Panel</NavLink>
+            )}
+            <NavLink onClick={logoutHandler} to="#">
+              Logout
+            </NavLink>
           </span>
         </>
       );

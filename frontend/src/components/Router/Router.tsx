@@ -10,6 +10,7 @@ import VacationDetails from '../Vacations/VacationDetails/VacationDetails';
 import Logout from '../AuthArea/Logout/Logout';
 import Login from '../AuthArea/Login/Login';
 import Register from '../AuthArea/Register/Register';
+import AdminArea from '../AdminArea/AdminArea';
 
 interface RouterProps {}
 
@@ -30,7 +31,7 @@ const Router: FC<RouterProps> = () => (
     {/* add vacation */}
     <Route path="/vacations/add_vacation" element={<AddVacation />} />
     {/*all  views */}
-    <Route path="/otherComponent" element={<SomeOtherComponent />} />
+    <Route path="/admin" element={<AdminArea />} />
     {/* Page not Found */}
     <Route path="*" element={<PageNotFound />} />
   </Routes>

@@ -10,8 +10,7 @@ const Header: FC<HeaderProps> = () => {
   return (
     <header className={styles.Header}>
       <NavLink to="/">Home</NavLink>
-      <NavLink to="/otherComponent">other component</NavLink>
-      <NavLink to="/navlink">navlink</NavLink>
+      {/* <NavLink to="/navlink">navlink</NavLink> */}
       <AuthMenu />
     </header>
   );
