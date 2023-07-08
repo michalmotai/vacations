@@ -1,5 +1,6 @@
 import Vacation from '../4-models/Vacation';
 import { v4 as uuid } from 'uuid';
+import path from 'path';
 
 export const saveImageToImagesFolder = async (vacation: Vacation) => {
   if (vacation.photo) {
@@ -11,3 +12,5 @@ export const saveImageToImagesFolder = async (vacation: Vacation) => {
     await vacation.photo.mv(`./src/1-assets/images/${vacation.photoName}`);
   }
 };
+
+export const imagesAbseloutePath = path.join(__dirname, '..', '1-assets', 'images');

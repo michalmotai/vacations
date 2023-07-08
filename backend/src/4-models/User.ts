@@ -29,7 +29,7 @@ class User {
     lastName: Joi.string().required().min(2).max(45),
     email: Joi.string().email().required().min(7).max(45),
     password: Joi.string().required().min(8).max(45),
-    birthday: Joi.date().min('1900-01-01').iso(),
+    birthday: Joi.date().min('1900-01-01'),
     role: Joi.string().required(),
   });
 

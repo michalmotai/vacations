@@ -7,6 +7,7 @@ import Button from '../../ui-components/Button/Button';
 import styles from './VacationDetails.module.scss';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import EditVacation from '../EditVacation/EditVacation';
+import { BASE_API_URL } from '../../../config';
 
 interface VacationDetailsProps {}
 
@@ -22,7 +23,6 @@ const VacationDetails: FC<VacationDetailsProps> = () => {
   const [showEditVacation, setShowEditVacation] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
-  
 
   const modalToggleHandler = () => {
     setShowEditVacation((prevState: any) => !prevState);
@@ -99,7 +99,7 @@ const VacationDetails: FC<VacationDetailsProps> = () => {
 
   const renderVacation = () => {
     if (vacation) {
-      const imgSrc = `/vacations/images/${vacation.photoName}`;
+      const imgSrc = `${BASE_API_URL}/vacations/images/${vacation.photoName}`;
       const formattedStartDate = isValid(new Date(vacation.startDate))
         ? format(new Date(vacation.startDate), 'MM/dd/yyyy')
         : '';
@@ -110,7 +110,6 @@ const VacationDetails: FC<VacationDetailsProps> = () => {
       return (
         <div className={styles.VacationDetails}>
           <div className={styles.VacationDetails__photo}>
-
             <img src={imgSrc} alt="" />
           </div>
           <h3>{vacation.destination}</h3>

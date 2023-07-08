@@ -12,7 +12,7 @@ import cors from 'cors';
 
 const server = express();
 
-server.use(helmet());
+server.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
 server.use(logRequest);
 server.use(cors());
 server.use(express.json());
@@ -20,7 +20,6 @@ server.use(expressFileUpload());
 server.use('/api', vacationController);
 server.use('/api', AuthController);
 server.use('/api', likesController);
-
 
 server.use('*', routeNotFound);
 

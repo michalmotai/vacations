@@ -5,6 +5,7 @@ import Vacation from '../4-models/Vacation';
 import { v4 as uuid } from 'uuid';
 import { saveImageToImagesFolder } from '../2-utils/vacation-utils';
 import fs from 'fs';
+import { format } from 'date-fns';
 
 const imageFolder = `./src/1-assets/images`;
 
@@ -165,14 +166,11 @@ export const updateVacation = async (vacation: Vacation): Promise<Vacation> => {
 };
 
 //filter vacations by startdate
-export const getVactionByDate = async (
-  startDate: Date,
-  endDate: Date
-): Promise<Vacation[]> => {
+export const getVactionByStartDate = async (): Promise<Vacation[]> => {
   try {
     const sql = `SELECT *
     FROM vacations_table
-    WHERE startDate > '${startDate}'`;
+    WHERE startDate > CURDATE()`;
     return await dal.execute<Vacation[]>(sql);
   } catch (error) {
     throw error;
@@ -180,16 +178,10 @@ export const getVactionByDate = async (
 };
 
 //filter vacations which are active at current date
-export const getActiveVactions = async (
-  startDate: Date,
-  endDate: Date
-): Promise<Vacation[]> => {
+export const getActiveVactions = async (): Promise<Vacation[]> => {
   try {
-    const currentDate = new Date();
-    const sql = `SELECT *
-    FROM vacations_table
-    WHERE startDate <= '${currentDate}'
-      AND endDate >= '${currentDate}';`;
+    const sql = `SELECT * FROM vacations.vacations_table
+    WHERE CURDATE() BETWEEN startDate AND endDate;`;
 
     return await dal.execute<Vacation[]>(sql);
   } catch (error) {
@@ -197,4 +189,4 @@ export const getActiveVactions = async (
   }
 };
 
-export default { getAllVacations, getVactionByDate, getActiveVactions };
+export default { getAllVacations, getVactionByStartDate, getActiveVactions };

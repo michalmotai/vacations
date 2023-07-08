@@ -2,29 +2,24 @@ import React, { FC, useEffect, useMemo, useState } from 'react';
 import styles from './VacationItem.module.scss';
 import Vacation from '../../../models/Vacation';
 import { format } from 'date-fns';
-import { NavLink, useParams } from 'react-router-dom';
-import Button from '../../ui-components/Button/Button';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import {
-  setLikedVacations,
-  userLikedVacation,
-  userUnlikeVacation,
-} from '../../../auth/authSlice';
-import { onLikedVacation, onUnLikedVacation } from '../vacationsSlice';
-import {
-  addLikeToVacationAsync,
-  deleteLikeToVacationAsync,
-  getVacationLikedByUserIdAsync,
-  isLikedAsync,
-} from '../../../fetch/likes';
+
 import { BASE_API_URL } from '../../../config';
+import VacationButtons from '../VacationButtons/VacationButtons';
+import LikeButton from '../LikeButton/LikeButton';
+import User from '../../../models/User';
 
 interface VacationItemProps {
   vacation: Vacation;
-  likedVacations: Vacation[];
+
+  user: User;
 }
 
-const VacationItem: FC<VacationItemProps> = ({ vacation, likedVacations }) => {
+const VacationItem: FC<VacationItemProps> = ({
+  vacation,
+
+  user,
+}) => {
   const {
     vacationId,
     destination,
@@ -36,74 +31,11 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, likedVacations }) => {
     likesCount,
   } = vacation;
 
-  const dispatch = useAppDispatch();
-  const [isLoading, setIsLoading] = useState(true);
-
-  const [isLiked, setIsLiked] = useState<boolean>();
   const userId = useAppSelector((state) => state.authState.user?.userId);
-
-  useEffect(() => {
-    const fetchIsLiked = async () => {
-      if (userId) {
-        const checkIfLiked = await isLikedAsync(userId, vacationId);
-        setIsLiked(checkIfLiked);
-      }
-    };
-
-    fetchIsLiked();
-  }, []);
-
-  const handleLikeClick = async (vacationId: number) => {
-    console.log('Like button clicked for vacation ID:', vacationId);
-
-    if (!isLiked) {
-      // Update the backend
-      await addLikeToVacationAsync(userId!, vacationId);
-
-      // Update the array of liked vacations for the user
-      dispatch(userLikedVacation(vacation));
-
-      // Update the local state
-      setIsLiked(true);
-
-      //add 1 to the like count for this vacation
-      dispatch(onLikedVacation(vacationId));
-    } else {
-      // Update the backend
-      await deleteLikeToVacationAsync(userId!, vacationId);
-
-      // Update the array of liked vacations for the user
-      dispatch(userUnlikeVacation(vacation));
-
-      //- 1 to the like count for this vacation
-      dispatch(onUnLikedVacation(vacationId));
-
-      // Update the local state
-      setIsLiked(false);
-    }
-  };
-
-  const renderLikeButton = () => {
-    console.log('isLiked', isLiked);
-    return isLiked ? (
-      <Button
-        key={vacationId}
-        text="LIKED"
-        icon={<>&#x2764;</>}
-        onClick={() => handleLikeClick(vacationId)}
-      />
-    ) : (
-      <Button
-        key={vacationId}
-        text="LIKE"
-        onClick={() => handleLikeClick(vacationId)}
-      />
-    );
-  };
 
   const formattedStartDate = format(new Date(startDate), 'MM/dd/yyyy');
   const formattedEndDate = format(new Date(endDate), 'MM/dd/yyyy');
-  const imgSrc = `${BASE_API_URL}/vacations/images/${vacation.photoName}`;
+  const imgSrc = `${BASE_API_URL}/vacations/images/${photoName}`;
   console.log(vacationId, imgSrc);
 
   return (
@@ -120,17 +52,15 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, likedVacations }) => {
           <span>To:</span>
           <span> {formattedEndDate}</span>
         </p>
-
-        {/* <p>{description}</p> */}
+        <p>{description}</p>
         <p>price: {price}</p>
         <p>likes: {likesCount}</p>
-
         <br />
-        <NavLink to={`/vacations/${vacationId}`}>
-          <Button key={vacationId} text="Details" />
-        </NavLink>
         <br />
-        {renderLikeButton()}
+        {user && user.role === 'user' && (
+          <LikeButton vacation={vacation} userId={userId!} />
+        )}
+        {<VacationButtons vacation={vacation} vacationId={vacationId} />}
       </div>
     </div>
   );

@@ -91,3 +91,24 @@ export const deleteVacation = async (id: number): Promise<boolean> => {
     throw error;
   }
 };
+export const filterVacationByStartDateAsync = async (): Promise<Vacation[]> => {
+  try {
+    const response = await axios.get('/vacations/start');
+    console.log('filterVacationByStartDateAsync');
+    return response.data;
+  } catch (error) {
+    console.error('Error in filterVacationByStartDate:', error);
+    throw error;
+  }
+};
+
+export const filterVacationsByActiveAsync = async (): Promise<Vacation[]> => {
+  try {
+    const response = await axios.get('/vacations/active');
+    console.log('filterVacationsByActiveAsync');
+    return response.data;
+  } catch (error) {
+    console.error('Error in filterVacationsByActive:', error);
+    throw error;
+  }
+};

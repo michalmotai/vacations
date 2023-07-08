@@ -44,11 +44,11 @@ export const register = async (user: User): Promise<string> => {
   const hashedPassword = await hashPassword(password);
 
   //reformat dates
-  // const formatedBirthday = new Date(birthday).toISOString().split('T')[0];
+  const formatedBirthday = new Date(birthday).toISOString().split('T')[0];
   user.role = Role.user;
 
   const sql = `INSERT INTO users (userId, firstName, lastName, email, password, birthday, role)
-  VALUES (DEFAULT,'${firstName}', '${lastName}', '${email}', '${hashedPassword}', '${birthday}','${user.role}')`;
+  VALUES (DEFAULT,'${firstName}', '${lastName}', '${email}', '${hashedPassword}', '${formatedBirthday}','${user.role}')`;
 
   const info = await dal.execute<OkPacket>(sql);
   user.userId = info.insertId;

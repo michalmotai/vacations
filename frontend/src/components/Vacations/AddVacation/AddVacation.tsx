@@ -17,13 +17,14 @@ const AddVacation: FC<AddVacationProps> = () => {
   const dispatch = useAppDispatch();
   const [error, setError] = useState<any>(null);
   const [showError, setShowError] = useState(false);
+  const navigate = useNavigate();
 
   const submitAddVacationHandler = useCallback(async (vacation: Vacation) => {
     try {
       console.log(vacation);
       await addVacationAsync(vacation);
-      // navigate('/');
-      onAddVacation(vacation);
+      navigate('/');
+      dispatch(onAddVacation(vacation));
     } catch (error) {
       setShowError(true);
       setError(error);

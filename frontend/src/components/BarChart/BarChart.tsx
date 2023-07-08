@@ -11,9 +11,7 @@ export const BarChart = () => {
   const vacations = useAppSelector((state) => state.vacationsState.vacations);
 
   const chartData = useMemo(() => {
-    const labels = vacations.map(
-      (vacation) => `${vacation.vacationId} ${vacation.destination}`
-    );
+    const labels = vacations.map((vacation) => `${vacation.destination} `);
     const data = vacations.map((vacations) => vacations.likesCount);
     const chartData = {
       labels,

@@ -6,9 +6,14 @@ interface User {
   lastName: string;
   email: string;
   password: string;
-  birthDate: Date;
-  role: string;
+  birthday: Date;
+  role: Role;
   likedVacations: Vacation[];
+}
+
+enum Role {
+  User = 'user',
+  Admin = 'admin',
 }
 
 export default User;

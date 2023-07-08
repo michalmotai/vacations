@@ -3,8 +3,11 @@ import * as vacationLogic from '../5-logic/vacationLogic';
 import Vacation from '../4-models/Vacation';
 import path from 'path';
 import verifyLogin from '../3-middleware/verify-logged-in';
+import { imagesAbseloutePath } from '../2-utils/vacation-utils';
+import multer from 'multer';
 
 const router = express.Router();
+const upload = multer({ dest: `${imagesAbseloutePath}` });
 
 // http://localhost:3005/api/vacations
 router
@@ -113,5 +116,29 @@ router
       next(error);
     }
   });
+
+router.get(
+  '/vacations/start',
+  async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const filteredVacationsByStartDate =
+        await vacationLogic.getVactionByStartDate();
+      response.json(filteredVacationsByStartDate);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+router.get(
+  '/vacations/active',
+  async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const filteredVacationsByActive = await vacationLogic.getActiveVactions();
+      response.json(filteredVacationsByActive);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 export default router;

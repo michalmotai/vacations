@@ -1,6 +1,8 @@
 import express, { Request, Response, NextFunction } from 'express';
 import * as likesLogic from '../5-logic/likesLogic';
 import verifyLogin from '../3-middleware/verify-logged-in';
+import path from 'path';
+import { parse as json2csv } from 'json2csv';
 
 const router = express.Router();
 
@@ -60,7 +62,7 @@ router.post(
         return;
       }
 
-      await likesLogic.addVacatopmLikeByUserId(userId, vacationId);
+      await likesLogic.addVacationLikeByUserId(userId, vacationId);
       response.status(201).send(`user ${userId} liked vacation: ${vacationId}`);
     } catch (err) {
       next(err);
@@ -98,6 +100,29 @@ router.get(
       const likesCountPerVacation = await likesLogic.getLikesCountPerVacation();
       response.status(200).json(likesCountPerVacation);
     } catch (err) {
+      next(err);
+    }
+  }
+);
+
+// http://localhost:3005/api/vacations/likes/csv
+router.get(
+  '/vacations/likes/csv',
+  async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const likesCountPerVacation = await likesLogic.getLikesCountPerVacation();
+      const fields = ['vacationId', 'destination', 'likesCount'];
+
+      const csv = json2csv(likesCountPerVacation, { fields });
+
+      response.setHeader(
+        'Content-Disposition',
+        'attachment; filename=likes.csv'
+      );
+      response.setHeader('Content-Type', 'text/csv');
+      response.send(csv);
+    } catch (err) {
+      console.log(err);
       next(err);
     }
   }

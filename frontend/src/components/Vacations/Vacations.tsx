@@ -3,7 +3,6 @@ import styles from './Vacations.module.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getVacations } from '../../fetch';
 import { onGetLikesPerVacation, setVacations } from './vacationsSlice';
-import Vacation from '../../models/Vacation';
 import VacationItem from './VacationItem/VacationItem';
 import Button from '../ui-components/Button/Button';
 import { NavLink } from 'react-router-dom';
@@ -14,6 +13,8 @@ import {
 import { setLikedVacations } from '../../auth/authSlice';
 import AdminArea from '../AdminArea/AdminArea';
 import Checkbox from '../ui-components/Checkbox/Checkbox';
+import User from '../../models/User';
+import FilterVacations from './FilterVacations/FilterVacations';
 
 interface VacationsProps {}
 
@@ -23,8 +24,6 @@ const Vacations: FC<VacationsProps> = () => {
   const { user, likedVacations } = useAppSelector((state) => state.authState);
   const [isChecked, setIsChecked] = useState();
   const [isLoading, setIsLoading] = useState(true);
-
-  const checkIfChecked = () => {};
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,50 +77,37 @@ const Vacations: FC<VacationsProps> = () => {
 
   const renderVacations = () => {
     return vacations.map((vacation) => {
-      const {
-        vacationId,
-        destination,
-        description,
-        startDate,
-        endDate,
-        price,
-        likesCount,
-        photoName,
-      } = vacation;
+      const { vacationId } = vacation;
 
       return (
         <VacationItem
           key={vacationId}
           vacation={vacation}
-          likedVacations={likedVacations}
+          user={user as User}
         />
       );
     });
   };
 
+  const renderaddButton = () => {
+    return (
+      <NavLink to="/vacations/add_vacation">
+        <Button text={'Add new vacation'} />
+      </NavLink>
+    );
+  };
+
   return (
     <>
+      <FilterVacations />
       {isLoading ? (
         <div>Loading...</div>
       ) : (
         <div className={styles.Vacations}>{renderVacations()}</div>
       )}
-      <NavLink to="/vacations/add_vacation">
-        <Button text={'Add new vacation'} />
-      </NavLink>
+      <div>{user?.role === 'admin' && renderaddButton()}</div>
     </>
   );
-
-  // <Checkbox
-  //   labelText={'filter liked vacations'}
-  //   checked={false}
-  //   onChange={function (): void {}}></Checkbox>
-  // {/* <label htmlFor="filterLikedVacations">My liked vacations</label>
-  // <input type="checkbox" name="filterLikedVacations" id="filter1" />
-  // <label htmlFor="filterActiveVacations">Active vacations</label>
-  // <input type="checkbox" name="filterActiveVacations" id="filter2" />
-  // <label htmlFor="filetFutureVacations">filet Future Vacations</label>
-  // <input type="checkbox" name="filetFutureVacations" id="filter3" /> */}
 };
 
 export default Vacations;

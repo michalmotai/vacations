@@ -7,10 +7,10 @@ export const getVacationLikedByUserId = async (
 ): Promise<Vacation[]> => {
   try {
     const sql = `
-        SELECT Likes.userId, Likes.vacationId, vacations_table.destination
-        FROM Likes
-        INNER JOIN vacations_table ON Likes.vacationId = vacations_table.vacationId
-        WHERE Likes.userId = ${userId};`;
+    SELECT Likes.userId, Likes.vacationId, v.destination, v.description, v.startDate, v.endDate, v.price, v.photoName
+FROM Likes
+INNER JOIN vacations_table AS v ON Likes.vacationId = v.vacationId
+WHERE Likes.userId  = ${userId};`;
 
     return await dal.execute<Vacation[]>(sql);
   } catch (error) {
@@ -31,10 +31,8 @@ export const checkIfUserLikedVacation = async (
   }
 };
 
-
-
 //post like to vacation by userId
-export const addVacatopmLikeByUserId = async (
+export const addVacationLikeByUserId = async (
   userId: number,
   vacationId: number
 ): Promise<void> => {

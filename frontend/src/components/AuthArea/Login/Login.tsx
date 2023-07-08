@@ -23,7 +23,7 @@ const Login: FC<LoginProps> = () => {
       //set the state
       dispatch(login(token));
       alert('Welcome back');
-      navigate('/home');
+      navigate('/');
     } catch (error) {
       console.log('error', error);
     }

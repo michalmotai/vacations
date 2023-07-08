@@ -23,6 +23,7 @@ const Register: FC<RegisterProps> = () => {
       //set the state
       dispatch(Auth.register(token));
       console.log(token);
+      navigate('/');
     } catch (error) {
       console.log(error);
     }
@@ -41,10 +42,10 @@ const Register: FC<RegisterProps> = () => {
           <label>Last Name</label>
           <input type="text" {...register('lastName')} />
         </FormInputGroupWithError>
-        {/* <FormInputGroupWithError>
+        <FormInputGroupWithError>
           <label>Birthdate</label>
-          <input type="date" {...register('birthDate')} />
-        </FormInputGroupWithError> */}
+          <input type="date" {...register('birthday')} />
+        </FormInputGroupWithError>
         <FormInputGroupWithError>
           <label>Email</label>
           <input type="mail" {...register('email')} />
