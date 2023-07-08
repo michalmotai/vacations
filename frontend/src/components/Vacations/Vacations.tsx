@@ -1,7 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 import styles from './Vacations.module.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getVacations } from '../../fetch';
+import {
+  filterVacationByStartDateAsync,
+  filterVacationsByActiveAsync,
+  getVacations,
+} from '../../fetch';
 import { onGetLikesPerVacation, setVacations } from './vacationsSlice';
 import VacationItem from './VacationItem/VacationItem';
 import Button from '../ui-components/Button/Button';
@@ -15,6 +19,7 @@ import AdminArea from '../AdminArea/AdminArea';
 import Checkbox from '../ui-components/Checkbox/Checkbox';
 import User from '../../models/User';
 import FilterVacations from './FilterVacations/FilterVacations';
+import Vacation from '../../models/Vacation';
 
 interface VacationsProps {}
 
@@ -22,8 +27,10 @@ const Vacations: FC<VacationsProps> = () => {
   const dispatch = useAppDispatch();
   const { vacations } = useAppSelector((state) => state.vacationsState);
   const { user, likedVacations } = useAppSelector((state) => state.authState);
-  const [isChecked, setIsChecked] = useState();
+  const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedFilter, setselectedFilter] = useState('all');
+  const [filteredVacations, setfilteredVacations] = useState<Vacation[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,22 +41,19 @@ const Vacations: FC<VacationsProps> = () => {
         const fetchedVacations = await getVacations();
         dispatch(setVacations(fetchedVacations));
 
-        //initialize the likesCount to zero
-        dispatch(
-          setVacations(
-            fetchedVacations.map((vacation) => ({ ...vacation, likesCount: 0 }))
-          )
-        );
+        // Initialize the likesCount to zero
+        const vacationsWithLikesCount = fetchedVacations.map((vacation) => ({
+          ...vacation,
+          likesCount: 0,
+        }));
+        dispatch(setVacations(vacationsWithLikesCount));
 
         // Get likes for each vacation
         const likesPerVacation = await getLikesPerVacation();
         console.log('likesPerVacation', likesPerVacation);
 
-        //update likes for each vacation.likes
-        likesPerVacation.map((likesData) => {
-          const { vacationId, likesCount } = likesData;
-
-          //update the redux vacationSlice
+        // Update likes for each vacation
+        likesPerVacation.forEach(({ vacationId, likesCount }) => {
           dispatch(onGetLikesPerVacation({ vacationId, likesCount }));
           console.log('likes:', vacationId, likesCount);
         });
@@ -75,21 +79,58 @@ const Vacations: FC<VacationsProps> = () => {
     fetchData();
   }, []);
 
-  const renderVacations = () => {
-    return vacations.map((vacation) => {
-      const { vacationId } = vacation;
+  useEffect(() => {
+    const applyFilter = async (filter: string) => {
+      try {
+        let filteredResults: Vacation[] = [];
 
-      return (
-        <VacationItem
-          key={vacationId}
-          vacation={vacation}
-          user={user as User}
-        />
-      );
-    });
+        switch (filter) {
+          case 'startDate':
+            console.log('filter start date');
+            filteredResults = await filterVacationByStartDateAsync();
+            break;
+          case 'active':
+            console.log('filter active');
+            filteredResults = await filterVacationsByActiveAsync();
+            break;
+          case 'likes':
+            console.log('filter likes');
+            if (user?.userId) {
+              filteredResults = await getVacationLikedByUserIdAsync(
+                user.userId
+              );
+            }
+            break;
+          default:
+            filteredResults = vacations;
+            break;
+        }
+
+        setfilteredVacations(filteredResults);
+      } catch (error) {
+        console.log('Error applying filter:', error);
+      }
+    };
+
+    if (selectedFilter) {
+      applyFilter(selectedFilter);
+    }
+  }, [selectedFilter, vacations, user?.userId]);
+
+  const renderVacations = () => {
+    const renderedVacations =
+      filteredVacations.length > 0 ? filteredVacations : vacations;
+
+    return renderedVacations.map((vacation) => (
+      <VacationItem
+        key={vacation.vacationId}
+        vacation={vacation}
+        user={user as User}
+      />
+    ));
   };
 
-  const renderaddButton = () => {
+  const renderAddButton = () => {
     return (
       <NavLink to="/vacations/add_vacation">
         <Button text={'Add new vacation'} />
@@ -99,13 +140,13 @@ const Vacations: FC<VacationsProps> = () => {
 
   return (
     <>
-      <FilterVacations />
+      <FilterVacations setselectedFilter={setselectedFilter} />
       {isLoading ? (
         <div>Loading...</div>
       ) : (
         <div className={styles.Vacations}>{renderVacations()}</div>
       )}
-      <div>{user?.role === 'admin' && renderaddButton()}</div>
+      {user?.role === 'admin' && renderAddButton()}
     </>
   );
 };

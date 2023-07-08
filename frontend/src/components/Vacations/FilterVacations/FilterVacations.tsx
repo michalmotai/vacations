@@ -1,63 +1,22 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import styles from './FilterVacations.module.scss';
-import {
-  filterVacationByStartDateAsync,
-  filterVacationsByActiveAsync,
-} from '../../../fetch';
 import { getVacationLikedByUserIdAsync } from '../../../fetch/likes';
 import { useAppSelector } from '../../../hooks';
 import Vacation from '../../../models/Vacation';
 
-interface FilterVacationsProps {}
+interface FilterVacationsProps {
+  setselectedFilter: (filter: string) => void;
+}
 
-const FilterVacations: FC<FilterVacationsProps> = ({}) => {
-  const { vacations } = useAppSelector((state) => state.vacationsState);
-  const { user, likedVacations } = useAppSelector((state) => state.authState);
-  const [selectedFilter, setselectedFilter] = useState('all');
+const FilterVacations: FC<FilterVacationsProps> = ({ setselectedFilter }) => {
+  const { user } = useAppSelector((state) => state.authState);
 
-  const [filteredVacations, setfilteredVacations] =
-    useState<Vacation[]>(vacations);
-
-  useEffect(() => {
-    const applyFilter = async (filter: string) => {
-      try {
-        let filteredResults: Vacation[] = [];
-
-        switch (filter) {
-          case 'startDate':
-            console.log('filter start date');
-            filteredResults = await filterVacationByStartDateAsync();
-            break;
-          case 'active':
-            console.log('filter active');
-            filteredResults = await filterVacationsByActiveAsync();
-            break;
-          case 'likes':
-            console.log('filter likes');
-            if (user?.userId) {
-              filteredResults = await getVacationLikedByUserIdAsync(
-                user.userId
-              );
-            }
-            break;
-          default:
-            filteredResults = vacations;
-            break;
-        }
-
-        setfilteredVacations(filteredResults);
-      } catch (error) {
-        console.log('Error applying filter:', error);
-      }
-    };
-
-    if (selectedFilter) {
-      applyFilter(selectedFilter);
+  const handleFilterSelection = async (filter: string) => {
+    try {
+      setselectedFilter(filter);
+    } catch (error) {
+      console.log('Error applying filter:', error);
     }
-  }, [selectedFilter, vacations, user?.userId]);
-
-  const handleFilterSelection = (filter: string) => {
-    setselectedFilter(filter);
   };
 
   return (
@@ -68,9 +27,11 @@ const FilterVacations: FC<FilterVacationsProps> = ({}) => {
       <button onClick={() => handleFilterSelection('active')}>
         Filter by Active
       </button>
-      <button onClick={() => handleFilterSelection('likes')}>
-        Filter by Likes
-      </button>
+      {user?.userId && (
+        <button onClick={() => handleFilterSelection('likes')}>
+          Filter by Likes
+        </button>
+      )}
     </div>
   );
 };
