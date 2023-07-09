@@ -1,13 +1,25 @@
+import React, { FC } from 'react';
+
 type CheckboxProps = {
   labelText: string;
-  checked: boolean;
-  onChange: () => void;
+  onChange: (filter: string) => void;
+  value: string;
+  isChecked: boolean;
 };
 
-const Checkbox = ({ labelText, checked, onChange }: CheckboxProps) => {
+const Checkbox: FC<CheckboxProps> = ({
+  labelText,
+  onChange,
+  value,
+  isChecked,
+}) => {
+  const handleChecked = () => {
+    onChange(value);
+  };
+
   return (
     <label>
-      <input type="checkbox" checked={checked} onChange={onChange} />
+      <input type="checkbox" checked={isChecked} onChange={handleChecked} />
       {labelText}
     </label>
   );

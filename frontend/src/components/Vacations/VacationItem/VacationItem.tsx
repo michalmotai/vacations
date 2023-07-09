@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC } from 'react';
 import styles from './VacationItem.module.scss';
 import Vacation from '../../../models/Vacation';
 import { format } from 'date-fns';
@@ -11,15 +11,10 @@ import User from '../../../models/User';
 
 interface VacationItemProps {
   vacation: Vacation;
-
   user: User;
 }
 
-const VacationItem: FC<VacationItemProps> = ({
-  vacation,
-
-  user,
-}) => {
+const VacationItem: FC<VacationItemProps> = ({ vacation, user }) => {
   const {
     vacationId,
     destination,

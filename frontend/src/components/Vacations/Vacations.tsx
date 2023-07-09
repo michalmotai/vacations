@@ -18,7 +18,6 @@ import { setLikedVacations } from '../../auth/authSlice';
 import AdminArea from '../AdminArea/AdminArea';
 import Checkbox from '../ui-components/Checkbox/Checkbox';
 import User from '../../models/User';
-import FilterVacations from './FilterVacations/FilterVacations';
 import Vacation from '../../models/Vacation';
 
 interface VacationsProps {}
@@ -27,47 +26,57 @@ const Vacations: FC<VacationsProps> = () => {
   const dispatch = useAppDispatch();
   const { vacations } = useAppSelector((state) => state.vacationsState);
   const { user, likedVacations } = useAppSelector((state) => state.authState);
-  const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedFilter, setselectedFilter] = useState('all');
   const [filteredVacations, setfilteredVacations] = useState<Vacation[]>([]);
+  const [filters, setFilters] = useState([
+    {
+      labelText: 'Filter by Start Date',
+      value: 'startDate',
+    },
+    {
+      labelText: 'Filter active vacations',
+      value: 'active',
+    },
+    {
+      labelText: 'Filter liked',
+      value: 'likes',
+    },
+  ]);
+
+  const handleFilterSelect = (filter: string) => {
+    if (selectedFilter === filter) {
+      setselectedFilter('all');
+    } else {
+      setselectedFilter(filter);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
 
-        // Get vacations from the server
         const fetchedVacations = await getVacations();
         dispatch(setVacations(fetchedVacations));
 
-        // Initialize the likesCount to zero
         const vacationsWithLikesCount = fetchedVacations.map((vacation) => ({
           ...vacation,
           likesCount: 0,
         }));
         dispatch(setVacations(vacationsWithLikesCount));
 
-        // Get likes for each vacation
         const likesPerVacation = await getLikesPerVacation();
-        console.log('likesPerVacation', likesPerVacation);
 
-        // Update likes for each vacation
         likesPerVacation.forEach(({ vacationId, likesCount }) => {
           dispatch(onGetLikesPerVacation({ vacationId, likesCount }));
-          console.log('likes:', vacationId, likesCount);
         });
 
-        // If the user is logged in, get their liked vacations
         if (user) {
           const likedVacations = await getVacationLikedByUserIdAsync(
             user.userId
           );
           dispatch(setLikedVacations(likedVacations));
-
-          likedVacations.forEach((vacation) => {
-            console.log(vacation);
-          });
         }
       } catch (error) {
         console.log(error);
@@ -80,21 +89,18 @@ const Vacations: FC<VacationsProps> = () => {
   }, []);
 
   useEffect(() => {
-    const applyFilter = async (filter: string) => {
+    const applyFilter = async () => {
       try {
         let filteredResults: Vacation[] = [];
 
-        switch (filter) {
+        switch (selectedFilter) {
           case 'startDate':
-            console.log('filter start date');
             filteredResults = await filterVacationByStartDateAsync();
             break;
           case 'active':
-            console.log('filter active');
             filteredResults = await filterVacationsByActiveAsync();
             break;
           case 'likes':
-            console.log('filter likes');
             if (user?.userId) {
               filteredResults = await getVacationLikedByUserIdAsync(
                 user.userId
@@ -112,9 +118,7 @@ const Vacations: FC<VacationsProps> = () => {
       }
     };
 
-    if (selectedFilter) {
-      applyFilter(selectedFilter);
-    }
+    applyFilter();
   }, [selectedFilter, vacations, user?.userId]);
 
   const renderVacations = () => {
@@ -138,9 +142,19 @@ const Vacations: FC<VacationsProps> = () => {
     );
   };
 
+  const renderFilters = filters.map((filter) => (
+    <Checkbox
+      key={filter.value}
+      labelText={filter.labelText}
+      onChange={handleFilterSelect}
+      value={filter.value}
+      isChecked={selectedFilter === filter.value}
+    />
+  ));
+
   return (
     <>
-      <FilterVacations setselectedFilter={setselectedFilter} />
+      <div>{renderFilters}</div>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
