@@ -3,6 +3,7 @@ import * as likesLogic from '../5-logic/likesLogic';
 import verifyLogin from '../3-middleware/verify-logged-in';
 import path from 'path';
 import { parse as json2csv } from 'json2csv';
+import fs from 'fs/promises';
 
 const router = express.Router();
 
@@ -110,15 +111,33 @@ router.get(
   '/vacations/likes/csv',
   async (request: Request, response: Response, next: NextFunction) => {
     try {
+      //the data we want to get
       const likesCountPerVacation = await likesLogic.getLikesCountPerVacation();
-      const fields = ['vacationId', 'destination', 'likesCount'];
+      //the fields we need
+      const fields = ['vacationId', 'likesCount'];
 
+      //creating out csv file
       const csv = json2csv(likesCountPerVacation, { fields });
 
+      //write csv string to a file
+
+      const dateTime = Date.now();
+      const dirPath = path.join(__dirname, '..', '..', 'public', 'exports');
+      const filePath = path.join(dirPath, `likes-${dateTime}.csv`);
+
+      //create the directory if it does not exists
+      await fs.mkdir(dirPath, { recursive: true });
+      await fs.writeFile(filePath, csv);
+
+      //setting headers for response
+
+      //sending the file as attachment
       response.setHeader(
         'Content-Disposition',
-        'attachment; filename=likes.csv'
+        `attachment; filename=likes-${dateTime}.csv`
       );
+
+      //setting header as csv attachment
       response.setHeader('Content-Type', 'text/csv');
       response.send(csv);
     } catch (err) {

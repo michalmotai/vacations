@@ -111,7 +111,10 @@ router
         photoName
       );
       console.log(imagesAbseloutePath);
-      response.sendFile(imagesAbseloutePath);
+
+      response
+        .setHeader('Content-Type', 'image/png, image/jpg')
+        .sendFile(imagesAbseloutePath);
     } catch (error) {
       next(error);
     }
