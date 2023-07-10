@@ -24,9 +24,7 @@ const Router: FC<RouterProps> = () => (
     <Route path="/Logout" element={<Logout />}></Route>
     {/* Login */}
     <Route path="/login" element={<Login />}></Route>
-    {/* Default route*/}
-    <Route path="/" element={<Navigate to="/Home" />} />
-    go to vacationDetails
+    {/* go to vacationDetails */}
     <Route path="/vacations/:vacationId" element={<VacationDetails />} />
     {/* add vacation */}
     <Route path="/vacations/add_vacation" element={<AddVacation />} />

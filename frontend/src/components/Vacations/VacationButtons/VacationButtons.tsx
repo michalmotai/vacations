@@ -36,7 +36,7 @@ const VacationButtons: FC<VacationButtonsProps> = ({
             if (
               window.confirm('Are you sure you want to delete this vacation?')
             ) {
-              navigate('/home');
+              navigate('/');
             }
           }
         })

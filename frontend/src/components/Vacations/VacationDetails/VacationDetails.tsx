@@ -67,7 +67,7 @@ const VacationDetails: FC<VacationDetailsProps> = () => {
         </button>
         <button>
           {' '}
-          <NavLink onClick={deleteVacationHandler} to="/vacations">
+          <NavLink onClick={deleteVacationHandler} to="/">
             Delete
           </NavLink>
         </button>

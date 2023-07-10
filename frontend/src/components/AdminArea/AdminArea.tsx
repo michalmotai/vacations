@@ -4,6 +4,9 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { format } from 'date-fns';
 import { BarElement, CategoryScale, Chart, LinearScale } from 'chart.js';
 import BarChart from '../BarChart/BarChart';
+import Button from '../ui-components/Button/Button';
+import { BASE_API_URL } from '../../config';
+import { NavLink } from 'react-router-dom';
 
 interface AdminAreaProps {}
 
@@ -43,6 +46,10 @@ const AdminArea: FC<AdminAreaProps> = () => {
         </thead>
         <tbody>{renderLikes()}</tbody>
       </table>
+
+      <NavLink to={`${BASE_API_URL}/vacations/likes/csv`}>
+        <Button text={'Download likes report'}></Button>
+      </NavLink>
     </div>
   );
 };

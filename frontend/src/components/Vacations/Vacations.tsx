@@ -44,6 +44,7 @@ const Vacations: FC<VacationsProps> = () => {
     },
   ]);
 
+  //if user unchecked show all. else set filter
   const handleFilterSelect = (filter: string) => {
     if (selectedFilter === filter) {
       setselectedFilter('all');
@@ -52,6 +53,7 @@ const Vacations: FC<VacationsProps> = () => {
     }
   };
 
+  //fetch vacations data from server
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -88,6 +90,7 @@ const Vacations: FC<VacationsProps> = () => {
     fetchData();
   }, []);
 
+  //query the server based on selected filter
   useEffect(() => {
     const applyFilter = async () => {
       try {
@@ -112,6 +115,7 @@ const Vacations: FC<VacationsProps> = () => {
             break;
         }
 
+        //update state of filteredVacations
         setfilteredVacations(filteredResults);
       } catch (error) {
         console.log('Error applying filter:', error);
@@ -125,6 +129,10 @@ const Vacations: FC<VacationsProps> = () => {
     const renderedVacations =
       filteredVacations.length > 0 ? filteredVacations : vacations;
 
+    if (renderedVacations.length === 0) {
+      return <div>No vacations found.</div>;
+    }
+
     return renderedVacations.map((vacation) => (
       <VacationItem
         key={vacation.vacationId}
@@ -134,6 +142,7 @@ const Vacations: FC<VacationsProps> = () => {
     ));
   };
 
+  //render add button
   const renderAddButton = () => {
     return (
       <NavLink to="/vacations/add_vacation">
@@ -142,6 +151,7 @@ const Vacations: FC<VacationsProps> = () => {
     );
   };
 
+  //render filters checkboxes
   const renderFilters = filters.map((filter) => (
     <Checkbox
       key={filter.value}
