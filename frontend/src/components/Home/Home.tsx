@@ -1,16 +1,24 @@
 import React, { FC, useEffect } from 'react';
 import styles from './Home.module.scss';
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import Vacations from '../Vacations/Vacations';
-import { getVacations } from '../../fetch';
-import { setVacations } from '../Vacations/vacationsSlice';
+import backgroundImg from '../../assets/images/background.jpg';
 
 interface HomeProps {}
 
 const Home: FC<HomeProps> = () => {
-  
   return (
     <div className={styles.Home}>
+      <div className={styles.Home__imagecontainer}>
+        <img
+          src={backgroundImg}
+          alt="Background"
+          className={styles.Home__image}
+        />
+        <h1 className={styles.Home__title}>
+          To infinity...
+          <br /> and beyond!
+        </h1>
+      </div>
       <Vacations />
     </div>
   );

@@ -65,7 +65,7 @@ export const addVacation = async (vacation: Vacation): Promise<Vacation> => {
   const error = vacation.validate();
   if (error) throw new ValidationError(error);
 
-  const {
+  let {
     destination,
     description,
     startDate,
@@ -80,7 +80,10 @@ export const addVacation = async (vacation: Vacation): Promise<Vacation> => {
   const formatedEndDate = formatDate(endDate);
 
   if (vacation.photo) {
-    await saveImageToImagesFolder(vacation);
+    const photoName = await saveImageToImagesFolder(vacation);
+    // vacation.photoName = photoName;
+    console.log('vacationLogicIf', photoName);
+    console.log(vacation);
 
     //delete the binary file from the vacation object
     delete vacation.photo;

@@ -35,23 +35,27 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, user }) => {
 
   return (
     <div className={styles.VacationItem} key={vacationId}>
-      <div className={styles.VacationItem__vacation}>
-        <h3>{destination}</h3>
-        <p>{vacationId}</p>
-        <img src={imgSrc} alt="" />
-        <p>
-          <span>From:</span>
-          <span> {formattedStartDate}</span>
-        </p>
-        <p>
-          <span>To:</span>
-          <span> {formattedEndDate}</span>
-        </p>
-        <p>{description}</p>
-        <p>price: {price}</p>
-        <p>likes: {likesCount}</p>
-        <br />
-        <br />
+      <h3>{destination}</h3>
+
+      <div className={styles.VacationItem__container}>
+        <div className={styles.VacationItem__containerInput}>
+          <p className="hidden">{vacationId}</p>
+          <p>
+            <span>From:</span>
+            <span> {formattedStartDate}</span>
+          </p>
+          <p>
+            <span>To:</span>
+            <span> {formattedEndDate}</span>
+          </p>
+          <p>{description}</p>
+          <p>price: {price}</p>
+          <p>likes: {likesCount}</p>
+        </div>
+        <img src={imgSrc} alt="" className={styles.VacationItem__photo} />
+      </div>
+
+      <div className={styles.VacationItem__buttonGroup}>
         {user && user.role === 'user' && (
           <LikeButton vacation={vacation} userId={userId!} />
         )}

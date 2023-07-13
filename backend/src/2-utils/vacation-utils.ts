@@ -4,13 +4,20 @@ import path from 'path';
 
 export const saveImageToImagesFolder = async (vacation: Vacation) => {
   if (vacation.photo) {
-    // Find the file type extension (.jpg/.png...)
-    const extension = vacation.photo.name.split('.').pop();
-
-    // Create a random file name
-    vacation.photoName = `${uuid()}.${extension}`;
-    await vacation.photo.mv(`./src/1-assets/images/${vacation.photoName}`);
+    try {
+      const extension = vacation.photo.name.split('.').pop();
+      vacation.photoName = `${uuid()}.${extension}`;
+      await vacation.photo.mv(`${imagesAbseloutePath}/${vacation.photoName}`);
+    } catch (error) {
+      // Handle or log the error appropriately
+      console.error('Error saving image:', error);
+      throw error;
+    }
   }
 };
-
-export const imagesAbseloutePath = path.join(__dirname, '..', '1-assets', 'images');
+export const imagesAbseloutePath = path.join(
+  __dirname,
+  '..',
+  '1-assets',
+  'images'
+);

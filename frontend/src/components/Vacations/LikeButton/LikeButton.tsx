@@ -16,7 +16,7 @@ interface LikeButtonProps {
   userId: number;
 }
 
-const LikeButton: FC<LikeButtonProps> = ({ vacation,userId }) => {
+const LikeButton: FC<LikeButtonProps> = ({ vacation, userId }) => {
   const dispatch = useAppDispatch();
   // const [isLoading, setIsLoading] = useState(true);
   const { vacationId } = vacation;

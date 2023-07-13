@@ -43,16 +43,11 @@ export const addVacation = async (vacation: Vacation): Promise<Vacation> => {
     formData.append('startDate', new Date(vacation.startDate).toISOString());
     formData.append('endDate', new Date(vacation.endDate).toISOString());
     formData.append('price', vacation.price.toString());
-    formData.append('photoName', vacation.photoName[0]);
+    formData.append('photo', vacation.photo[0]);
 
     const response = await axios.post<Vacation>(`/vacations`, formData);
     const addedVacation = response.data;
-
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(addedVacation);
-      }, 1500);
-    });
+    return addedVacation;
   } catch (error) {
     console.error('Error in addVacation:', error);
     throw error;
@@ -61,21 +56,35 @@ export const addVacation = async (vacation: Vacation): Promise<Vacation> => {
 
 export const updateVacation = async (vacation: Vacation): Promise<Vacation> => {
   try {
+    console.log('previous vacation:', vacation);
+    const vacationId = vacation.vacationId; // Assuming vacationId is a property of the Vacation object
     const formData = new FormData();
     formData.append('destination', vacation.destination);
     formData.append('description', vacation.description);
-    formData.append('price', vacation.price.toString());
-
     formData.append('startDate', new Date(vacation.startDate).toISOString());
     formData.append('endDate', new Date(vacation.endDate).toISOString());
-    formData.append('photoName', vacation.photoName[0]);
+    formData.append('price', vacation.price.toString());
 
-    const response = await axios.post<Vacation>(`/vacations`, formData);
-    const addedVacation = response.data;
+    // Check if a new photo file is selected
+    if (vacation.photo) {
+      const photoFile = vacation.photo[0];
+      formData.append('photo', photoFile);
+    }
+    console.log('payload:', formData);
+    // Make the PATCH request to update the vacation details
+    const response = await axios.patch<Vacation>(
+      `/vacations/${vacationId}`,
+      formData
+    );
+    const updatedVacation = response.data;
 
-    return new Promise((resolve, reject) => {
-      resolve(addedVacation);
-    });
+    // Fetch the updated photo from the server and update the vacation object
+    if (updatedVacation.photoName) {
+    }
+    //add code
+    // const photoResponse =
+
+    return updatedVacation;
   } catch (error) {
     console.error('Error in updateVacation:', error);
     throw error;
@@ -112,3 +121,17 @@ export const filterVacationsByActiveAsync = async (): Promise<Vacation[]> => {
     throw error;
   }
 };
+
+// export const getVacationPhoto = async (photoName:string): Promise<string> => {
+//   try {
+//     const response = await axios.get(`/vacations/images/${photoName}`);
+//     const photoBlob = response.data;
+//     const photoUrl = URL.createObjectURL(photoBlob);
+//     return photoUrl;
+
+//   } catch (error) {
+//     console.error('Error in fetchVacationPhoto:', error);
+//     throw error;
+
+//   }
+// }

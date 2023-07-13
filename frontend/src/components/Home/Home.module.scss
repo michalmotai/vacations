@@ -1,12 +1,34 @@
 .Home {
   height: 100%;
-  &__counter {
-    text-align: center;
-    p {
-      font-size: 40px;
-    }
-    button {
-      padding: 20px;
-    }
+
+  &__imagecontainer {
+    width: 100%;
+    height: 50%;
+    position: relative;
+    overflow: hidden;
+    background-image: url('../../assets/images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  &__title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
 }

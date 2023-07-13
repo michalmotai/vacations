@@ -19,6 +19,7 @@ import AdminArea from '../AdminArea/AdminArea';
 import Checkbox from '../ui-components/Checkbox/Checkbox';
 import User from '../../models/User';
 import Vacation from '../../models/Vacation';
+import Pagination from '../ui-components/Pagination/Pagination';
 
 interface VacationsProps {}
 
@@ -29,6 +30,7 @@ const Vacations: FC<VacationsProps> = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedFilter, setselectedFilter] = useState('all');
   const [filteredVacations, setfilteredVacations] = useState<Vacation[]>([]);
+
   const [filters, setFilters] = useState([
     {
       labelText: 'Filter by Start Date',
@@ -44,16 +46,11 @@ const Vacations: FC<VacationsProps> = () => {
     },
   ]);
 
-  //if user unchecked show all. else set filter
-  const handleFilterSelect = (filter: string) => {
-    if (selectedFilter === filter) {
-      setselectedFilter('all');
-    } else {
-      setselectedFilter(filter);
-    }
-  };
+  //pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [vacationsPerPage, setvacationsPerPage] = useState(10);
 
-  //fetch vacations data from server
+  // Fetch vacations data from server
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -62,14 +59,7 @@ const Vacations: FC<VacationsProps> = () => {
         const fetchedVacations = await getVacations();
         dispatch(setVacations(fetchedVacations));
 
-        const vacationsWithLikesCount = fetchedVacations.map((vacation) => ({
-          ...vacation,
-          likesCount: 0,
-        }));
-        dispatch(setVacations(vacationsWithLikesCount));
-
         const likesPerVacation = await getLikesPerVacation();
-
         likesPerVacation.forEach(({ vacationId, likesCount }) => {
           dispatch(onGetLikesPerVacation({ vacationId, likesCount }));
         });
@@ -80,6 +70,10 @@ const Vacations: FC<VacationsProps> = () => {
           );
           dispatch(setLikedVacations(likedVacations));
         }
+
+        // Apply initial filter
+        applyFilter(fetchedVacations);
+        setCurrentPage(1);
       } catch (error) {
         console.log(error);
       } finally {
@@ -90,42 +84,51 @@ const Vacations: FC<VacationsProps> = () => {
     fetchData();
   }, []);
 
-  //query the server based on selected filter
+  // Query the server based on selected filter
   useEffect(() => {
-    const applyFilter = async () => {
-      try {
-        let filteredResults: Vacation[] = [];
+    applyFilter(vacations);
+  }, [selectedFilter]);
 
-        switch (selectedFilter) {
-          case 'startDate':
-            filteredResults = await filterVacationByStartDateAsync();
-            break;
-          case 'active':
-            filteredResults = await filterVacationsByActiveAsync();
-            break;
-          case 'likes':
-            if (user?.userId) {
-              filteredResults = await getVacationLikedByUserIdAsync(
-                user.userId
-              );
-            }
-            break;
-          default:
-            filteredResults = vacations;
-            break;
-        }
+  // Apply filter to vacations
+  const applyFilter = async (vacationsToFilter: Vacation[]) => {
+    try {
+      let filteredResults: Vacation[] = [];
 
-        //update state of filteredVacations
-        setfilteredVacations(filteredResults);
-      } catch (error) {
-        console.log('Error applying filter:', error);
+      switch (selectedFilter) {
+        case 'startDate':
+          filteredResults = await filterVacationByStartDateAsync();
+          break;
+        case 'active':
+          filteredResults = await filterVacationsByActiveAsync();
+          break;
+        case 'likes':
+          if (user?.userId) {
+            filteredResults = await getVacationLikedByUserIdAsync(user.userId);
+          }
+          break;
+        default:
+          filteredResults = vacationsToFilter;
+          break;
       }
-    };
 
-    applyFilter();
-  }, [selectedFilter, vacations, user?.userId]);
+      setfilteredVacations(filteredResults);
+      setCurrentPage(1);
+    } catch (error) {
+      console.log('Error applying filter:', error);
+    }
+  };
 
-  const renderVacations = () => {
+  // Handle filter selection
+  const handleFilterSelect = (filter: string) => {
+    if (selectedFilter === filter) {
+      setselectedFilter('all');
+    } else {
+      setselectedFilter(filter);
+    }
+  };
+
+  // Render vacations based on selected filter and pagination
+  const renderVacationsPerPage = () => {
     const renderedVacations =
       filteredVacations.length > 0 ? filteredVacations : vacations;
 
@@ -133,7 +136,14 @@ const Vacations: FC<VacationsProps> = () => {
       return <div>No vacations found.</div>;
     }
 
-    return renderedVacations.map((vacation) => (
+    const indexOfLastVacation = currentPage * vacationsPerPage;
+    const indexOfFirstVacation = indexOfLastVacation - vacationsPerPage;
+    const currentVacations = renderedVacations.slice(
+      indexOfFirstVacation,
+      indexOfLastVacation
+    );
+
+    return currentVacations.map((vacation) => (
       <VacationItem
         key={vacation.vacationId}
         vacation={vacation}
@@ -142,7 +152,7 @@ const Vacations: FC<VacationsProps> = () => {
     ));
   };
 
-  //render add button
+  // Render add button
   const renderAddButton = () => {
     return (
       <NavLink to="/vacations/add_vacation">
@@ -151,7 +161,7 @@ const Vacations: FC<VacationsProps> = () => {
     );
   };
 
-  //render filters checkboxes
+  // Render filters checkboxes
   const renderFilters = filters.map((filter) => (
     <Checkbox
       key={filter.value}
@@ -168,9 +178,15 @@ const Vacations: FC<VacationsProps> = () => {
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <div className={styles.Vacations}>{renderVacations()}</div>
+        <div className={styles.Vacations}>{renderVacationsPerPage()}</div>
       )}
       {user?.role === 'admin' && renderAddButton()}
+      <Pagination
+        totalVacations={filteredVacations.length || vacations.length}
+        vacationsPerPage={vacationsPerPage}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </>
   );
 };

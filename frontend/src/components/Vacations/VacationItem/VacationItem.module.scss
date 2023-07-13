@@ -1,19 +1,51 @@
-.VacationItem {
-  &__vacation {
-    margin: 20px;
-    padding: 20px;
-    width: 200px;
-    height: auto;
-    border: 1px solid black;
-    border-radius: 10px;
-    background-color: aliceblue;
+@import '../../../globals';
 
-    h3 {
-      font-size: 20px;
-    }
-    image {
-      width: 200px;
-      height: 150px;
-    }
+.VacationItem {
+  margin: 20px auto;
+  padding: 20px;
+  width: 400px;
+  height: auto;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-around;
+
+  &__container {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px; /* Added margin for spacing */
+    justify-content: space-between;
+  }
+
+  &__containerInput {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 10px;
+    color: $primary-color;
+  }
+
+  &__photo {
+    width: 150px;
+    height: 150px;
+    margin-left: 10px;
+    object-fit: cover; /* Added object-fit property for image sizing */
+  }
+
+  &__buttonGroup {
+    width: 300px;
+    display: flex;
+    justify-content: space-between; /* Added justify-content property */
+    padding: 10px; /* Added padding for spacing */
+    justify-content: space-around;
+  }
+
+  h3 {
+    font-size: 30px;
+    font-weight: 600;
   }
 }

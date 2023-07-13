@@ -35,6 +35,8 @@ router
         const addedVacation = await vacationLogic.addVacation(vacation);
         response.status(201).json(addedVacation);
       } catch (error) {
+        console.log('error in POST vacation', error);
+
         next(error);
       }
     }
@@ -88,6 +90,11 @@ router
         const vacation = new Vacation(request.body);
         console.log(request.body);
         vacation.vacationId = id;
+        if (request.file) {
+          // If a file was uploaded, update the vacation's photoName
+          vacation.photoName = request.file.filename;
+        }
+
         const updatedVacation = await vacationLogic.updateVacation(vacation);
         response.json(updatedVacation);
       } catch (error) {

@@ -19,27 +19,32 @@ const AddVacation: FC<AddVacationProps> = () => {
   const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
 
-  const submitAddVacationHandler = useCallback(async (vacation: Vacation) => {
+  const submitAddVacationHandler = async (vacation: Vacation) => {
     try {
       console.log(vacation);
-      await addVacationAsync(vacation);
+      const addedVacation = await addVacationAsync(vacation);
       navigate('/');
+      // setVacationPhoto((prevVacation) => ({
+      //   ...prevVacation,
+      //   photoName: addedVacation.photoName,
+      // }));
+
       dispatch(onAddVacation(vacation));
     } catch (error) {
       setShowError(true);
       setError(error);
       console.log(error);
     }
-  }, []);
+  };
 
   return (
     <div className={styles.AddVacation}>
-      {error && showError && (
+      {/* {error && showError && (
         <Alert
           error={'There was a problem with adding the vacation'}
           onClose={() => setShowError(false)}
         />
-      )}
+      )} */}
       <h2>Add a new vacation</h2>
 
       <br />
@@ -76,8 +81,8 @@ const AddVacation: FC<AddVacationProps> = () => {
         </FormInputGroupWithError>
 
         <FormInputGroupWithError error={formState.errors.photoName?.message}>
-          <label>photoName</label>
-          <input type="file" {...register('photoName', validation.photoName)} />
+          <label>photo</label>
+          <input type="file" accept="image/*" {...register('photo')} />
         </FormInputGroupWithError>
 
         <button>Add</button>

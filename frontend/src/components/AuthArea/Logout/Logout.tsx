@@ -4,9 +4,7 @@ import styles from './Logout.module.scss';
 interface LogoutProps {}
 
 const Logout: FC<LogoutProps> = () => (
-  <div className={styles.Logout}>
-    Logout Component
-  </div>
+  <div className={styles.Logout}>Logout Component</div>
 );
 
 export default Logout;

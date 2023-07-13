@@ -1,3 +1,5 @@
+import fileUpload from 'express-fileupload';
+
 interface Vacation {
   vacationId: number;
   destination: string;
@@ -6,6 +8,7 @@ interface Vacation {
   endDate: Date;
   price: number;
   photoName: string;
+  photo: FileList;
   likesCount: number;
 }
 export default Vacation;
