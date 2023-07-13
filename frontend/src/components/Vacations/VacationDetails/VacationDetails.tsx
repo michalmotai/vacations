@@ -52,7 +52,7 @@ const VacationDetails: FC<VacationDetailsProps> = () => {
           setIsLoading(false);
         });
     }
-  }, [vacationId, vacations, dispatch]);
+  }, [vacations]);
 
   const renderButtonUponLogin = () => {
     // if admin

@@ -25,10 +25,13 @@ const EditVacation: FC<EditVacationProps> = ({ vacation, onClose }) => {
   const dispatch = useAppDispatch();
   const [imageUrl, setImageUrl] = useState('');
 
-  const submitEditVacationHandler = async () => {
+  const submitEditVacationHandler = async (vacation: Vacation) => {
     try {
       // Update vacation on the server
+      console.log('submitEditVacationHandler: ', vacation);
+
       const updatedVacation = await updateVacationAsync(vacation);
+      console.log('updatedVacation: ', vacation);
 
       // Update vacation state in slice
       dispatch(onUpdateVacation(updatedVacation));
@@ -38,8 +41,6 @@ const EditVacation: FC<EditVacationProps> = ({ vacation, onClose }) => {
       console.log('couldnt update vacation');
     }
   };
-
-  console.log('vacation: ', vacation);
 
   useEffect(() => {
     // Populate the form fields with vacation data

@@ -75,7 +75,9 @@ router
         const vacation = new Vacation(request.body);
         vacation.vacationId = id;
         const updatedVacation = await vacationLogic.updateVacation(vacation);
-        response.json(updatedVacation);
+        response
+          .json(updatedVacation)
+          //.setHeader('Content-Type', 'image/png, image/jpg');
       } catch (error) {
         next(error);
       }
@@ -96,7 +98,10 @@ router
         }
 
         const updatedVacation = await vacationLogic.updateVacation(vacation);
-        response.json(updatedVacation);
+
+        response
+          .json(updatedVacation)
+         // .setHeader('Content-Type', 'image/png, image/jpg');
       } catch (error) {
         next(error);
       }

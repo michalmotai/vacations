@@ -17,12 +17,11 @@ const Pagination: FC<PaginationProps> = ({
   let pages = [];
   for (let i = 1; i <= Math.ceil(totalVacations / vacationsPerPage); i++) {
     pages.push(i);
-    console.log('page:', pages);
   }
   return (
     <div className={styles.Pagination}>
       {pages.map((page, index) => {
-        console.log('page:', page, 'currentPage:', currentPage);
+        //console.log('page:', page, 'currentPage:', currentPage);
         return (
           <button
             key={index}

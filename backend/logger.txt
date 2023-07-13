@@ -4851,3 +4851,287 @@
 ----------------------------
 13/07/2023, 15:46:00 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
 ----------------------------
+13/07/2023, 15:56:15 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 16:07:56 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 16:13:26 	 Cannot set headers after they are sent to the client
+----------------------------
+13/07/2023, 16:13:27 	 Route /favicon.ico not exist
+----------------------------
+13/07/2023, 16:27:00 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 16:30:26 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 16:33:25 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 16:34:48 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 16:36:20 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 16:39:08 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 16:46:05 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 16:48:39 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 16:51:01 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 16:51:06 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 17:10:55 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 17:13:29 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 17:14:15 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 17:14:21 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 17:18:57 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 17:19:49 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:04:43 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:12:35 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:12:35 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:14:04 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:14:04 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:14:06 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:14:06 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:24:27 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:24:27 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:24:51 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:24:51 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:29:42 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:29:42 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:42:15 	 Route / not exist
+----------------------------
+13/07/2023, 18:42:27 	 Route / not exist
+----------------------------
+13/07/2023, 18:43:11 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:43:11 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:43:12 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:43:12 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:43:12 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:43:12 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:43:13 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:43:13 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:43:16 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:43:16 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:43:16 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:43:16 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:43:16 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:43:16 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:43:17 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:43:17 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:43:17 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:43:17 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:43:18 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:43:18 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:43:18 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:43:18 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:43:18 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:43:18 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:43:19 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:43:19 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:43:19 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:43:19 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:43:20 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:43:20 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:43:36 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:43:36 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:43:57 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:44:02 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:44:52 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:44:52 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:56:07 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:56:07 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 18:57:57 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 18:57:57 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 19:03:00 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 19:04:17 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 19:04:17 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 19:04:50 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 19:04:50 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 19:04:55 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 19:54:23 	 Route /api/vacations/102 not exist
+----------------------------
+13/07/2023, 19:56:44 	 Route /api/vacations/ not exist
+----------------------------
+13/07/2023, 20:18:35 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 20:18:35 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:18:40 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 20:18:40 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:18:41 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 20:18:41 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:19:21 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:20:31 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 20:20:31 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:21:14 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:21:19 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 20:21:19 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:21:29 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:22:22 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 20:22:22 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:28:03 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:28:10 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 20:28:10 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:28:33 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 20:28:33 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:28:48 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 20:28:48 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:29:03 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 20:29:03 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:29:06 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:29:11 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:29:16 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:29:21 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:29:38 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:29:57 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:37:23 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:37:50 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:38:59 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:40:12 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:40:25 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:40:42 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:41:04 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:41:19 	 Cannot set headers after they are sent to the client
+----------------------------
+13/07/2023, 20:41:20 	 Route /favicon.ico not exist
+----------------------------
+13/07/2023, 20:46:28 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:53:38 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:54:13 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:54:30 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:54:42 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:54:53 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 20:56:03 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 21:01:11 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 21:01:17 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 21:01:28 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 21:01:28 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 21:01:35 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 21:06:14 	 Cannot set headers after they are sent to the client
+----------------------------
+13/07/2023, 21:27:03 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 21:27:27 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 21:27:41 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 21:27:49 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 21:27:56 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 21:28:08 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------
+13/07/2023, 21:28:14 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
+----------------------------

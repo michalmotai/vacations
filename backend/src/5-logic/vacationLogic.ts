@@ -79,9 +79,9 @@ export const addVacation = async (vacation: Vacation): Promise<Vacation> => {
   const formatedStartDate = formatDate(startDate);
   const formatedEndDate = formatDate(endDate);
 
-  if (vacation.photo) {
+  if (photoName) {
     const photoName = await saveImageToImagesFolder(vacation);
-    // vacation.photoName = photoName;
+    //vacation.photoName = photoName;
     console.log('vacationLogicIf', photoName);
     console.log(vacation);
 
@@ -99,6 +99,7 @@ export const addVacation = async (vacation: Vacation): Promise<Vacation> => {
 
 // Update vacation
 export const updateVacation = async (vacation: Vacation): Promise<Vacation> => {
+  console.log('updateStart:', vacation);
   // Validation
   const error = vacation.validate();
   if (error) throw new ValidationError(error);
@@ -110,44 +111,52 @@ export const updateVacation = async (vacation: Vacation): Promise<Vacation> => {
   const index = vacations.findIndex(
     (v) => v.vacationId === vacation.vacationId
   );
-  console.log(vacations[index]);
+  const oldVacation = { ...vacations[index] };
+  console.log('old vacation:', vacation);
 
   // Check if there is a photo in the object
-  if (vacation.photo) {
-    // Current photo name
-    const currentPhoto = vacations[index].photoName;
-    console.log(currentPhoto);
-
-    // Check if there is a previous photo
-    if (fs.existsSync(`${imageFolder}/${currentPhoto}`)) {
-      console.log('found image');
+  if (
+    oldVacation.photoName &&
+    fs.existsSync(`${imageFolder}/${oldVacation.photoName}`)
+  ) {
+    console.log(oldVacation.photoName);
+    try {
       // If exists, delete it
-      fs.unlinkSync(`${imageFolder}/${currentPhoto}`);
-      console.log('deleted image');
+      fs.unlink(`${imageFolder}/${oldVacation.photoName}`, (err) => {
+        if (err) throw err;
+        console.log('File was deleted:', oldVacation.photoName);
+      });
+    } catch (error) {
+      throw new Error(`Couldn't delete file ${oldVacation.photoName}`);
     }
+  }
 
-    // Save the new photo
-    await saveImageToImagesFolder(vacation);
+  // Update with new vacation
+  vacations[index] = vacation;
+
+  if (vacation.photo) {
+    const photoName = await saveImageToImagesFolder(vacation);
+
+    // Delete the binary file from the vacation object
     delete vacation.photo;
+  }
 
-    // Update vacation
-    vacations[index] = vacation;
+  const {
+    vacationId,
+    destination,
+    description,
+    startDate,
+    endDate,
+    price,
+    photo,
+    photoName,
+  } = vacation;
 
-    const {
-      vacationId,
-      destination,
-      description,
-      startDate,
-      endDate,
-      price,
-      photoName,
-    } = vacation;
+  // Reformat dates
+  const formatedStartDate = formatDate(startDate);
+  const formatedEndDate = formatDate(endDate);
 
-    // reformat dates
-    const formatedStartDate = formatDate(startDate);
-    const formatedEndDate = formatDate(endDate);
-
-    const sql = `UPDATE vacations_table SET
+  const sql = `UPDATE vacations_table SET
       destination = '${destination}',
       description = '${description}',
       startDate = '${formatedStartDate}',
@@ -156,13 +165,12 @@ export const updateVacation = async (vacation: Vacation): Promise<Vacation> => {
       photoName = '${vacation.photoName}'
       WHERE vacationId = ${vacationId}`;
 
-    // Execute
-    const info = await dal.execute<OkPacket>(sql);
+  // Execute
+  const info = await dal.execute<OkPacket>(sql);
 
-    // If not exist
-    if (info.affectedRows === 0) {
-      throw new ResourceNotFoundError(vacationId);
-    }
+  // If not exist
+  if (info.affectedRows === 0) {
+    throw new ResourceNotFoundError(vacationId);
   }
 
   return vacation;

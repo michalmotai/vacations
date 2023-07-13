@@ -8,7 +8,6 @@ import { addVacation as addVacationAsync } from '../../../fetch';
 import { onAddVacation } from '../vacationsSlice';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../hooks';
-import Alert from '../../ui-components/Alert/Alert';
 
 interface AddVacationProps {}
 
@@ -39,12 +38,6 @@ const AddVacation: FC<AddVacationProps> = () => {
 
   return (
     <div className={styles.AddVacation}>
-      {/* {error && showError && (
-        <Alert
-          error={'There was a problem with adding the vacation'}
-          onClose={() => setShowError(false)}
-        />
-      )} */}
       <h2>Add a new vacation</h2>
 
       <br />

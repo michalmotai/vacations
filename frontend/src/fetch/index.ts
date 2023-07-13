@@ -64,12 +64,13 @@ export const updateVacation = async (vacation: Vacation): Promise<Vacation> => {
     formData.append('startDate', new Date(vacation.startDate).toISOString());
     formData.append('endDate', new Date(vacation.endDate).toISOString());
     formData.append('price', vacation.price.toString());
+    formData.append('photo', vacation.photo[0]);
 
-    // Check if a new photo file is selected
-    if (vacation.photo) {
-      const photoFile = vacation.photo[0];
-      formData.append('photo', photoFile);
-    }
+    // // Check if a new photo file is selected
+    // if (vacation.photo) {
+    //   const photoFile = vacation.photo[0];
+    //   formData.append('photo', photoFile);
+    // }
     console.log('payload:', formData);
     // Make the PATCH request to update the vacation details
     const response = await axios.patch<Vacation>(

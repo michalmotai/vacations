@@ -39,7 +39,11 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, user }) => {
 
       <div className={styles.VacationItem__container}>
         <div className={styles.VacationItem__containerInput}>
-          <p className="hidden">{vacationId}</p>
+          <p
+          // className="hidden"
+          >
+            {vacationId}
+          </p>
           <p>
             <span>From:</span>
             <span> {formattedStartDate}</span>

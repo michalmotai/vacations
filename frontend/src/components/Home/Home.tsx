@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import styles from './Home.module.scss';
 import Vacations from '../Vacations/Vacations';
 import backgroundImg from '../../assets/images/background.jpg';
