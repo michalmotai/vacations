@@ -5135,3 +5135,19 @@
 ----------------------------
 13/07/2023, 21:28:14 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\null'
 ----------------------------
+13/07/2023, 21:52:43 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 21:56:02 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 21:56:32 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+13/07/2023, 21:56:38 	 ENOENT: no such file or directory, stat 'C:\MyDocuments\FullStack\Projects\vacations_project3\backend\src\1-assets\images\undefined'
+----------------------------
+14/07/2023, 12:57:06 	 Route /api/vacations/NaN not exist
+----------------------------
+14/07/2023, 12:57:24 	 Route /api/vacations/NaN not exist
+----------------------------
+14/07/2023, 12:58:11 	 Route /api/vacations/NaN not exist
+----------------------------
+14/07/2023, 12:58:38 	 Route /api/vacations/NaN not exist
+----------------------------

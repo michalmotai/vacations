@@ -8,6 +8,7 @@ import { addVacation as addVacationAsync } from '../../../fetch';
 import { onAddVacation } from '../vacationsSlice';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../hooks';
+import ModalContainer from '../../ui-components/ModalContainer/ModalContainer';
 
 interface AddVacationProps {}
 
@@ -37,50 +38,57 @@ const AddVacation: FC<AddVacationProps> = () => {
   };
 
   return (
-    <div className={styles.AddVacation}>
-      <h2>Add a new vacation</h2>
+    <ModalContainer>
+      <div className={styles.AddVacation}>
+        <h2>Add a new vacation</h2>
 
-      <br />
-      <form onSubmit={handleSubmit(submitAddVacationHandler)}>
-        <FormInputGroupWithError error={formState.errors.destination?.message}>
-          <label>destination</label>
-          <input
-            type="text"
-            {...register('destination', validation.destination)}
-          />
-        </FormInputGroupWithError>
+        <br />
+        <form onSubmit={handleSubmit(submitAddVacationHandler)}>
+          <FormInputGroupWithError
+            error={formState.errors.destination?.message}>
+            <label>destination</label>
+            <input
+              type="text"
+              {...register('destination', validation.destination)}
+            />
+          </FormInputGroupWithError>
 
-        <FormInputGroupWithError error={formState.errors.description?.message}>
-          <label>description</label>
-          <input
-            type="textarea"
-            {...register('description', validation.description)}
-          />
-        </FormInputGroupWithError>
+          <FormInputGroupWithError
+            error={formState.errors.description?.message}>
+            <label>description</label>
+            <input
+              type="textarea"
+              {...register('description', validation.description)}
+            />
+          </FormInputGroupWithError>
 
-        <FormInputGroupWithError error={formState.errors.startDate?.message}>
-          <label>startDate</label>
-          <input type="date" {...register('startDate', validation.startDate)} />
-        </FormInputGroupWithError>
+          <FormInputGroupWithError error={formState.errors.startDate?.message}>
+            <label>startDate</label>
+            <input
+              type="date"
+              {...register('startDate', validation.startDate)}
+            />
+          </FormInputGroupWithError>
 
-        <FormInputGroupWithError error={formState.errors.endDate?.message}>
-          <label>endDate</label>
-          <input type="date" {...register('endDate', validation.endDate)} />
-        </FormInputGroupWithError>
+          <FormInputGroupWithError error={formState.errors.endDate?.message}>
+            <label>endDate</label>
+            <input type="date" {...register('endDate', validation.endDate)} />
+          </FormInputGroupWithError>
 
-        <FormInputGroupWithError error={formState.errors.price?.message}>
-          <label>price</label>
-          <input type="number" {...register('price', validation.price)} />
-        </FormInputGroupWithError>
+          <FormInputGroupWithError error={formState.errors.price?.message}>
+            <label>price</label>
+            <input type="number" {...register('price', validation.price)} />
+          </FormInputGroupWithError>
 
-        <FormInputGroupWithError error={formState.errors.photoName?.message}>
-          <label>photo</label>
-          <input type="file" accept="image/*" {...register('photo')} />
-        </FormInputGroupWithError>
+          <FormInputGroupWithError error={formState.errors.photoName?.message}>
+            <label>photo</label>
+            <input type="file" accept="image/*" {...register('photo')} />
+          </FormInputGroupWithError>
 
-        <button>Add</button>
-      </form>
-    </div>
+          <button>Add</button>
+        </form>
+      </div>
+    </ModalContainer>
   );
 };
 

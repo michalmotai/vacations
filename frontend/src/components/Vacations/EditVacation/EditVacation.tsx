@@ -36,6 +36,7 @@ const EditVacation: FC<EditVacationProps> = ({ vacation, onClose }) => {
       // Update vacation state in slice
       dispatch(onUpdateVacation(updatedVacation));
       console.log('dispatched vacation: ', updatedVacation);
+      onClose();
       return updatedVacation;
     } catch (error) {
       console.log('couldnt update vacation');
@@ -60,7 +61,6 @@ const EditVacation: FC<EditVacationProps> = ({ vacation, onClose }) => {
     setValue('endDate', vacation.endDate);
     setValue('price', vacation.price);
     setValue('photoName', vacation.photoName);
-    //setValue('photo', vacation.photo);
 
     const imgSrc = `${BASE_API_URL}/vacations/images/${vacation.photoName}`;
     setImageUrl(imgSrc);
@@ -111,7 +111,7 @@ const EditVacation: FC<EditVacationProps> = ({ vacation, onClose }) => {
             <input type="number" {...register('price', validation.price)} />
           </FormInputGroupWithError>
 
-          <FormInputGroupWithError error={formState.errors.photoName?.message}>
+          <FormInputGroupWithError error={formState.errors.photo?.message}>
             <label>photo</label>
             <input type="file" accept="image/*" {...register('photo')} />
           </FormInputGroupWithError>

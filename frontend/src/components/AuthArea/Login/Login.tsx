@@ -5,9 +5,11 @@ import { useForm } from 'react-hook-form';
 import Credentials from '../../../models/Credentials';
 import Button from '../../ui-components/Button/Button';
 import { loginAsync } from '../../../fetch/auth';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../hooks';
 import { login } from '../../../auth/authSlice';
+import ModalContainer from '../../ui-components/ModalContainer/ModalContainer';
+import Register from '../Register/Register';
 
 interface LoginProps {}
 
@@ -30,23 +32,26 @@ const Login: FC<LoginProps> = () => {
   };
 
   return (
-    <div className={styles.Login}>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit(loginHandler)}>
-        <FormInputGroupWithError>
-          <label>Email</label>
-          <input type="mail" {...register('email')} />
-        </FormInputGroupWithError>
+    <ModalContainer>
+      <div className={styles.Login}>
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit(loginHandler)}>
+          <FormInputGroupWithError>
+            <label>Email</label>
+            <input type="mail" {...register('email')} />
+          </FormInputGroupWithError>
 
-        <FormInputGroupWithError>
-          <label>Password</label>
-          <input type="text" {...register('password')} />
-        </FormInputGroupWithError>
+          <FormInputGroupWithError>
+            <label>Password</label>
+            <input type="text" {...register('password')} />
+          </FormInputGroupWithError>
 
-        <Button text={'Login'}></Button>
-      </form>
-      Login Component
-    </div>
+          <Button text={'Login'}></Button>
+        </form>
+        <p>Don't have an account?</p>
+        <NavLink to={'/register'}>Register Now</NavLink>
+      </div>
+    </ModalContainer>
   );
 };
 

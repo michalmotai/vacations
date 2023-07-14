@@ -94,9 +94,6 @@ export const vacationsSlice = createSlice({
         console.log('likes: ', likes);
       }
     },
-    // onFilterByLikes:() => {},
-    // onFilterByActive:() => {},
-    // onFilterByStartDate:() => {},
   },
 });
 

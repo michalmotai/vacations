@@ -31,7 +31,8 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, user }) => {
   const formattedStartDate = format(new Date(startDate), 'MM/dd/yyyy');
   const formattedEndDate = format(new Date(endDate), 'MM/dd/yyyy');
   const imgSrc = `${BASE_API_URL}/vacations/images/${photoName}`;
-  console.log(vacationId, imgSrc);
+
+  //console.log('Vacation in VacationItem: ', vacation);
 
   return (
     <div className={styles.VacationItem} key={vacationId}>

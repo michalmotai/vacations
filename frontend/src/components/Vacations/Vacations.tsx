@@ -20,6 +20,10 @@ import Checkbox from '../ui-components/Checkbox/Checkbox';
 import User from '../../models/User';
 import Vacation from '../../models/Vacation';
 import Pagination from '../ui-components/Pagination/Pagination';
+import ModalContainer from '../ui-components/ModalContainer/ModalContainer';
+import Modal from '../ui-components/Modal/Modal';
+import Login from '../AuthArea/Login/Login';
+import Register from '../AuthArea/Register/Register';
 
 interface VacationsProps {}
 
@@ -56,13 +60,21 @@ const Vacations: FC<VacationsProps> = () => {
       try {
         setIsLoading(true);
 
-        const fetchedVacations = await getVacations();
-        dispatch(setVacations(fetchedVacations));
-
+        let fetchedVacations = await getVacations();
         const likesPerVacation = await getLikesPerVacation();
-        likesPerVacation.forEach(({ vacationId, likesCount }) => {
-          dispatch(onGetLikesPerVacation({ vacationId, likesCount }));
+
+        //add the likesCount to the vacation object
+        fetchedVacations = fetchedVacations.map((vacation) => {
+          const likeInfo = likesPerVacation.find(
+            (like) => like.vacationId === vacation.vacationId
+          );
+          return {
+            ...vacation,
+            likesCount: likeInfo ? likeInfo.likesCount : 0,
+          };
         });
+
+        dispatch(setVacations(fetchedVacations));
 
         if (user) {
           const likedVacations = await getVacationLikedByUserIdAsync(
@@ -174,21 +186,30 @@ const Vacations: FC<VacationsProps> = () => {
 
   return (
     <>
-      <div>{renderFilters}</div>
-      {isLoading ? (
-        <div>Loading...</div>
+      {!user ? (
+        <>
+          <Login />
+          <h2>you must be registered user to view our vacations</h2>
+          <NavLink to={'/register'}>Register here</NavLink>
+        </>
       ) : (
-        <div className={styles.Vacations}>{renderVacationsPerPage()}</div>
+        <>
+          <div>{renderFilters}</div>
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <div className={styles.Vacations}>{renderVacationsPerPage()}</div>
+          )}
+          {user?.role === 'admin' && renderAddButton()}
+          <Pagination
+            totalVacations={filteredVacations.length || vacations.length}
+            vacationsPerPage={vacationsPerPage}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
+        </>
       )}
-      {user?.role === 'admin' && renderAddButton()}
-      <Pagination
-        totalVacations={filteredVacations.length || vacations.length}
-        vacationsPerPage={vacationsPerPage}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-      />
     </>
   );
 };
-
 export default Vacations;

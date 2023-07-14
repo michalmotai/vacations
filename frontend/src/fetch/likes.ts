@@ -23,7 +23,7 @@ export const getVacationLikedByUserIdAsync = async (
 ): Promise<Vacation[]> => {
   try {
     const response = await axios.get(`/vacations/${userId}/likes`);
-    console.log('fetch getVacationLikedByUserIdAsync');
+    console.log('fetched getVacationLikedByUserIdAsync');
 
     return response.data;
   } catch (error) {
