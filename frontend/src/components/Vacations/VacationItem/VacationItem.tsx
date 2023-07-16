@@ -40,23 +40,34 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, user }) => {
 
       <div className={styles.VacationItem__container}>
         <div className={styles.VacationItem__containerInput}>
-          <p
-          // className="hidden"
-          >
-            {vacationId}
-          </p>
-          <p>
-            <span>From:</span>
-            <span> {formattedStartDate}</span>
-          </p>
-          <p>
-            <span>To:</span>
-            <span> {formattedEndDate}</span>
-          </p>
-          <p>{description}</p>
-          <p>price: {price}</p>
-          <p>likes: {likesCount}</p>
+          <table>
+            <tbody>
+              <tr>
+                <td></td>
+                <td>{vacationId}</td>
+              </tr>
+
+              <tr>
+                <td>From:</td>
+                <td>{formattedStartDate}</td>
+              </tr>
+
+              <tr>
+                <td>To:</td>
+                <td>{formattedEndDate}</td>
+              </tr>
+              <tr>
+                <td>Price</td>
+                <td>{price}</td>
+              </tr>
+              <tr>
+                <td>Likes:</td>
+                <td>{likesCount}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+
         <img src={imgSrc} alt="" className={styles.VacationItem__photo} />
       </div>
 

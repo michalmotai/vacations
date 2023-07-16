@@ -11,7 +11,7 @@ interface AlertProps {
 const Alert: FC<AlertProps> = ({ onClose, error }) => {
   let _error = typeof error === 'string' ? error : error.message;
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={onClose} disableOverlayClick={true}>
       <div className={styles.Alert}>
         <p>Something went wrong</p>
         <br />

@@ -7,7 +7,7 @@
   padding: 2px;
   width: 100px;
   height: 30px;
-  border: 2px, solid white;
+  // border: 2px solid white;
   border-radius: 15px;
   background-color: $secondary-color;
   color: white;
@@ -23,5 +23,13 @@
     100% {
       background-position: right bottom;
     }
+  }
+
+  &:hover {
+    box-shadow: inset 5px -5px $shadow-color;
+  }
+
+  &:active {
+    background-color: $accent-color;
   }
 }

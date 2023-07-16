@@ -8,6 +8,8 @@ import styles from './VacationDetails.module.scss';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import EditVacation from '../EditVacation/EditVacation';
 import { BASE_API_URL } from '../../../config';
+import VacationButtons from '../VacationButtons/VacationButtons';
+import LikeButton from '../LikeButton/LikeButton';
 
 interface VacationDetailsProps {}
 
@@ -19,6 +21,7 @@ const VacationDetails: FC<VacationDetailsProps> = () => {
   const { vacation, vacations } = useAppSelector(
     (state) => state.vacationsState
   );
+  const { user } = useAppSelector((state) => state.authState);
 
   const [showEditVacation, setShowEditVacation] = useState(false);
 
@@ -54,48 +57,48 @@ const VacationDetails: FC<VacationDetailsProps> = () => {
     }
   }, [vacations]);
 
-  const renderButtonUponLogin = () => {
-    // if admin
+  // const renderButtonUponLogin = () => {
+  //   // if admin
 
-    return (
-      <>
-        <span>|</span>
-        <button>
-          <NavLink onClick={modalToggleHandler} to="#">
-            Edit
-          </NavLink>
-        </button>
-        <button>
-          {' '}
-          <NavLink onClick={deleteVacationHandler} to="/">
-            Delete
-          </NavLink>
-        </button>
+  //   return (
+  //     <>
+  //       <span>|</span>
+  //       <button>
+  //         <NavLink onClick={modalToggleHandler} to="#">
+  //           Edit
+  //         </NavLink>
+  //       </button>
+  //       <button>
+  //         {' '}
+  //         <NavLink onClick={deleteVacationHandler} to="/">
+  //           Delete
+  //         </NavLink>
+  //       </button>
 
-        {/* //if user */}
-        <Button key={vacationId} text="LIKE" icon={<>&#x2764;</>} />
-      </>
-    );
-  };
+  //       {/* //if user */}
+  //       <Button key={vacationId} text="LIKE" icon={<>&#x2764;</>} />
+  //     </>
+  //   );
+  // };
 
-  const deleteVacationHandler = () => {
-    if (vacationId)
-      deleteVacation(+vacationId)
-        .then((success) => {
-          if (success) {
-            dispatch(onDeleteVacation(Number(vacationId)));
-            // Move the alert before the navigation, it will halt execution until the user closes it
-            if (
-              window.confirm('Are you sure you want to delete this vacation?')
-            ) {
-              navigate('/');
-            }
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-  };
+  // const deleteVacationHandler = () => {
+  //   if (vacationId)
+  //     deleteVacation(+vacationId)
+  //       .then((success) => {
+  //         if (success) {
+  //           dispatch(onDeleteVacation(Number(vacationId)));
+  //           // Move the alert before the navigation, it will halt execution until the user closes it
+  //           if (
+  //             window.confirm('Are you sure you want to delete this vacation?')
+  //           ) {
+  //             navigate('/');
+  //           }
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  // };
 
   const renderVacation = () => {
     if (vacation) {
@@ -137,9 +140,15 @@ const VacationDetails: FC<VacationDetailsProps> = () => {
         <h2>Vacation Details</h2>
       </header>
       <div className={styles.VacationDetails__body}>{renderVacation()}</div>
-      <div> {renderButtonUponLogin()}</div>
-      {showEditVacation && vacation && (
-        <EditVacation onClose={modalToggleHandler} vacation={vacation} />
+      {/* <div> {renderButtonUponLogin()}</div> */}
+      {/* {showEditVacation && vacation && (
+        <EditVacation onClose={modalToggleHandler} vacation={vacation} /> */}
+
+      {user && user.role === 'admin' && (
+        <VacationButtons vacation={vacation!} vacationId={+vacationId!} />
+      )}
+      {user && user.role === 'user' && (
+        <LikeButton vacation={vacation!} userId={user.userId} />
       )}
     </div>
   );

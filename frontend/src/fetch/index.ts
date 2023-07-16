@@ -123,16 +123,3 @@ export const filterVacationsByActiveAsync = async (): Promise<Vacation[]> => {
   }
 };
 
-// export const getVacationPhoto = async (photoName:string): Promise<string> => {
-//   try {
-//     const response = await axios.get(`/vacations/images/${photoName}`);
-//     const photoBlob = response.data;
-//     const photoUrl = URL.createObjectURL(photoBlob);
-//     return photoUrl;
-
-//   } catch (error) {
-//     console.error('Error in fetchVacationPhoto:', error);
-//     throw error;
-
-//   }
-// }

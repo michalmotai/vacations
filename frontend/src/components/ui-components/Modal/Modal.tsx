@@ -5,12 +5,16 @@ import { createPortal } from 'react-dom';
 interface ModalProps {
   children: React.ReactNode;
   onClose: () => void;
+  disableOverlayClick?: boolean;
 }
 
-const Modal: FC<ModalProps> = ({ children, onClose }) => {
+const Modal: FC<ModalProps> = ({ children, onClose, disableOverlayClick }) => {
+  const disableOverlayClickHandler = disableOverlayClick ? undefined : onClose;
   const portal = (
     <div className={styles.Modal}>
-      <div onClick={onClose} className={styles.Modal__overlay}></div>
+      <div
+        onClick={disableOverlayClickHandler}
+        className={styles.Modal__overlay}></div>
       <div className={styles.Modal__content}>{children}</div>
     </div>
   );

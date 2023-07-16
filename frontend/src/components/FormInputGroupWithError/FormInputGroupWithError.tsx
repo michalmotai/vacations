@@ -14,7 +14,7 @@ const FormInputGroupWithError: FC<FormInputGroupWithErrorProps> = ({
     <div className={styles.FormInputGroupWithError}>
       {children}
       {error && (
-        <span className={styles.FormInputGroupWithError__error}>{error}</span>
+        <div className={styles.FormInputGroupWithError__error}>{error}</div>
       )}
     </div>
   );

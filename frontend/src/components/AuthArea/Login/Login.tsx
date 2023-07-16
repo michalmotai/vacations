@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './Login.module.scss';
 import FormInputGroupWithError from '../../FormInputGroupWithError/FormInputGroupWithError';
 import { useForm } from 'react-hook-form';
@@ -9,14 +9,15 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../hooks';
 import { login } from '../../../auth/authSlice';
 import ModalContainer from '../../ui-components/ModalContainer/ModalContainer';
-import Register from '../Register/Register';
+import validate from '../validate';
 
 interface LoginProps {}
 
 const Login: FC<LoginProps> = () => {
-  const { register, handleSubmit } = useForm<Credentials>();
+  const { register, handleSubmit, formState } = useForm<Credentials>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [serverRespones, setserverRespones] = useState();
 
   const loginHandler = async (Credentials: Credentials) => {
     try {
@@ -26,24 +27,28 @@ const Login: FC<LoginProps> = () => {
       dispatch(login(token));
       alert('Welcome back');
       navigate('/');
-    } catch (error) {
+    } catch (error: any) {
       console.log('error', error);
+      alert(error.response?.data?.message || 'An error occurred');
     }
   };
 
   return (
-    <ModalContainer>
+    <ModalContainer disableOverlayClick={true}>
       <div className={styles.Login}>
         <h2>Login</h2>
         <form onSubmit={handleSubmit(loginHandler)}>
-          <FormInputGroupWithError>
+          <FormInputGroupWithError error={formState.errors.email?.message}>
             <label>Email</label>
-            <input type="mail" {...register('email')} />
+            <input type="mail" {...register('email', validate.email)} />
           </FormInputGroupWithError>
 
-          <FormInputGroupWithError>
+          <FormInputGroupWithError error={formState.errors.password?.message}>
             <label>Password</label>
-            <input type="text" {...register('password')} />
+            <input
+              type="password"
+              {...register('password', validate.password)}
+            />
           </FormInputGroupWithError>
 
           <Button text={'Login'}></Button>

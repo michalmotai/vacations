@@ -24,24 +24,27 @@
   &__containerInput {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    width: 200px;
     padding: 10px;
     color: $primary-color;
   }
 
   &__photo {
-    width: 150px;
-    height: 150px;
-    margin-left: 10px;
+    width: 300px;
+    height: 300px;
+    //margin-left: 10px;
     object-fit: cover; /* Added object-fit property for image sizing */
+    border-radius: 50%;
+    position: relative;
+    left: -50px;
   }
 
   &__buttonGroup {
-    width: 300px;
+    width: 400px;
     display: flex;
     justify-content: space-between; /* Added justify-content property */
     padding: 10px; /* Added padding for spacing */
-    justify-content: space-around;
+    justify-content: start;
   }
 
   h3 {

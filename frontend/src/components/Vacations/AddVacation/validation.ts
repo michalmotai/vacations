@@ -24,6 +24,7 @@ export default {
   price: {
     required: { value: true, message: 'Missing price' },
     min: { value: 0, message: 'Price cannot be negative' },
+    max: { value: 1000, message: 'Price cannot exceed 1000' },
     numeric: { value: true, message: 'Invalid price format' },
     decimalPrecision: { value: 2, message: 'Invalid price precision' },
     maxPrice: { value: 10000, message: 'Maximum price exceeded' },

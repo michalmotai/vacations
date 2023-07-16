@@ -9,6 +9,8 @@ import { onAddVacation } from '../vacationsSlice';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../hooks';
 import ModalContainer from '../../ui-components/ModalContainer/ModalContainer';
+import Alert from '../../ui-components/Alert/Alert';
+import Button from '../../ui-components/Button/Button';
 
 interface AddVacationProps {}
 
@@ -21,7 +23,7 @@ const AddVacation: FC<AddVacationProps> = () => {
 
   const submitAddVacationHandler = async (vacation: Vacation) => {
     try {
-      console.log(vacation);
+      console.log('add vacation:', vacation);
       const addedVacation = await addVacationAsync(vacation);
       navigate('/');
       // setVacationPhoto((prevVacation) => ({
@@ -29,7 +31,7 @@ const AddVacation: FC<AddVacationProps> = () => {
       //   photoName: addedVacation.photoName,
       // }));
 
-      dispatch(onAddVacation(vacation));
+      dispatch(onAddVacation(addedVacation));
     } catch (error) {
       setShowError(true);
       setError(error);
@@ -39,6 +41,12 @@ const AddVacation: FC<AddVacationProps> = () => {
 
   return (
     <ModalContainer>
+      {error && showError && (
+        <Alert
+          error={error.response.data?.message}
+          onClose={() => setShowError(false)}
+        />
+      )}
       <div className={styles.AddVacation}>
         <h2>Add a new vacation</h2>
 
@@ -85,7 +93,7 @@ const AddVacation: FC<AddVacationProps> = () => {
             <input type="file" accept="image/*" {...register('photo')} />
           </FormInputGroupWithError>
 
-          <button>Add</button>
+          <Button text={'Add'}></Button>
         </form>
       </div>
     </ModalContainer>

@@ -26,10 +26,16 @@ h1 {
   text-shadow: 3px 3px 3px $primary-color;
   text-align: left;
   letter-spacing: 0.1em;
-  position:absolute;
-  
+  position: absolute;
 }
-
+h2 {
+  font-family: $header-font;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: left;
+  color: $secondary-color;
+  padding-bottom: 15px;
+}
 
 h3 {
   font-family: $header-font;
@@ -37,6 +43,7 @@ h3 {
   font-weight: 600;
   text-align: left;
   color: $primary-color;
+  padding-bottom: 10px;
 }
 
 img {
@@ -49,4 +56,30 @@ body {
 
 .hidden {
   display: none;
+}
+
+input {
+  height: 25px;
+  padding: 7px;
+  margin: 7px;
+  border: 1px solid $secondary-color;
+  border-radius: 5px;
+}
+input:hover {
+  border: 1px solid $accent-color;
+}
+
+#file-upload-button {
+  margin-top: 20px;
+  position: relative;
+  align-items: center;
+  padding: 2px;
+  width: 100px;
+  height: 30px;
+  // border: 2px solid white;
+  border-radius: 15px;
+  background-color: $secondary-color;
+  color: white;
+  margin: 5px;
+  justify-content: start;
 }
