@@ -79,10 +79,10 @@ export const addVacation = async (vacation: Vacation): Promise<Vacation> => {
   const formatedStartDate = formatDate(startDate);
   const formatedEndDate = formatDate(endDate);
 
-  if (photoName) {
+  if (vacation.photo) {
     const photoName = await saveImageToImagesFolder(vacation);
     //vacation.photoName = photoName;
-    console.log('vacationLogicIf', photoName);
+    console.log('vacationLogicIf', vacation.photoName);
     console.log(vacation);
 
     //delete the binary file from the vacation object

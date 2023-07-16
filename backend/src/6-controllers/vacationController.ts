@@ -29,11 +29,15 @@ router
         request.body.photo = request.files?.photo;
 
         const vacation = new Vacation(request.body);
-        console.log(request.body);
+        console.log('request body in Controller', request.body);
 
         console.log('controllerLog:', vacation);
         const addedVacation = await vacationLogic.addVacation(vacation);
-        response.status(201).json(addedVacation);
+
+        response
+          .status(201)
+          .json(addedVacation)
+          .setHeader('Content-Type', 'image/png, image/jpg');
       } catch (error) {
         console.log('error in POST vacation', error);
 
@@ -75,9 +79,8 @@ router
         const vacation = new Vacation(request.body);
         vacation.vacationId = id;
         const updatedVacation = await vacationLogic.updateVacation(vacation);
-        response
-          .json(updatedVacation)
-          //.setHeader('Content-Type', 'image/png, image/jpg');
+        response.json(updatedVacation);
+        //.setHeader('Content-Type', 'image/png, image/jpg');
       } catch (error) {
         next(error);
       }
@@ -99,9 +102,8 @@ router
 
         const updatedVacation = await vacationLogic.updateVacation(vacation);
 
-        response
-          .json(updatedVacation)
-         // .setHeader('Content-Type', 'image/png, image/jpg');
+        response.json(updatedVacation);
+        // .setHeader('Content-Type', 'image/png, image/jpg');
       } catch (error) {
         next(error);
       }
