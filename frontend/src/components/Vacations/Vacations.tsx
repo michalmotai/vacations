@@ -15,15 +15,11 @@ import {
   getVacationLikedByUserIdAsync,
 } from '../../fetch/likes';
 import { setLikedVacations } from '../../auth/authSlice';
-import AdminArea from '../AdminArea/AdminArea';
-import Checkbox from '../ui-components/Checkbox/Checkbox';
 import User from '../../models/User';
 import Vacation from '../../models/Vacation';
 import Pagination from '../ui-components/Pagination/Pagination';
-import ModalContainer from '../ui-components/ModalContainer/ModalContainer';
-import Modal from '../ui-components/Modal/Modal';
 import Login from '../AuthArea/Login/Login';
-import Register from '../AuthArea/Register/Register';
+import Switch from '../ui-components/Switch/Switch';
 
 interface VacationsProps {}
 
@@ -175,7 +171,7 @@ const Vacations: FC<VacationsProps> = () => {
 
   // Render filters checkboxes
   const renderFilters = filters.map((filter) => (
-    <Checkbox
+    <Switch
       key={filter.value}
       labelText={filter.labelText}
       onChange={handleFilterSelect}
@@ -194,7 +190,9 @@ const Vacations: FC<VacationsProps> = () => {
         </>
       ) : (
         <>
-          <div>{renderFilters}</div>
+          <div className={styles.Vacations__filtersContainer}>
+            {renderFilters}
+          </div>
           {isLoading ? (
             <div>Loading...</div>
           ) : (

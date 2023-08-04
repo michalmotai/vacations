@@ -1,1 +1,21 @@
-.AuthMenu {}
+.AuthMenu {
+  color: white;
+  margin: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+
+  & a {
+    color: white;
+    margin: 20px;
+    text-decoration: none;
+
+    &:hover {
+      font-weight: 600;
+    }
+  }
+
+  .helloUser {
+    font-weight: 900px;
+  }
+}

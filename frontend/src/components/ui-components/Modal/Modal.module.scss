@@ -1,4 +1,4 @@
-@import './../../../globals';
+@import './../../../globals'; // Make sure the correct path is used for importing the global styles
 
 .Modal {
   position: fixed;
@@ -16,11 +16,20 @@
     right: 0;
     z-index: 1000;
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(48, 48, 48, 0.5);
   }
 
-  .Modal__content {
+  &__closeButton {
     position: absolute;
+    width: 45px;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+  }
+
+  &__content {
+    position: absolute;
+    width: 400px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -28,15 +37,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $primary-color;
+    background-color: $primary-color; // Make sure $primary-color is properly imported and defined
     border: 3px solid $primary-color;
     z-index: 1000;
     border: 1px solid white;
     border-radius: 10px;
-  }
-
-  & > * {
-    z-index: 1100;
-    position: relative;
   }
 }

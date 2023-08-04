@@ -28,6 +28,8 @@ const Router: FC<RouterProps> = () => (
     <Route path="/vacations/:vacationId" element={<VacationDetails />} />
     {/* add vacation */}
     <Route path="/vacations/add_vacation" element={<AddVacation />} />
+    {/* edit vacation */}
+    <Route path="/vacations/:vacationId/edit" element={<EditVacation />} />
     {/*all  views */}
     <Route path="/admin" element={<AdminArea />} />
     {/* Page not Found */}

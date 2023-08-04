@@ -1,1 +1,5 @@
-.AddVacation {}
+@import '../../../globals';
+
+.AddVacation {
+  @include formFrame;
+}

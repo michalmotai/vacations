@@ -70,9 +70,10 @@ const LikeButton: FC<LikeButtonProps> = ({ vacation, userId }) => {
     return isLiked ? (
       <Button
         key={vacationId}
-        text="LIKED"
-        icon={<>&#x2764;</>}
+        text=" LIKED"
+        icon={<>&#x2764; </>}
         onClick={() => handleLikeClick(vacationId)}
+        className={styles.LikeButton__isLiked}
       />
     ) : (
       <Button

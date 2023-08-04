@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import styles from './VacationButtons.module.scss';
 import Button from '../../ui-components/Button/Button';
 import { NavLink, useParams, useNavigate } from 'react-router-dom';
@@ -17,61 +17,68 @@ const VacationButtons: FC<VacationButtonsProps> = ({
   vacation,
   vacationId,
 }) => {
+  const user = useAppSelector((state) => state.authState.user);
   const userRole = useAppSelector((state) => state.authState.user?.role);
-  const [showEditVacation, setShowEditVacation] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const modalToggleHandler = () => {
-    console.log('edit button clicked');
-    setShowEditVacation((prevState: any) => !prevState);
+  const deleteVacationHandler = () => {
+    deleteVacation(vacationId)
+      .then((success) => {
+        if (success) {
+          dispatch(onDeleteVacation(vacationId));
+          if (
+            window.confirm('Are you sure you want to delete this vacation?')
+          ) {
+            navigate('/');
+            
+          }
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
-  const deleteVacationHandler = () => {
-    if (vacationId)
-      deleteVacation(+vacationId)
-        .then((success) => {
-          if (success) {
-            dispatch(onDeleteVacation(Number(vacationId)));
-            if (
-              window.confirm('Are you sure you want to delete this vacation?')
-            ) {
-              navigate('/');
-            }
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+  const editButtonHandler = () => {
+    dispatch(setVacation(vacation));
+  };
+
+  const detailsButtonHandler = () => {
+    dispatch(setVacation(vacation));
   };
 
   const renderButtonUponLogin = () => {
-    if (vacation) {
-      if (userRole === 'admin') {
-        return (
-          <>
-            <NavLink to="#" onClick={modalToggleHandler}>
-              <Button text={'Edit'}></Button>
-            </NavLink>
-            <NavLink to="/home" onClick={deleteVacationHandler}>
-              <Button text={'Delete'}></Button>
-            </NavLink>
-            <NavLink to={`/vacations/${vacationId}`}>
-              <Button key={vacationId} text="Details" />
-            </NavLink>
-            {showEditVacation && (
-              <EditVacation onClose={modalToggleHandler} vacation={vacation} />
-            )}
-          </>
-        );
-      }
+    if (!vacation) {
+      return null;
+    }
 
-      if (userRole === 'user')
-        return (
-          <NavLink to={`/vacations/${vacationId}`}>
+    if (userRole === 'admin') {
+      return (
+        <>
+          <NavLink
+            to={`/vacations/${vacationId}/edit`}
+            onClick={editButtonHandler}>
+            <Button text="Edit" />
+          </NavLink>
+          <NavLink to="/" onClick={deleteVacationHandler}>
+            <Button text="Delete" />
+          </NavLink>
+          <NavLink
+            to={`/vacations/${vacationId}`}
+            onClick={detailsButtonHandler}>
             <Button key={vacationId} text="Details" />
           </NavLink>
-        );
+        </>
+      );
+    } else if (user) {
+      return (
+        <NavLink to={`/vacations/${vacationId}`} onClick={detailsButtonHandler}>
+          <Button key={vacationId} text="Details" />
+        </NavLink>
+      );
+    } else {
+      return null; // If not logged in and not an admin, don't render any buttons
     }
   };
 

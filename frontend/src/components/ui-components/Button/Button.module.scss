@@ -1,7 +1,6 @@
 @import '../../../globals';
 
 .Button {
-  margin-top: 20px;
   position: relative;
   align-items: center;
   padding: 2px;
@@ -11,8 +10,8 @@
   border-radius: 15px;
   background-color: $secondary-color;
   color: white;
-  margin: 5px;
-  justify-content: start;
+  margin: 10px 5px 15px;
+  justify-content: center;
 
   /* Shimmer animation */
   @keyframes button-shimmer {

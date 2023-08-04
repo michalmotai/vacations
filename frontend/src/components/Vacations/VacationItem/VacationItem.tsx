@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import styles from './VacationItem.module.scss';
 import Vacation from '../../../models/Vacation';
 import { format } from 'date-fns';
@@ -23,8 +23,16 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, user }) => {
     endDate,
     price,
     photoName,
-    likesCount,
+    // likesCount,
   } = vacation;
+
+  // Get the likes count from the Redux store
+  const likesCount = useAppSelector(
+    (state) =>
+      state.vacationsState.vacations.find(
+        (v) => v.vacationId === vacation.vacationId
+      )?.likesCount
+  );
 
   const userId = useAppSelector((state) => state.authState.user?.userId);
 
@@ -36,13 +44,15 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, user }) => {
 
   return (
     <div className={styles.VacationItem} key={vacationId}>
-      <h3>{destination}</h3>
+      <img src={imgSrc} alt="" className={styles.VacationItem__photo} />
+
+      <h2>{destination}</h2>
 
       <div className={styles.VacationItem__container}>
         <div className={styles.VacationItem__containerInput}>
           <table>
             <tbody>
-              <tr>
+              <tr className="hidden">
                 <td></td>
                 <td>{vacationId}</td>
               </tr>
@@ -67,8 +77,6 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, user }) => {
             </tbody>
           </table>
         </div>
-
-        <img src={imgSrc} alt="" className={styles.VacationItem__photo} />
       </div>
 
       <div className={styles.VacationItem__buttonGroup}>

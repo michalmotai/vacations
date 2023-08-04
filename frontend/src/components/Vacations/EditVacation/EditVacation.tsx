@@ -16,14 +16,15 @@ import { format } from 'date-fns';
 import { BASE_API_URL } from '../../../config';
 
 interface EditVacationProps {
-  vacation: Vacation;
-  onClose: () => void;
+  // vacation: Vacation;
+  // onClose: () => void;
 }
 
-const EditVacation: FC<EditVacationProps> = ({ vacation, onClose }) => {
+const EditVacation: FC<EditVacationProps> = () => {
   const { register, handleSubmit, formState, setValue } = useForm<Vacation>();
   const dispatch = useAppDispatch();
   const [imageUrl, setImageUrl] = useState('');
+  const { vacation } = useAppSelector((state) => state.vacationsState);
 
   const submitEditVacationHandler = async (vacation: Vacation) => {
     try {
@@ -36,7 +37,7 @@ const EditVacation: FC<EditVacationProps> = ({ vacation, onClose }) => {
       // Update vacation state in slice
       dispatch(onUpdateVacation(updatedVacation));
       console.log('dispatched vacation: ', updatedVacation);
-      onClose();
+      // onClose();
       return updatedVacation;
     } catch (error) {
       console.log('couldnt update vacation');
@@ -44,82 +45,82 @@ const EditVacation: FC<EditVacationProps> = ({ vacation, onClose }) => {
   };
 
   useEffect(() => {
-    // Populate the form fields with vacation data
+    if (vacation) {
+      // Populate the form fields with vacation data
 
-    setValue('vacationId', vacation.vacationId);
-    setValue('destination', vacation.destination);
-    setValue('description', vacation.description);
+      setValue('vacationId', vacation.vacationId);
+      setValue('destination', vacation.destination);
+      setValue('description', vacation.description);
 
-    // Format the dates before setting their values
-    const formattedStartDate = format(
-      new Date(vacation.startDate),
-      'dd/MM/yyyy'
-    );
-    const formattedEndDate = format(new Date(vacation.endDate), 'dd/MM/yyyy');
+      // Format the dates before setting their values
+      const formattedStartDate = format(
+        new Date(vacation.startDate),
+        'dd/MM/yyyy'
+      );
+      const formattedEndDate = format(new Date(vacation.endDate), 'dd/MM/yyyy');
 
-    setValue('startDate', vacation.startDate);
-    setValue('endDate', vacation.endDate);
-    setValue('price', vacation.price);
-    setValue('photoName', vacation.photoName);
+      setValue('startDate', vacation.startDate);
+      setValue('endDate', vacation.endDate);
+      setValue('price', vacation.price);
+      setValue('photoName', vacation.photoName);
 
-    const imgSrc = `${BASE_API_URL}/vacations/images/${vacation.photoName}`;
-    setImageUrl(imgSrc);
+      const imgSrc = `${BASE_API_URL}/vacations/images/${vacation.photoName}`;
+      setImageUrl(imgSrc);
+    }
   }, []);
 
   return (
-    <Modal onClose={onClose}>
-      <div className={styles.EditVacation}>
-        <h2>Edit vacation</h2>
+    // <Modal onClose={onClose}>
+    <div className={styles.EditVacation}>
+      <img src={imageUrl} alt="Vacation" />
+      <h2>Edit vacation</h2>
 
-        <br />
-        <form onSubmit={handleSubmit(submitEditVacationHandler)}>
-          <img src={imageUrl} alt="Vacation" />
-          <br></br>
-          <FormInputGroupWithError
-            error={formState.errors.destination?.message}>
-            <label>destination</label>
-            <input
-              type="text"
-              {...register('destination', validation.destination)}
-            />
-          </FormInputGroupWithError>
+      <br />
+      <form onSubmit={handleSubmit(submitEditVacationHandler)}>
+        <br></br>
+        <FormInputGroupWithError error={formState.errors.destination?.message}>
+          <label>destination</label>
+          <input
+            type="text"
+            {...register('destination', validation.destination)}
+          />
+        </FormInputGroupWithError>
 
-          <FormInputGroupWithError
-            error={formState.errors.description?.message}>
-            <label>description</label>
-            <input
-              type="textarea"
-              {...register('description', validation.description)}
-            />
-          </FormInputGroupWithError>
+        <FormInputGroupWithError error={formState.errors.description?.message}>
+          <label>description</label>
+          <input
+            type="textarea"
+            {...register('description', validation.description)}
+          />
+        </FormInputGroupWithError>
 
-          <FormInputGroupWithError error={formState.errors.startDate?.message}>
-            <label>startDate</label>
-            <input
-              type="string"
-              {...register('startDate', validation.startDate)}
-            />
-          </FormInputGroupWithError>
+        <FormInputGroupWithError error={formState.errors.startDate?.message}>
+          <label>startDate</label>
+          <input
+            type="string"
+            {...register('startDate', validation.startDate)}
+          />
+        </FormInputGroupWithError>
 
-          <FormInputGroupWithError error={formState.errors.endDate?.message}>
-            <label>endDate</label>
-            <input type="string" {...register('endDate', validation.endDate)} />
-          </FormInputGroupWithError>
+        <FormInputGroupWithError error={formState.errors.endDate?.message}>
+          <label>endDate</label>
+          <input type="string" {...register('endDate', validation.endDate)} />
+        </FormInputGroupWithError>
 
-          <FormInputGroupWithError error={formState.errors.price?.message}>
-            <label>price</label>
-            <input type="number" {...register('price', validation.price)} />
-          </FormInputGroupWithError>
+        <FormInputGroupWithError error={formState.errors.price?.message}>
+          <label>price</label>
+          <input type="number" {...register('price', validation.price)} />
+        </FormInputGroupWithError>
 
-          <FormInputGroupWithError error={formState.errors.photo?.message}>
-            <label>photo</label>
-            <input type="file" accept="image/*" {...register('photo')} />
-          </FormInputGroupWithError>
+        <FormInputGroupWithError error={formState.errors.photo?.message}>
+          <label>photo</label>
+          <input type="file" accept="image/*" {...register('photo')} />
+        </FormInputGroupWithError>
 
-          <Button text={'Apply'}></Button>
-        </form>
-      </div>
-    </Modal>
+        <Button text={'Apply'}></Button>
+      </form>
+    </div>
+    // </Modal>
   );
 };
 

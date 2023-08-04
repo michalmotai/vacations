@@ -2,10 +2,14 @@ import React, { FC } from 'react';
 import styles from './Home.module.scss';
 import Vacations from '../Vacations/Vacations';
 import backgroundImg from '../../assets/images/background.jpg';
+import Register from '../AuthArea/Register/Register';
+import { useAppSelector } from '../../hooks';
 
 interface HomeProps {}
 
 const Home: FC<HomeProps> = () => {
+  const { user } = useAppSelector((state) => state.authState);
+
   return (
     <div className={styles.Home}>
       <div className={styles.Home__imagecontainer}>
@@ -19,7 +23,7 @@ const Home: FC<HomeProps> = () => {
           <br /> and beyond!
         </h1>
       </div>
-      <Vacations />
+      {user ? <Vacations /> : <Register />}
     </div>
   );
 };

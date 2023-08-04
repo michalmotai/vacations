@@ -1,0 +1,73 @@
+@import '../../../globals';
+
+.Switch {
+  /* Hide default HTML checkbox */
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    display: none; /* Use display: none to hide the input element */
+  }
+
+  input:checked + .Switch__slider {
+    background-color: $primary-color;
+  }
+
+  input:focus + .Switch__slider {
+    box-shadow: 0 0 1px $primary-color; // Assuming you have $primary-color defined in your globals
+  }
+
+  input:checked + .Switch__slider:before {
+    transform: translateX(26px);
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 300px;
+  }
+
+  /* The slider */
+  &__slider {
+    position: relative;
+    width: 50px;
+    height: 30px;
+    cursor: pointer;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px; /* Rounded corners for the slider (adjust as needed) */
+    margin: 10px;
+  }
+
+  &__slider:before {
+    position: absolute;
+    content: '';
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%; /* Rounded shape for the slider knob (adjust as needed) */
+  }
+
+  &__label {
+    position: relative;
+    white-space: nowrap; /* Prevent text from wrapping to a new line */
+    overflow: hidden; /* Hide any overflowing text */
+    text-overflow: ellipsis; /* Show ellipsis (...) for truncated text */
+    flex: 1; /* Allow the label to take up available space and push the slider */
+  }
+
+  /* Rounded sliders */
+  &.round {
+    &__slider {
+      border-radius: 30px;
+    }
+
+    &__slider:before {
+      border-radius: 50%;
+    }
+  }
+}
