@@ -1,20 +1,28 @@
-.FormGroupWithError {
+.FormInputGroupWithError {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   &:not(:last-child) {
     margin-bottom: 15px;
   }
 
+  &__inputContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
   label {
-    display: inline-block;
-    max-width: 100%;
-    margin-bottom: 5px;
+    //flex: 0.3;
+    width: 100px;
+    margin-right: 10px;
     font-weight: bold;
   }
 
   input {
-    display: block;
-    width: 100%;
+    flex: 0.7;
     height: 34px;
-    padding: 6px 12px;
     line-height: 1.5;
     color: #555;
     background-color: #fff;
@@ -23,9 +31,8 @@
   }
 
   &__error {
-    color: red;
+    color: rgb(190, 2, 2);
     font-weight: bold;
-    display: inline-block;
     margin-top: 5px;
   }
 }

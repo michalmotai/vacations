@@ -1,12 +1,24 @@
+@import '../../globals';
+
 .Vacations {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 
   &__filtersContainer {
     display: flex;
+    margin: 20px;
     align-items: center;
     justify-content: space-evenly;
-    gap: 40px;
     flex-wrap: wrap;
+  }
+  &__addButton {
+    position: fixed !important;
+    bottom: 80px;
+    right: 40px;
+    background-color: $accent-color !important;
+    border: 1px solid $accent-color !important;
   }
 }

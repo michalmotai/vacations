@@ -1,11 +1,16 @@
 @import '../../../globals';
 
 .Pagination {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
   button {
     width: 20px;
     height: 20px;
     background-color: $secondary-color;
     border: 1px solid white;
+    color: white;
     border-radius: 3px;
     padding: 2px;
     margin: 3px;
@@ -15,8 +20,9 @@
       background-color: white;
     }
 
-    &.active {
-      background-color: yellow;
+    &.Pagination__active {
+      background-color: $accent-color;
+      color: $secondary-color;
     }
   }
 }

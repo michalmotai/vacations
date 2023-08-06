@@ -7,6 +7,7 @@ import Vacation from '../../../models/Vacation';
 import { deleteVacation } from '../../../fetch';
 import EditVacation from '../EditVacation/EditVacation';
 import { onDeleteVacation, setVacation } from '../vacationsSlice';
+import LikeButton from '../LikeButton/LikeButton';
 
 interface VacationButtonsProps {
   vacation: Vacation;
@@ -31,7 +32,6 @@ const VacationButtons: FC<VacationButtonsProps> = ({
             window.confirm('Are you sure you want to delete this vacation?')
           ) {
             navigate('/');
-            
           }
         }
       })
@@ -55,7 +55,7 @@ const VacationButtons: FC<VacationButtonsProps> = ({
 
     if (userRole === 'admin') {
       return (
-        <>
+        <div className={styles.Button}>
           <NavLink
             to={`/vacations/${vacationId}/edit`}
             onClick={editButtonHandler}>
@@ -69,13 +69,17 @@ const VacationButtons: FC<VacationButtonsProps> = ({
             onClick={detailsButtonHandler}>
             <Button key={vacationId} text="Details" />
           </NavLink>
-        </>
+        </div>
       );
     } else if (user) {
       return (
-        <NavLink to={`/vacations/${vacationId}`} onClick={detailsButtonHandler}>
-          <Button key={vacationId} text="Details" />
-        </NavLink>
+        <div className={styles.Button}>
+          <NavLink
+            to={`/vacations/${vacationId}`}
+            onClick={detailsButtonHandler}>
+            <Button key={vacationId} text="Details" />
+          </NavLink>
+        </div>
       );
     } else {
       return null; // If not logged in and not an admin, don't render any buttons

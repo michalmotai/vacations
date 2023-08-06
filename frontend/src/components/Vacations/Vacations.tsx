@@ -20,6 +20,7 @@ import Vacation from '../../models/Vacation';
 import Pagination from '../ui-components/Pagination/Pagination';
 import Login from '../AuthArea/Login/Login';
 import Switch from '../ui-components/Switch/Switch';
+import Checkbox from '../ui-components/Checkbox/Checkbox';
 
 interface VacationsProps {}
 
@@ -48,7 +49,7 @@ const Vacations: FC<VacationsProps> = () => {
 
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const [vacationsPerPage, setvacationsPerPage] = useState(10);
+  const [vacationsPerPage, setvacationsPerPage] = useState(10); //number of pages to show on page
 
   // Fetch vacations data from server
   useEffect(() => {
@@ -95,7 +96,7 @@ const Vacations: FC<VacationsProps> = () => {
   // Query the server based on selected filter
   useEffect(() => {
     applyFilter(vacations);
-  }, [selectedFilter]);
+  }, [selectedFilter, vacations]);
 
   // Apply filter to vacations
   const applyFilter = async (vacationsToFilter: Vacation[]) => {
@@ -164,7 +165,7 @@ const Vacations: FC<VacationsProps> = () => {
   const renderAddButton = () => {
     return (
       <NavLink to="/vacations/add_vacation">
-        <Button text={'Add new vacation'} />
+        <Button text={'Add new'} className={styles.Vacations__addButton} />
       </NavLink>
     );
   };

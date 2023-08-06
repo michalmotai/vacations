@@ -14,11 +14,8 @@ $border-raduis: 15px;
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 400px;
-  margin: 50px auto;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: $border-radius;
-  padding: 10px;
   border: 1px solid white;
 
   img {
@@ -26,13 +23,14 @@ $border-raduis: 15px;
     width: 380px;
     height: auto;
     border-radius: 15px;
+    margin: auto;
+    margin-top: 10px;
   }
 
   form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include centeredFlexBox();
+    width: 400px;
+    padding: 20px;
   }
 
   h2 {

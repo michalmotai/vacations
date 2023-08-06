@@ -1,52 +1,13 @@
 @import '../../../globals';
 
 .VacationDetails {
+  width: 400px;
+  margin: 50px auto;
   @include formFrame;
   @include centeredFlexBox;
 
-  & .container {
+  & __container {
     @include centeredFlexBox;
+    padding: 30px;
   }
-  // margin: 20px auto;
-  // padding: 20px;
-  // width: 400px;
-  // height: auto;
-  // border: 1px solid black;
-  // border-radius: 10px;
-  // background-color: aliceblue;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: start;
-  // justify-content: space-around;
-
-  // &__container {
-  //   margin: auto;
-  //   display: flex;
-  //   flex-direction: row;
-  //   margin-top: 10px; /* Added margin for spacing */
-  //   justify-content: space-between;
-  // }
-
-  // &__containerInput {
-  //   display: flex;
-  //   flex-direction: column;
-  //   width: 200px;
-  //   padding: 10px;
-  //   color: $primary-color;
-  // }
-
-  // &__photo {
-  //   width: 300px;
-  //   height: 300px;
-  //   //margin-left: 10px;
-  //   object-fit: cover; /* Added object-fit property for image sizing */
-  //   border-radius: 50%;
-  //   position: relative;
-  //   left: -50px;
-  // }
-
-  // h3 {
-  //   font-size: 30px;
-  //   font-weight: 600;
-  // }
 }

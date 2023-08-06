@@ -2,6 +2,10 @@
 
 .Home {
   height: 100%;
+  overflow:auto;
+  position: relative;
+
+  
 
   &__imagecontainer {
     width: 100%;

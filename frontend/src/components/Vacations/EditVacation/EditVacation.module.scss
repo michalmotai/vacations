@@ -1,4 +1,15 @@
 @import '../../../globals';
 .EditVacation {
   @include formFrame;
+  width: 400px;
+  margin: 20px auto;
+
+  &__buttonsContainer {
+    display: flex;
+  }
+
+  &__serverErrorMessage {
+    color: red;
+    font-weight: bold;
+  }
 }

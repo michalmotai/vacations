@@ -1,3 +1,9 @@
+const isAfterStartDate = (value: Date, values: any) => {
+  const startDate = values.startDate;
+  if (!startDate || !value) return true; // If either field is empty, consider it valid
+  return new Date(value) > new Date(startDate);
+};
+
 export default {
   destination: {
     // required: { value: true, message: 'Missing destination' },
@@ -16,20 +22,22 @@ export default {
   endDate: {
     required: { value: true, message: 'Missing end date' },
     dateFormat: { value: 'YYYY-MM-DD', message: 'Invalid date format' },
-    greaterThanStartDate: {
+    isAfterStartDate: {
       value: true,
-      message: 'End date must be after start date',
+      message: 'end date must be after start date',
     },
   },
   price: {
     required: { value: true, message: 'Missing price' },
     min: { value: 0, message: 'Price cannot be negative' },
-    max: { value: 1000, message: 'Price cannot exceed 1000' },
+    max: { value: 10000, message: 'Price cannot exceed 10,000' },
     numeric: { value: true, message: 'Invalid price format' },
-    decimalPrecision: { value: 2, message: 'Invalid price precision' },
-    maxPrice: { value: 10000, message: 'Maximum price exceeded' },
   },
   photoName: {
-    required: { value: false, message: 'missing image' },
+    validate: (value: any) => {
+      return value !== null && value !== undefined && value !== ''
+        ? true
+        : 'Missing image';
+    },
   },
 };

@@ -1,7 +1,7 @@
 @import '../../../globals';
 
 .VacationItem {
-  margin: 15px 15px;
+  margin: 5px 5px;
   padding: 20px;
   width: 400px;
   height: auto;
@@ -16,13 +16,14 @@
   &__container {
     display: flex;
     flex-direction: column;
+    padding: 10px;
   }
 
   &__containerInput {
     display: flex;
     flex-direction: column;
     width: 200px;
-    padding: 10px;
+    margin: auto;
   }
 
   &__photo {
@@ -33,14 +34,14 @@
     border-radius: $border-radius;
   }
 
-  // &__buttonGroup {
-  //   width: 400px;
-  //   display: flex;
-  //   flex-direction: row;
-  //   justify-content: space-between; /* Added justify-content property */
-  //   padding: 10px; /* Added padding for spacing */
-  //   justify-content: start;
-  // }
+  &__buttonGroup {
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Added justify-content property */
+    padding: 10px; /* Added padding for spacing */
+    justify-content: start;
+  }
 
   h2 {
     margin-top: 20px;

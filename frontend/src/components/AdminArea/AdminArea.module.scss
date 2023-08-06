@@ -1,14 +1,40 @@
+@import '../../globals/';
+
 .AdminArea {
+  @include formFrame;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 800px;
+  height: auto;
+  margin: 50px auto;
+  justify-content: space-around;
+
   table {
+    width: 400px;
     margin-top: 20px;
     border: 1px solid;
     border-collapse: collapse;
-    
 
     th,
     td {
       border: 1px solid;
       width: 25%;
     }
+  }
+  &__barChart {
+    width: 600px;
+    background-color: red;
+  }
+
+  h2 {
+    margin: 20px auto;
+  }
+
+  button {
+    width: auto;
+    height: auto;
+    padding: 5px;
+    margin: 20px;
   }
 }

@@ -12,11 +12,14 @@ const FormInputGroupWithError: FC<FormInputGroupWithErrorProps> = ({
 }) => {
   return (
     <div className={styles.FormInputGroupWithError}>
-      {children}
+      <div className={styles.FormInputGroupWithError__inputContainer}>
+        {children}
+      </div>
       {error && (
         <div className={styles.FormInputGroupWithError__error}>{error}</div>
       )}
     </div>
   );
 };
+
 export default FormInputGroupWithError;

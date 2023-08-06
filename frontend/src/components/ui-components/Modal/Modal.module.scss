@@ -16,26 +16,27 @@
     right: 0;
     z-index: 1000;
     cursor: pointer;
-    background-color: rgba(48, 48, 48, 0.5);
+    background-color: rgba(48, 48, 48, 0.2);
   }
 
-  &__closeButton {
+  .Modal__closeButton {
     position: absolute;
+    top: 5%;
+    right: 7%;
     width: 45px;
-    top: 10px;
-    right: 10px;
     padding: 5px;
+    z-index: 1000;
   }
 
   &__content {
     position: absolute;
-    width: 400px;
+    //width: 400px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 30px;
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     background-color: $primary-color; // Make sure $primary-color is properly imported and defined
     border: 3px solid $primary-color;

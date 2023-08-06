@@ -33,7 +33,7 @@ const AdminArea: FC<AdminAreaProps> = () => {
 
   return (
     <div className={styles.AdminArea}>
-      <h1>Display Likes for Vacations</h1>
+      <h2>Display Likes for Vacations</h2>
       <BarChart />
       <table className={styles.AdminArea__table}>
         <thead>

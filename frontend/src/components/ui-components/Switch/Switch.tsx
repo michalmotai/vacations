@@ -15,13 +15,17 @@ const Switch: FC<SwitchProps> = ({ labelText, onChange, value, isChecked }) => {
 
   return (
     <label className={styles.Switch}>
-      <input type="checkbox" checked={isChecked} onChange={handleChecked} />
+      <input
+        type="checkbox"
+        checked={isChecked}
+        onChange={handleChecked}
+        className={styles.Switch__input}
+      />
       <div className={styles.Switch__container}>
         <span className={styles.Switch__slider}></span>
         <span className={styles.Switch__label}>{labelText}</span>
       </div>
     </label>
-    
   );
 };
 

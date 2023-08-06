@@ -18,15 +18,40 @@ const Pagination: FC<PaginationProps> = ({
   for (let i = 1; i <= Math.ceil(totalVacations / vacationsPerPage); i++) {
     pages.push(i);
   }
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    event.preventDefault(); // Prevent default anchor behavior
+    if (currentPage < pages.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   return (
     <div className={styles.Pagination}>
+      {currentPage > 1 ? (
+        <a href="#" onClick={handlePrevPage}>
+          prev
+        </a>
+      ) : (
+        ''
+      )}
+
       {pages.map((page, index) => {
-        //console.log('page:', page, 'currentPage:', currentPage);
         return (
           <button
             key={index}
             type="button"
-            className={page === currentPage ? 'active' : ''}
+            className={
+              page === currentPage ? `${styles.Pagination__active}` : ''
+            }
             onClick={() => {
               setCurrentPage(page);
             }}>
@@ -34,6 +59,11 @@ const Pagination: FC<PaginationProps> = ({
           </button>
         );
       })}
+      {currentPage < pages.length ? (
+        <a href="#" onClick={handleNextPage}>
+          next
+        </a>
+      ) : null}
     </div>
   );
 };

@@ -43,15 +43,15 @@ const AddVacation: FC<AddVacationProps> = () => {
     <ModalContainer>
       {error && showError && (
         <Alert
-          error={error.response.data?.message}
+          error={error.response?.data?.message}
           onClose={() => setShowError(false)}
         />
       )}
       <div className={styles.AddVacation}>
-        <h2>Add a new vacation</h2>
-
-        <br />
         <form onSubmit={handleSubmit(submitAddVacationHandler)}>
+          <h2>Add a new vacation</h2>
+
+          <br />
           <FormInputGroupWithError
             error={formState.errors.destination?.message}>
             <label>destination</label>
@@ -64,10 +64,7 @@ const AddVacation: FC<AddVacationProps> = () => {
           <FormInputGroupWithError
             error={formState.errors.description?.message}>
             <label>description</label>
-            <input
-              type="textarea"
-              {...register('description', validation.description)}
-            />
+            <textarea {...register('description', validation.description)} />
           </FormInputGroupWithError>
 
           <FormInputGroupWithError error={formState.errors.startDate?.message}>
@@ -94,6 +91,7 @@ const AddVacation: FC<AddVacationProps> = () => {
           </FormInputGroupWithError>
 
           <Button text={'Add'}></Button>
+          <Alert error={error} onClose={function (): void {}}></Alert>
         </form>
       </div>
     </ModalContainer>

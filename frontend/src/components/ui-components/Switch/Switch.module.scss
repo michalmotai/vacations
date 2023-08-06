@@ -3,10 +3,10 @@
 .Switch {
   /* Hide default HTML checkbox */
   input {
+    position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
-    display: none; /* Use display: none to hide the input element */
   }
 
   input:checked + .Switch__slider {
@@ -14,7 +14,7 @@
   }
 
   input:focus + .Switch__slider {
-    box-shadow: 0 0 1px $primary-color; // Assuming you have $primary-color defined in your globals
+    box-shadow: 0 0 1px $primary-color; 
   }
 
   input:checked + .Switch__slider:before {
