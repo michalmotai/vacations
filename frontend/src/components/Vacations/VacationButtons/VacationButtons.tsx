@@ -55,7 +55,7 @@ const VacationButtons: FC<VacationButtonsProps> = ({
 
     if (userRole === 'admin') {
       return (
-        <div className={styles.Button}>
+        <div className={styles.VacationButtons}>
           <NavLink
             to={`/vacations/${vacationId}/edit`}
             onClick={editButtonHandler}>

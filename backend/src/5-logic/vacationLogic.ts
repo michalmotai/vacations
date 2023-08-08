@@ -2,10 +2,8 @@ import { OkPacket } from 'mysql';
 import dal from '../2-utils/dal';
 import { ResourceNotFoundError, ValidationError } from '../4-models/Error';
 import Vacation from '../4-models/Vacation';
-import { v4 as uuid } from 'uuid';
 import { saveImageToImagesFolder } from '../2-utils/vacation-utils';
 import fs from 'fs';
-import { format } from 'date-fns';
 
 const imageFolder = `./src/1-assets/images`;
 
@@ -35,8 +33,8 @@ Promise<Vacation[]> => {
 export const getVacation = async (vacationId: number): Promise<Vacation> => {
   try {
     const sql = `SELECT * FROM vacations_table
-        WHERE vacationId = ${vacationId};`;
-    return await dal.execute<Vacation>(sql);
+        WHERE vacationId = ?;`;
+    return await dal.execute<Vacation>(sql, [vacationId]);
   } catch (error) {
     throw error;
   }

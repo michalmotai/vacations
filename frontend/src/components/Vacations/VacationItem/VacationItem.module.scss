@@ -38,7 +38,7 @@
 
   &__buttonGroup {
     // display: flex;
-    // flex-direction: row;
+    // flex-direction: column;
     // justify-content: space-between; /* Added justify-content property */
     // padding: 20px; /* Added padding for spacing */
     // align-items: center;
@@ -86,7 +86,7 @@
     padding: 5px;
     border-radius: $border-radius;
     width: 300px;
-    margin: auto;
+    margin: 10px auto;
   }
 
   &__likes {

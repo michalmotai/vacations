@@ -11,6 +11,7 @@ import { useAppDispatch } from '../../../hooks';
 import ModalContainer from '../../ui-components/ModalContainer/ModalContainer';
 import Alert from '../../ui-components/Alert/Alert';
 import Button from '../../ui-components/Button/Button';
+import placeHolder from '../../../assets/images/placeholder-featured-image-600x600.png';
 
 interface AddVacationProps {}
 
@@ -20,22 +21,28 @@ const AddVacation: FC<AddVacationProps> = () => {
   const [error, setError] = useState<any>(null);
   const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
+  const [image, setImage] = useState(placeHolder);
 
   const submitAddVacationHandler = async (vacation: Vacation) => {
     try {
       console.log('add vacation:', vacation);
       const addedVacation = await addVacationAsync(vacation);
       navigate('/');
-      // setVacationPhoto((prevVacation) => ({
-      //   ...prevVacation,
-      //   photoName: addedVacation.photoName,
-      // }));
 
       dispatch(onAddVacation(addedVacation));
     } catch (error) {
       setShowError(true);
       setError(error);
       console.log(error);
+    }
+  };
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files?.[0];
+    if (selectedFile) {
+      console.log('selected file:', selectedFile);
+      const imageUrl = URL.createObjectURL(selectedFile);
+      setImage(imageUrl);
     }
   };
 
@@ -47,8 +54,15 @@ const AddVacation: FC<AddVacationProps> = () => {
           onClose={() => setShowError(false)}
         />
       )}
-      <div className={styles.AddVacation}>
+
+      <div className={styles.AddVacation__container}>
         <form onSubmit={handleSubmit(submitAddVacationHandler)}>
+          <div
+            className={styles.AddVacation__image}
+            style={{ width: '150px', borderRadius: '15px' }}>
+            <img src={image} />
+          </div>
+
           <h2>Add a new vacation</h2>
 
           <br />
@@ -87,7 +101,12 @@ const AddVacation: FC<AddVacationProps> = () => {
 
           <FormInputGroupWithError error={formState.errors.photoName?.message}>
             <label>photo</label>
-            <input type="file" accept="image/*" {...register('photo')} />
+            <input
+              type="file"
+              accept="image/*"
+              {...register('photo')}
+              onChange={handleImageChange}
+            />
           </FormInputGroupWithError>
 
           <Button text={'Add'}></Button>
