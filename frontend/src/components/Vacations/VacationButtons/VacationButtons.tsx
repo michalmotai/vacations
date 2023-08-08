@@ -64,23 +64,24 @@ const VacationButtons: FC<VacationButtonsProps> = ({
           <NavLink to="/" onClick={deleteVacationHandler}>
             <Button text="Delete" />
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to={`/vacations/${vacationId}`}
             onClick={detailsButtonHandler}>
             <Button key={vacationId} text="Details" />
-          </NavLink>
+          </NavLink> */}
         </div>
       );
-    } else if (user) {
-      return (
-        <div className={styles.Button}>
-          <NavLink
-            to={`/vacations/${vacationId}`}
-            onClick={detailsButtonHandler}>
-            <Button key={vacationId} text="Details" />
-          </NavLink>
-        </div>
-      );
+      // }
+      // else if (user) {
+      //   return (
+      //     <div className={styles.Button}>
+      //       <NavLink
+      //         to={`/vacations/${vacationId}`}
+      //         onClick={detailsButtonHandler}>
+      //         <Button key={vacationId} text="Details" />
+      //       </NavLink>
+      //     </div>
+      //   );
     } else {
       return null; // If not logged in and not an admin, don't render any buttons
     }

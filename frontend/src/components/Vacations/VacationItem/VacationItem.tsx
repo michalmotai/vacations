@@ -54,21 +54,27 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, user }) => {
         <div className={styles.VacationItem__containerInput}>
           <div className="hidden">{vacationId}</div>
 
-          <div className="vacation-info">
-            <span className={styles.VacationItem__label}>From:</span>
-            <span className={styles.VacationItem__date}>
-              {formattedStartDate}
-            </span>
-            <span className={styles.VacationItem__label}>To:</span>
-            <span className={styles.VacationItem__date}>
-              {formattedEndDate}
-            </span>
-          </div>
+          <div className={styles.VacationItem__vacationInfo}>
+            <div className={styles.VacationItem__dateContainter}>
+              <span className={styles.VacationItem__label}>From:</span>
+              <span className={styles.VacationItem__date}>
+                {formattedStartDate}
+              </span>
+            </div>
 
-          <div className={styles.VacationItem__price}>
-            <span className={styles.VacationItem__label}>Price:</span>
-            <span className="price">${price}</span>
+            <div className={styles.VacationItem__dateContainter}>
+              <span className={styles.VacationItem__label}>To:</span>
+              <span className={styles.VacationItem__date}>
+                {formattedEndDate}
+              </span>
+            </div>
           </div>
+        </div>
+        <div className={styles.VacationItem__description}>{description}</div>
+
+        <div className={styles.VacationItem__price}>
+          <span className={styles.VacationItem__label}>Price:</span>
+          <span className="price">${price}</span>
         </div>
         <div className={styles.VacationItem__likes}>
           <FontAwesomeIcon icon={faHeart} />
@@ -78,7 +84,9 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, user }) => {
 
       <div className={styles.VacationItem__buttonGroup}>
         {user && user.role === 'user' && (
-          <LikeButton vacation={vacation} userId={userId!} />
+          <div className={styles.VacationItem__likeButton}>
+            <LikeButton vacation={vacation} userId={userId!} />
+          </div>
         )}
         {<VacationButtons vacation={vacation} vacationId={vacationId} />}
       </div>

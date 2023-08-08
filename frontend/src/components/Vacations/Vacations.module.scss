@@ -5,7 +5,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center; /* Center the items horizontally */
-  align-items: center; /* Center the items vertically */
   margin-right: auto;
 
   &__filtersContianer {
@@ -57,10 +56,4 @@
 /* Customize the switch handle's shadow (optional) */
 .react-switch-handle::before {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Replace with your desired shadow styles */
-}
-
-.react-switch-bg {
-  /* Off color */
-  background-color: #f30000; /* Replace with your desired off color */
-  border-radius: 20px; /* Adjust the border-radius to change the switch's shape */
 }

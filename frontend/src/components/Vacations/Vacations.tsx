@@ -191,6 +191,9 @@ const Vacations: FC<VacationsProps> = () => {
           checked={selectedFilter === filter.value}
           uncheckedIcon={false}
           checkedIcon={false}
+          offColor="#01497e"
+          onColor="#ffc107"
+          //   boxShadow="#0d3756"
         />
         <div className="react-switch-label"> {filter.labelText}</div>
       </label>

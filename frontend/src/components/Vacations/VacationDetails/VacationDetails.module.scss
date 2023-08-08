@@ -9,5 +9,6 @@
   & __container {
     @include centeredFlexBox;
     padding: 30px;
+    box-shadow: 5px 5px 5px $shadow-color, 0 0 10px white;
   }
 }

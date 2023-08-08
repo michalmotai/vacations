@@ -13,7 +13,7 @@ export default {
   description: {
     required: { value: true, message: 'Missing description' },
     minLength: { value: 3, message: 'Description too short' },
-    maxLength: { value: 200, message: 'Description too long' },
+    maxLength: { value: 500, message: 'Description too long' },
   },
   startDate: {
     required: { value: true, message: 'Missing start date' },

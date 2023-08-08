@@ -24,11 +24,11 @@ class Vacation {
 
   private static validationSchema = Joi.object({
     vacationId: Joi.number().integer().positive().optional(),
-    destination: Joi.string().min(3).max(45).required(),
-    description: Joi.string().min(3).max(45).optional(),
+    destination: Joi.string().min(3).max(30).required(),
+    description: Joi.string().min(3).max(500).optional(),
     startDate: Joi.date().required(),
     endDate: Joi.date().required().min(Joi.ref('startDate')),
-    price: Joi.number().positive().required().max(1000),
+    price: Joi.number().positive().required().max(10000),
     photo: Joi.object().optional(),
     photoName: Joi.string().optional(),
   });
