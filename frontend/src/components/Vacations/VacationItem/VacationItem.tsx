@@ -38,8 +38,8 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, user }) => {
 
   const userId = useAppSelector((state) => state.authState.user?.userId);
 
-  const formattedStartDate = format(new Date(startDate), 'MM/dd/yyyy');
-  const formattedEndDate = format(new Date(endDate), 'MM/dd/yyyy');
+  const formattedStartDate = format(new Date(startDate), 'dd/MM/yyyy');
+  const formattedEndDate = format(new Date(endDate), 'dd/MM/yyyy');
   const imgSrc = `${BASE_API_URL}/vacations/images/${photoName}`;
 
   //console.log('Vacation in VacationItem: ', vacation);
