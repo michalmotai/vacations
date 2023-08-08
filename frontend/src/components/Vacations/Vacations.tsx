@@ -19,8 +19,8 @@ import User from '../../models/User';
 import Vacation from '../../models/Vacation';
 import Pagination from '../ui-components/Pagination/Pagination';
 import Login from '../AuthArea/Login/Login';
-import Switch from '../ui-components/Switch/Switch';
-import Checkbox from '../ui-components/Checkbox/Checkbox';
+// import Switch from '../ui-components/Switch/Switch';
+import Switch from 'react-switch';
 
 interface VacationsProps {}
 
@@ -170,17 +170,32 @@ const Vacations: FC<VacationsProps> = () => {
     );
   };
 
+  // // Render filters checkboxes
+  // const renderFilters = filters.map((filter) => (
+  //   <Switch
+  //     key={filter.value}
+  //     labelText={filter.labelText}
+  //     onChange={handleFilterSelect}
+  //     value={filter.value}
+  //     isChecked={selectedFilter === filter.value}
+  //   />
+  // ));
+
   // Render filters checkboxes
   const renderFilters = filters.map((filter) => (
-    <Switch
-      key={filter.value}
-      labelText={filter.labelText}
-      onChange={handleFilterSelect}
-      value={filter.value}
-      isChecked={selectedFilter === filter.value}
-    />
+    <div key={filter.value}>
+      <label
+        className={`styles.Vacations__filterContianer react-switch-container`}>
+        <Switch
+          onChange={() => handleFilterSelect(filter.value)}
+          checked={selectedFilter === filter.value}
+          uncheckedIcon={false}
+          checkedIcon={false}
+        />
+        <div className="react-switch-label"> {filter.labelText}</div>
+      </label>
+    </div>
   ));
-
   return (
     <>
       {!user ? (
@@ -191,7 +206,7 @@ const Vacations: FC<VacationsProps> = () => {
         </>
       ) : (
         <>
-          <div className={styles.Vacations__filtersContainer}>
+          <div className={styles.Vacations__filtersContianer}>
             {renderFilters}
           </div>
           {isLoading ? (

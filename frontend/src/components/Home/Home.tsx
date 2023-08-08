@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './Home.module.scss';
 import Vacations from '../Vacations/Vacations';
-import backgroundImg from '../../assets/images/background.jpg';
+import backgroundImg from '../../assets/images/Default_blue_and_turquoise_sky_with_s_galactic_path_and_dust_0.jpg';
 import Register from '../AuthArea/Register/Register';
 import { useAppSelector } from '../../hooks';
 
@@ -20,7 +20,8 @@ const Home: FC<HomeProps> = () => {
         />
         <h1 className={styles.Home__title}>
           To infinity...
-          <br /> and beyond!
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp; and beyond!
         </h1>
       </div>
       {user ? <Vacations /> : <Register />}

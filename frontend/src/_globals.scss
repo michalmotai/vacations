@@ -49,3 +49,59 @@ $border-raduis: 15px;
 .hidden {
   display: none;
 }
+
+/* Vacations.module.scss */
+
+/* Increase the width of the label and switch container */
+.react-switch-container {
+  display: flex;
+  align-items: center; /* Center the label and switch vertically */
+  width: 200px; /* Adjust the width to your desired value */
+  margin-bottom: 10px; /* Add some margin between each label and switch */
+}
+
+/* Customize the label */
+.react-switch-label {
+  margin-left: 10px; /* Add some space between the label and the switch */
+  font-size: 16px; /* Adjust the font size as needed */
+  width: 100px;
+}
+
+/* Customize the switch track (the background of the switch) */
+.react-switch-bg {
+  width: 50px; /* Adjust the width of the switch track */
+  height: 30px; /* Adjust the height of the switch track */
+  background-color: #ccc; /* Replace with your desired color */
+  border-radius: 20px; /* Adjust the border-radius to change the switch's shape */
+}
+
+/* Customize the switch handle (the sliding knob) */
+.react-switch-handle {
+  width: 26px; /* Adjust the width of the switch handle */
+  height: 26px; /* Adjust the height of the switch handle */
+  background-color: #fff; /* Replace with your desired color */
+  border-radius: 50%; /* To make it a circle, adjust the border-radius to half of the height */
+}
+
+/* Customize the switch handle's shadow (optional) */
+.react-switch-handle::before {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Replace with your desired shadow styles */
+}
+
+// @keyframes likedStar{
+//   0% {
+//     background-color: none;
+//     transform: rotate(0deg);
+//   }
+//   50% {
+//     background-color: blue;
+//     transform: rotate(180deg);
+//   }
+//   100% {
+//     background-color: ;
+//     transform: rotate(360deg);
+//   }
+// }
+
+
+

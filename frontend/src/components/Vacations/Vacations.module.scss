@@ -4,11 +4,21 @@
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Center the items horizontally */
+  align-items: center; /* Center the items vertically */
+  margin-right: auto;
+
+  &__filtersContianer {
+    display: flex;
+    margin: 20px;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
 
   &__filtersContainer {
     display: flex;
+
     margin: 20px;
     align-items: center;
     justify-content: space-evenly;
@@ -21,4 +31,36 @@
     background-color: $accent-color !important;
     border: 1px solid $accent-color !important;
   }
+}
+/* Increase the width of the label and switch container */
+.react-switch-container {
+  display: flex;
+  align-items: center; /* Center the label and switch vertically */
+  width: 200px; /* Adjust the width to your desired value */
+  margin-bottom: 10px; /* Add some margin between each label and switch */
+}
+
+/* Customize the label */
+.react-switch-label {
+  background-color: $secondary-color; /* Replace with your desired color */
+  border-radius: 20px; /* Adjust the border-radius to change the switch's shape */
+}
+
+/* Customize the switch handle (the sliding knob) */
+.react-switch-handle {
+  width: 26px; /* Adjust the width of the switch handle */
+  height: 26px; /* Adjust the height of the switch handle */
+  background-color: #fff; /* Replace with your desired color */
+  border-radius: 50%; /* To make it a circle, adjust the border-radius to half of the height */
+}
+
+/* Customize the switch handle's shadow (optional) */
+.react-switch-handle::before {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Replace with your desired shadow styles */
+}
+
+.react-switch-bg {
+  /* Off color */
+  background-color: #f30000; /* Replace with your desired off color */
+  border-radius: 20px; /* Adjust the border-radius to change the switch's shape */
 }

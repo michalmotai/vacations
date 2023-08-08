@@ -2,7 +2,7 @@ import React, { FC, MouseEvent, MouseEventHandler } from 'react';
 import styles from './Button.module.scss';
 
 interface ButtonProps {
-  text: string;
+  text?: string;
   icon?: React.ReactNode;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;

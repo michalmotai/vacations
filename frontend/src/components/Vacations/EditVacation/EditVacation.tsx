@@ -8,7 +8,7 @@ import { BASE_API_URL } from '../../../config';
 import FormInputGroupWithError from '../../FormInputGroupWithError/FormInputGroupWithError';
 import validation from '../AddVacation/validation';
 import Button from '../../ui-components/Button/Button';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate, useNavigate } from 'react-router-dom';
 import styles from './EditVacation.module.scss';
 import { format } from 'date-fns';
 
@@ -22,6 +22,7 @@ const EditVacation: FC<EditVacationProps> = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [errorMessage, serErrorMessage] = useState<string>('');
   // const [dates, setDates] = useState({ startDate: '', endDate: '' });
+  const navigate = useNavigate();
 
   const handleFileInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -47,6 +48,7 @@ const EditVacation: FC<EditVacationProps> = () => {
       dispatch(onUpdateVacation(updatedVacation));
       console.log('dispatched vacation: ', updatedVacation);
       serErrorMessage('');
+      navigate('/');
 
       return updatedVacation;
     } catch (error: any) {
@@ -95,7 +97,6 @@ const EditVacation: FC<EditVacationProps> = () => {
             {...register('destination', validation.destination)}
           />
         </FormInputGroupWithError>
-
         <FormInputGroupWithError error={formState.errors.description?.message}>
           <label>Description:</label>
           <input
@@ -107,21 +108,22 @@ const EditVacation: FC<EditVacationProps> = () => {
         <FormInputGroupWithError error={formState.errors.startDate?.message}>
           <label>Start date:</label>
           {/* Use defaultValue to set the default value for the input field */}
-          <input type="text" {...register('startDate', validation.startDate)} />
+          <input
+            type="text"
+            // value={new Date(vacation?.startDate as Date).toISOString()}
+            {...register('startDate', validation.startDate)}
+          />
         </FormInputGroupWithError>
         {/* <input type="text" defaultValue={dates.startDate} /> */}
-
         <FormInputGroupWithError error={formState.errors.endDate?.message}>
           <label>End date:</label>
           <input type="text" {...register('endDate', validation.endDate)} />
         </FormInputGroupWithError>
         {/* <input type="text" defaultValue={dates.endDate} /> */}
-
         <FormInputGroupWithError error={formState.errors.price?.message}>
           <label>Price:</label>
           <input type="number" {...register('price', validation.price)} />
         </FormInputGroupWithError>
-
         <FormInputGroupWithError error={formState.errors.photo?.message}>
           <label>Photo:</label>
           <input
@@ -135,7 +137,6 @@ const EditVacation: FC<EditVacationProps> = () => {
           {/* Display the error message */}
           {errorMessage && <div>Error: {errorMessage}</div>}
         </div>
-
         <div className={styles.EditVacation__buttonsContainer}>
           <Button text={'Apply'}></Button>
           <NavLink to={'/'}>

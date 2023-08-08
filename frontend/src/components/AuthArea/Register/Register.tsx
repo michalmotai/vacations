@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './Register.module.scss';
 import { NavLink, useNavigate } from 'react-router-dom';
 import FormInputGroupWithError from '../../FormInputGroupWithError/FormInputGroupWithError';
-import { useForm } from 'react-hook-form';
+import { useForm,  } from 'react-hook-form';
 import User from '../../../models/User';
 import { registerAsync } from '../../../fetch/auth';
 import Button from '../../ui-components/Button/Button';
@@ -17,6 +17,7 @@ const Register: FC<RegisterProps> = () => {
   const { register, handleSubmit, formState } = useForm<User>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [errorMessage, serErrorMessage] = useState<string>('');
 
   const registrationHandler = async (user: User) => {
     try {
@@ -62,6 +63,11 @@ const Register: FC<RegisterProps> = () => {
           </FormInputGroupWithError>
           <Button text={'Register'}></Button>
         </form>
+        <div className={styles.EditVacation__serverErrorMessage}>
+          {/* Display the error message */}
+          {errorMessage && <div>Error: {errorMessage}</div>}
+        </div>
+
         <p>already registerd?</p>
         <NavLink to="/login">Login</NavLink>
       </div>

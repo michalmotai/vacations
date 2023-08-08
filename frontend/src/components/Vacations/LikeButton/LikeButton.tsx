@@ -10,6 +10,8 @@ import {
 import { userLikedVacation, userUnlikeVacation } from '../../../auth/authSlice';
 import Vacation from '../../../models/Vacation';
 import { onLikedVacation, onUnLikedVacation } from '../vacationsSlice';
+import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface LikeButtonProps {
   vacation: Vacation;
@@ -68,19 +70,19 @@ const LikeButton: FC<LikeButtonProps> = ({ vacation, userId }) => {
   const renderLikeButton = () => {
     console.log('isLiked', isLiked);
     return isLiked ? (
-      <Button
+      <button
         key={vacationId}
-        text=" LIKED"
-        icon={<>&#x2764; </>}
         onClick={() => handleLikeClick(vacationId)}
-        className={styles.LikeButton__isLiked}
-      />
+        className={styles.LikeButton__isLiked}>
+        <FontAwesomeIcon icon={faHeart} /> Liked
+      </button>
     ) : (
-      <Button
+      <button
         key={vacationId}
-        text="LIKE"
         onClick={() => handleLikeClick(vacationId)}
-      />
+        className={styles.LikeButton__}>
+        <FontAwesomeIcon icon={faHeart} /> Like
+      </button>
     );
   };
   return <div className={styles.LikeButton}>{renderLikeButton()}</div>;

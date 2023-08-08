@@ -8,6 +8,8 @@ import { BASE_API_URL } from '../../../config';
 import VacationButtons from '../VacationButtons/VacationButtons';
 import LikeButton from '../LikeButton/LikeButton';
 import User from '../../../models/User';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons'; // Replace 'IconName' with the specific icon you want to use
 
 interface VacationItemProps {
   vacation: Vacation;
@@ -44,38 +46,33 @@ const VacationItem: FC<VacationItemProps> = ({ vacation, user }) => {
 
   return (
     <div className={styles.VacationItem} key={vacationId}>
-      <img src={imgSrc} alt="" className={styles.VacationItem__photo} />
-
-      <h2>{destination}</h2>
-
       <div className={styles.VacationItem__container}>
+        <img src={imgSrc} alt="" className={styles.VacationItem__photo} />
+
+        <h2>{destination}</h2>
+
         <div className={styles.VacationItem__containerInput}>
-          <table>
-            <tbody>
-              <tr className="hidden">
-                <td></td>
-                <td>{vacationId}</td>
-              </tr>
+          <div className="hidden">{vacationId}</div>
 
-              <tr>
-                <td>From:</td>
-                <td>{formattedStartDate}</td>
-              </tr>
+          <div className="vacation-info">
+            <span className={styles.VacationItem__label}>From:</span>
+            <span className={styles.VacationItem__date}>
+              {formattedStartDate}
+            </span>
+            <span className={styles.VacationItem__label}>To:</span>
+            <span className={styles.VacationItem__date}>
+              {formattedEndDate}
+            </span>
+          </div>
 
-              <tr>
-                <td>To:</td>
-                <td>{formattedEndDate}</td>
-              </tr>
-              <tr>
-                <td>Price</td>
-                <td>{price}</td>
-              </tr>
-              <tr>
-                <td>Likes:</td>
-                <td>{likesCount}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div className={styles.VacationItem__price}>
+            <span className={styles.VacationItem__label}>Price:</span>
+            <span className="price">${price}</span>
+          </div>
+        </div>
+        <div className={styles.VacationItem__likes}>
+          <FontAwesomeIcon icon={faHeart} />
+          <span className="likes">&nbsp;{likesCount}</span>
         </div>
       </div>
 

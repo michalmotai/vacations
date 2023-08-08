@@ -16,7 +16,7 @@ body,
 #root {
   color: white;
   background-image: linear-gradient(0deg, $primary-color, $secondary-color);
-  overflow: hidden;
+  overflow: visible;
 }
 
 h1 {
