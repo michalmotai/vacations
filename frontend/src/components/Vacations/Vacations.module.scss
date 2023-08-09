@@ -9,7 +9,7 @@
 
   &__filtersContianer {
     display: flex;
-    margin: 20px;
+    margin: 30px;
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -29,13 +29,15 @@
     right: 40px;
     background-color: $accent-color !important;
     border: 1px solid $accent-color !important;
+    box-shadow: 0px 0px 10px 2px $secondary-color;
+    color: $secondary-color !important;
   }
 }
 /* Increase the width of the label and switch container */
 .react-switch-container {
   display: flex;
   align-items: center; /* Center the label and switch vertically */
-  width: 200px; /* Adjust the width to your desired value */
+  width: 300; /* Adjust the width to your desired value */
   margin-bottom: 10px; /* Add some margin between each label and switch */
 }
 

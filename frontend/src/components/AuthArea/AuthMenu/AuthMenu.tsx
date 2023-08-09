@@ -18,7 +18,7 @@ const AuthMenu: FC<AuthMenuProps> = () => {
       return (
         <div className={styles.AuthMenu}>
           <span className={styles.helloUser}>
-            LoggedIn as {user.firstName} {user.lastName}
+            Welcome {user.firstName} {user.lastName}
             {user.role === 'admin' && (
               <NavLink to="/admin">Admin Panel</NavLink>
             )}

@@ -23,7 +23,7 @@ const AdminArea: FC<AdminAreaProps> = () => {
 
     return vacations.map((vacation) => (
       <tr key={vacation.vacationId}>
-        <td>{vacation.vacationId}</td>
+        {/* <td>{vacation.vacationId}</td> */}
         <td>{vacation.destination}</td>
         <td> {format(new Date(vacation.startDate), 'dd/MM/yyyy')}</td>
         <td>{vacation.likesCount}</td>
@@ -34,11 +34,13 @@ const AdminArea: FC<AdminAreaProps> = () => {
   return (
     <div className={styles.AdminArea}>
       <h2>Display Likes for Vacations</h2>
-      <BarChart />
+      <div className={styles.AdminArea__barChart}>
+        <BarChart />
+      </div>
       <table className={styles.AdminArea__table}>
         <thead>
           <tr>
-            <th>id</th>
+            {/* <th>id</th> */}
             <th>Destination</th>
             <th>Start date</th>
             <th>Likes Count</th>
@@ -48,7 +50,9 @@ const AdminArea: FC<AdminAreaProps> = () => {
       </table>
 
       <NavLink to={`${BASE_API_URL}/vacations/likes/csv`}>
-        <Button text={'Download likes report'}></Button>
+        <Button
+          className={styles.AdminArea__Button}
+          text={'Download likes report'}></Button>
       </NavLink>
     </div>
   );

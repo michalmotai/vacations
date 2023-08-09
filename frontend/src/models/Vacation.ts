@@ -4,8 +4,8 @@ interface Vacation {
   vacationId: number;
   destination: string;
   description: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   price: number;
   photoName: string;
   photo: FileList;

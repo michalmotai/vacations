@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './Home.module.scss';
 import Vacations from '../Vacations/Vacations';
-import backgroundImg from '../../assets/images/Default_blue_and_turquoise_sky_with_s_galactic_path_and_dust_0.jpg';
+import backgroundImg from '../../assets/images/Default_blue_and_turquoise_sky_showing_the_solar_system_illust_0_a3ac8347-d778-425b-84fa-b63ea2808f5b_1.jpg';
 import Register from '../AuthArea/Register/Register';
 import { useAppSelector } from '../../hooks';
 

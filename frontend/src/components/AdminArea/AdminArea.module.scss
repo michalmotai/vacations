@@ -9,32 +9,36 @@
   height: auto;
   margin: 50px auto;
   justify-content: space-around;
+  background-color: rgba(255, 255, 255, 0.7);
 
   table {
     width: 400px;
     margin-top: 20px;
     border: 1px solid;
     border-collapse: collapse;
+    color: $secondary-color;
+    table-layout: auto;
 
     th,
     td {
       border: 1px solid;
-      width: 25%;
+      text-align: center;
     }
+    td:nth-child(1) {
+      text-align: left;
+      padding-left: 5px;
+    }
+  }
+  h2 {
+    margin: 60px;
+    font-size: 40px;
   }
   &__barChart {
     width: 600px;
-    background-color: red;
   }
 
-  h2 {
-    margin: 20px auto;
-  }
-
-  button {
-    width: auto;
-    height: auto;
-    padding: 5px;
-    margin: 20px;
+  &__Button {
+    margin: 30px;
+    width: 200px;
   }
 }

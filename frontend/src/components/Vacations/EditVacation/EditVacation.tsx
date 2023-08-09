@@ -17,11 +17,13 @@ interface EditVacationProps {}
 const EditVacation: FC<EditVacationProps> = () => {
   const { register, handleSubmit, formState, setValue } = useForm<Vacation>();
   const dispatch = useAppDispatch();
-  const [imageUrl, setImageUrl] = useState('');
   const { vacation } = useAppSelector((state) => state.vacationsState);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectedFileName, setSelectedFileName] = useState<string>('null');
+
+  const [imageUrl, setImageUrl] = useState('');
+
   const [errorMessage, serErrorMessage] = useState<string>('');
-  // const [dates, setDates] = useState({ startDate: '', endDate: '' });
   const navigate = useNavigate();
 
   const handleFileInputChange = (
@@ -35,12 +37,24 @@ const EditVacation: FC<EditVacationProps> = () => {
     }
   };
 
+  // useEffect(() => {
+  //   if (!selectedFile) return;
+  //setImageUrl;
+  //   const imageUrl = URL.createObjectURL(selectedFile);
+  //   setImageUrl(imageUrl);
+
+  //   return () => {
+  //     URL.revokeObjectURL(imageUrl);
+  //   };
+  // }, [selectedFile]);
+
   const submitEditVacationHandler = async (vacation: Vacation) => {
     try {
+      // selectedFile
+      //   ? (vacation.photoName = selectedFile.name)
+      //   : vacation.photoName;
+
       // Update vacation on the server
-
-      // console.log('submitEditVacationHandler: ', vacation);
-
       const updatedVacation = await updateVacationAsync(vacation);
       // console.log('updatedVacation: ', updatedVacation);
 
@@ -49,7 +63,6 @@ const EditVacation: FC<EditVacationProps> = () => {
       console.log('dispatched vacation: ', updatedVacation);
       serErrorMessage('');
       navigate('/');
-
       return updatedVacation;
     } catch (error: any) {
       console.log(error.response.data);
@@ -62,22 +75,21 @@ const EditVacation: FC<EditVacationProps> = () => {
 
   useEffect(() => {
     if (vacation) {
+      const formattedStartDate = format(
+        new Date(vacation.startDate),
+        'yyyy-MM-dd'
+      );
+      const formattedEndDate = format(new Date(vacation.endDate), 'yyyy-MM-dd');
+
       // Populate the form fields with vacation data
 
       setValue('vacationId', vacation.vacationId);
       setValue('destination', vacation.destination);
       setValue('description', vacation.description);
-      setValue('startDate', vacation.startDate);
-      setValue('endDate', vacation.endDate);
+      setValue('startDate', formattedStartDate);
+      setValue('endDate', formattedEndDate);
       setValue('price', vacation.price);
       setValue('photoName', vacation.photoName);
-
-      // const formattedStartDate = format(
-      //   new Date(vacation.startDate),
-      //   'dd-MM-yyyy'
-      // );
-      // const formattedEndDate = format(new Date(vacation.endDate), 'dd-MM-yyyy');
-      // setDates({ startDate: formattedStartDate, endDate: formattedEndDate });
 
       const imgSrc = `${BASE_API_URL}/vacations/images/${vacation.photoName}`;
       setImageUrl(imgSrc);
@@ -107,32 +119,35 @@ const EditVacation: FC<EditVacationProps> = () => {
 
         <FormInputGroupWithError error={formState.errors.startDate?.message}>
           <label>Start date:</label>
-          {/* Use defaultValue to set the default value for the input field */}
-          <input
-            type="text"
-            // value={new Date(vacation?.startDate as Date).toISOString()}
-            {...register('startDate', validation.startDate)}
-          />
+          <input type="date" {...register('startDate', validation.startDate)} />
         </FormInputGroupWithError>
-        {/* <input type="text" defaultValue={dates.startDate} /> */}
+
         <FormInputGroupWithError error={formState.errors.endDate?.message}>
           <label>End date:</label>
-          <input type="text" {...register('endDate', validation.endDate)} />
+          <input
+            type="date"
+            {...register('endDate', {
+              ...validation.endDate,
+            })}
+          />{' '}
         </FormInputGroupWithError>
+
         {/* <input type="text" defaultValue={dates.endDate} /> */}
         <FormInputGroupWithError error={formState.errors.price?.message}>
           <label>Price:</label>
           <input type="number" {...register('price', validation.price)} />
         </FormInputGroupWithError>
+
         <FormInputGroupWithError error={formState.errors.photo?.message}>
           <label>Photo:</label>
           <input
             type="file"
             accept="image/*"
-            {...register('photo')}
+            {...register('photo', { required: 'Photo is required' })}
             onChange={handleFileInputChange}
           />
         </FormInputGroupWithError>
+
         <div className={styles.EditVacation__serverErrorMessage}>
           {/* Display the error message */}
           {errorMessage && <div>Error: {errorMessage}</div>}
