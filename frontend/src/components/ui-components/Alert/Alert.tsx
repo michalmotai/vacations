@@ -1,9 +1,10 @@
 import React, { FC, ReactNode } from 'react';
 import styles from './Alert.module.scss';
 import Modal from '../Modal/Modal';
+import ModalContainer from '../ModalContainer/ModalContainer';
 
 interface AlertProps {
-  error: Error | AxiosError | null; // Update the type to include AxiosError
+  error: Error | AxiosError | null;
   children?: ReactNode;
   onClose: () => void;
 }
@@ -24,17 +25,17 @@ const Alert: FC<AlertProps> = ({ onClose, error }) => {
   let errorMessage = 'Something went wrong';
   if ('response' in error && error.response) {
     errorMessage =
-      error.response.data?.message ||
+      error.response.data ||
       `Request failed with status code ${error.response.status}`;
   }
   console.log(error);
 
   return (
-    <Modal onClose={onClose} disableOverlayClick={true}>
+    <ModalContainer disableOverlayClick={true}>
       <div className={styles.Alert}>
         <p>{errorMessage}</p>
       </div>
-    </Modal>
+    </ModalContainer>
   );
 };
 

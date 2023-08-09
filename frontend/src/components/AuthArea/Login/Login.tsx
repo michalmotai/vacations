@@ -10,6 +10,7 @@ import { useAppDispatch } from '../../../hooks';
 import { login } from '../../../auth/authSlice';
 import ModalContainer from '../../ui-components/ModalContainer/ModalContainer';
 import validate from '../validate';
+import Alert from '../../ui-components/Alert/Alert';
 
 interface LoginProps {}
 
@@ -17,24 +18,29 @@ const Login: FC<LoginProps> = () => {
   const { register, handleSubmit, formState } = useForm<Credentials>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [serverRespones, setserverRespones] = useState();
+  const [showError, setShowError] = useState<boolean>(false);
+  const [error, setError] = useState<any>(null);
 
   const loginHandler = async (Credentials: Credentials) => {
     try {
       const token = await loginAsync(Credentials);
 
-      //set the state
+      // Set the state
       dispatch(login(token));
       alert('Welcome back');
       navigate('/');
     } catch (error: any) {
       console.log('error', error);
-      alert(error.response?.data?.message || 'An error occurred');
+      setError(error);
+      setShowError(true);
     }
   };
 
   return (
     <ModalContainer disableOverlayClick={true}>
+      {error && showError && (
+        <Alert error={error} onClose={() => setShowError(false)} />
+      )}
       <div className={styles.Login}>
         <h2>Login</h2>
         <form onSubmit={handleSubmit(loginHandler)}>
