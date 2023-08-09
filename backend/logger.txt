@@ -613,3 +613,25 @@
 ----------------------------
 09/08/2023, 16:21:22 	 Email is already in use.
 ----------------------------
+09/08/2023, 16:28:08 	 Incorrect email or password
+----------------------------
+09/08/2023, 16:29:26 	 "password" length must be at least 6 characters long
+----------------------------
+09/08/2023, 16:36:15 	 Email is already in use.
+----------------------------
+09/08/2023, 17:01:15 	 "password" length must be at least 6 characters long
+----------------------------
+09/08/2023, 17:16:42 	 "password" length must be at least 6 characters long
+----------------------------
+09/08/2023, 17:17:34 	 "email" must be a valid email
+----------------------------
+09/08/2023, 17:17:48 	 Incorrect email or password
+----------------------------
+09/08/2023, 17:18:19 	 Incorrect email or password
+----------------------------
+09/08/2023, 17:19:10 	 Incorrect email or password
+----------------------------
+09/08/2023, 17:19:50 	 Incorrect email or password
+----------------------------
+09/08/2023, 18:55:45 	 "password" length must be at least 6 characters long
+----------------------------

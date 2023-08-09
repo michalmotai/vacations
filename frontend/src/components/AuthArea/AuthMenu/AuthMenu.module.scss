@@ -1,21 +1,25 @@
 .AuthMenu {
-  color: white;
-  margin: 20px;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-
-  & a {
+  &__menuContainer {
+    display: flex;
     color: white;
     margin: 20px;
-    text-decoration: none;
+    gap: 20px;
+    //align-items: center;
+    flex-direction: row;
+    justify-content: center;
 
-    &:hover {
-      font-weight: 600;
+    & a {
+      color: white;
+      margin: 20px;
+      text-decoration: none;
+
+      &:hover {
+        font-weight: 600;
+      }
+
+      &__helloUser {
+        margin: 20px;
+      }
     }
-  }
-
-  .helloUser {
-    font-weight: 900px;
   }
 }

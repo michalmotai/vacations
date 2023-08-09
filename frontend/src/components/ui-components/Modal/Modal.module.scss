@@ -21,8 +21,8 @@
 
   .Modal__closeButton {
     position: absolute;
-    top: 5%;
-    right: 7%;
+    top: 3%;
+    right: 5%;
     width: 45px;
     padding: 5px;
     z-index: 1000;
@@ -38,7 +38,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $primary-color; // Make sure $primary-color is properly imported and defined
+    color: $secondary-color;
+    background: $background;
     border: 3px solid $primary-color;
     z-index: 1000;
     border: 1px solid white;

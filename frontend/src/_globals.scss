@@ -3,6 +3,14 @@ $secondary-color: #01497e;
 $accent-color: #ffc107;
 $shadow-color: #0d3756;
 $reflection-color: #aadcff;
+$gradeint: #c2faf6d8;
+
+$background: linear-gradient(
+  120deg,
+  rgba(2, 206, 193, 1) 0%,
+  rgba(170, 220, 255, 1) 100%
+);
+
 $border-radius: 15px;
 
 $header-font: 'Lato', sans-serif;

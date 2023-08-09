@@ -16,26 +16,37 @@ const AuthMenu: FC<AuthMenuProps> = () => {
   const renderContent = () => {
     if (user) {
       return (
-        <div className={styles.AuthMenu}>
-          <span className={styles.helloUser}>
+        <div
+          className={`${styles.menuContainer} ${styles.AuthMenu__menuContainer}`}>
+          {/* //1 */}
+          <div>
             Welcome {user.firstName} {user.lastName}
-            {user.role === 'admin' && (
+          </div>
+          {/* //2 */}
+          {user.role === 'admin' && (
+            <div>
               <NavLink to="/admin">Admin Panel</NavLink>
-            )}
+            </div>
+          )}
+          {/* //3 */}
+          <div>
             <NavLink onClick={logoutHandler} to="#">
               Logout
             </NavLink>
-          </span>
+          </div>
         </div>
       );
     }
     return (
-      <div className={styles.AuthMenu}>
-        <span>
-          LoggedIn as Guest | <NavLink to="/login">Login </NavLink>
-        </span>
-        <span>|</span>
-        <NavLink to="/register">Register</NavLink>
+      <div className={`${styles.AuthMenu__menuContainer}`}>
+        <div>
+          don't be a stranger please login
+          <NavLink to="/login"> Login </NavLink>
+        </div>
+
+        <div>
+          <NavLink to="/register">Register</NavLink>
+        </div>
       </div>
     );
   };
